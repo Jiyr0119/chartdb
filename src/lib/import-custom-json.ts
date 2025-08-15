@@ -7,6 +7,7 @@ import {
     type RelationshipType,
 } from './domain/db-relationship';
 import { type DBField } from './domain/db-field';
+import { type DBIndex } from './domain/db-index';
 
 interface CustomTable {
     chinese_name: string;
@@ -32,6 +33,18 @@ interface CustomJsonStructure {
     relationships: CustomRelationship[];
 }
 
+// Predefined colors for tables
+const TABLE_COLORS = [
+    '#b067e9', // Purple
+    '#ff6b8a', // Pink
+    '#8eb7ff', // Blue
+    '#ffe374', // Yellow
+    '#9ef07a', // Green
+    '#ff6363', // Red
+    '#7175fa', // Indigo
+    '#63c9ec', // Cyan
+];
+
 export const importCustomJson = (jsonString: string): Diagram => {
     const parsedData: CustomJsonStructure = JSON.parse(jsonString);
 
@@ -40,7 +53,7 @@ export const importCustomJson = (jsonString: string): Diagram => {
 
     // Convert tables
     const tables: DBTable[] = Object.entries(parsedData.tables).map(
-        ([tableName, table]) => {
+        ([tableName, table], index) => {
             // Generate a consistent ID for this table
             const tableId = generateId();
             tableIdMap.set(tableName, tableId);
@@ -56,14 +69,31 @@ export const importCustomJson = (jsonString: string): Diagram => {
                 comments: field.description || field.field_english_name,
             }));
 
+            // Create indexes for primary keys
+            const indexes: DBIndex[] = [];
+            if (table.primarykey.length > 0) {
+                indexes.push({
+                    id: generateId(),
+                    name: `${tableName}_pkey`,
+                    unique: true,
+                    fieldIds: table.primarykey
+                        .map((pkName) => {
+                            const field = fields.find((f) => f.name === pkName);
+                            return field ? field.id : '';
+                        })
+                        .filter((id) => id !== ''),
+                    createdAt: Date.now(),
+                });
+            }
+
             return {
                 id: tableId,
                 name: tableName,
                 x: 0, // Will be adjusted later
                 y: 0, // Will be adjusted later
                 fields,
-                indexes: [],
-                color: '#3498db', // Default color
+                indexes,
+                color: TABLE_COLORS[index % TABLE_COLORS.length], // Assign color based on index
                 isView: false,
                 createdAt: Date.now(),
                 comments: table.description || table.chinese_name,
@@ -174,6 +204,8 @@ export const importCustomJson = (jsonString: string): Diagram => {
         databaseType: DatabaseType.GENERIC,
         tables,
         relationships,
+        areas: [], // No areas in custom format
+        customTypes: [], // No custom types in custom format
         createdAt: new Date(),
         updatedAt: new Date(),
     };
