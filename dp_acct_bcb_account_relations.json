@@ -1,0 +1,3234 @@
+{
+    "tables": {
+        "kdpa_acct": {
+            "chinese_name": "账户信息表",
+            "description": "Customer Account Information",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Account Type",
+                    "field_name": "cust_acct_num_tp",
+                    "description": "客户账号类型"
+                },
+                {
+                    "field_english_name": "Customer type",
+                    "field_name": "cust_tp",
+                    "description": "客户类型"
+                },
+                {
+                    "field_english_name": "Account Number name",
+                    "field_name": "cust_acct_nm",
+                    "description": "客户账户名称"
+                },
+                {
+                    "field_english_name": "account nick name",
+                    "field_name": "acct_nick_nm",
+                    "description": "客户账号别名"
+                },
+                {
+                    "field_english_name": "account english name",
+                    "field_name": "acct_engl_nm",
+                    "description": "账户英文名称"
+                },
+                {
+                    "field_english_name": "Payment terms",
+                    "field_name": "pymt_cond",
+                    "description": "支付条件"
+                },
+                {
+                    "field_english_name": "joint account flag",
+                    "field_name": "joint_acct_flg",
+                    "description": "联名账户标志"
+                },
+                {
+                    "field_english_name": "Joint Account Verification Method",
+                    "field_name": "joint_acct_vrfy_way",
+                    "description": "联名账户校验方式"
+                },
+                {
+                    "field_english_name": "associated card flag",
+                    "field_name": "rlvc_card_flg",
+                    "description": "卡账关系标志"
+                },
+                {
+                    "field_english_name": "associated voucher level",
+                    "field_name": "rlvc_vchr_level",
+                    "description": "关联凭证层级"
+                },
+                {
+                    "field_english_name": "Associated Instrument Y/N",
+                    "field_name": "rlvc_vchr_flg",
+                    "description": "关联凭证标志"
+                },
+                {
+                    "field_english_name": "single sub-account indicator",
+                    "field_name": "sngl_sub_acct_flg",
+                    "description": "单子户标志"
+                },
+                {
+                    "field_english_name": "single currency account indicator",
+                    "field_name": "sngl_ccy_acct_flg",
+                    "description": "单币种标志"
+                },
+                {
+                    "field_english_name": "single product account indicator",
+                    "field_name": "sngl_prod_acct_flg",
+                    "description": "单产品标志"
+                },
+                {
+                    "field_english_name": "account belonged organization",
+                    "field_name": "acct_blgd_org",
+                    "description": "账户所属机构"
+                },
+                {
+                    "field_english_name": "Special Account Type",
+                    "field_name": "spec_acct_num_tp",
+                    "description": "特殊账户类型"
+                },
+                {
+                    "field_english_name": "special account subclass",
+                    "field_name": "spec_acct_sub_tp",
+                    "description": "特殊账户子类"
+                },
+                {
+                    "field_english_name": "Operational Customer Account Number",
+                    "field_name": "oprtg_cust_acct_num",
+                    "description": "运营客户账号"
+                },
+                {
+                    "field_english_name": "Nostro Account Type",
+                    "field_name": "itrbnk_strge_acct_tp",
+                    "description": "同业存放账户类型"
+                },
+                {
+                    "field_english_name": "income and expense special account flag",
+                    "field_name": "incm_exps_spec_acct_flg",
+                    "description": "收入支出专户标志"
+                },
+                {
+                    "field_english_name": "Account Status",
+                    "field_name": "acct_ste",
+                    "description": "账户状态"
+                },
+                {
+                    "field_english_name": "unuse sub-account serial number",
+                    "field_name": "unuse_sub_acct_serl_num",
+                    "description": "未使用子账户序号"
+                },
+                {
+                    "field_english_name": "Default sub-account serial number",
+                    "field_name": "dflt_sub_acct_serl_num",
+                    "description": "默认子账户序号"
+                },
+                {
+                    "field_english_name": "Account Opening Channel",
+                    "field_name": "open_acct_chnl",
+                    "description": "开户渠道"
+                },
+                {
+                    "field_english_name": "Account Opening Branch",
+                    "field_name": "open_acct_org",
+                    "description": "开户机构"
+                },
+                {
+                    "field_english_name": "Account Opening Date",
+                    "field_name": "open_acct_dt",
+                    "description": "开户日期"
+                },
+                {
+                    "field_english_name": "Closed account channel",
+                    "field_name": "cncl_acct_chnl",
+                    "description": "销户渠道"
+                },
+                {
+                    "field_english_name": "Account Close Institution",
+                    "field_name": "cncl_acct_org",
+                    "description": "销户机构"
+                },
+                {
+                    "field_english_name": "Account Close date",
+                    "field_name": "cncl_acct_dt",
+                    "description": "销户日期"
+                },
+                {
+                    "field_english_name": "approval status",
+                    "field_name": "aprvl_ste",
+                    "description": "审核状态"
+                },
+                {
+                    "field_english_name": "approval status date",
+                    "field_name": "aprvl_ste_dt",
+                    "description": "审核状态日期"
+                },
+                {
+                    "field_english_name": "cash universal withdrawing flag",
+                    "field_name": "cash_unvsl_wthdg_flg",
+                    "description": "现金通兑标志"
+                },
+                {
+                    "field_english_name": "cash universal withdrawing scope",
+                    "field_name": "cash_unvsl_wthdg_scope",
+                    "description": "现金通兑范围"
+                },
+                {
+                    "field_english_name": "Inter-Branch Transfer Withdrawal Indicator",
+                    "field_name": "trfr_unvsl_wthdg_flg",
+                    "description": "转账通兑标志"
+                },
+                {
+                    "field_english_name": "transfer universal withdrawing scope",
+                    "field_name": "trfr_unvsl_wthdg_scope",
+                    "description": "转账通兑范围"
+                },
+                {
+                    "field_english_name": "without passbook update maximum sequence number",
+                    "field_name": "wtht_psbk_upd_max_seq_num",
+                    "description": "未登折最大顺序号"
+                },
+                {
+                    "field_english_name": "Account Opening Serial Number",
+                    "field_name": "open_acct_rung_num",
+                    "description": "开户流水号"
+                },
+                {
+                    "field_english_name": "cancel account running number",
+                    "field_name": "cncl_acct_rung_num",
+                    "description": "销户流水号"
+                },
+                {
+                    "field_english_name": "country code",
+                    "field_name": "nat_code",
+                    "description": "国别代码"
+                },
+                {
+                    "field_english_name": "account number feature coding",
+                    "field_name": "acct_featr_code",
+                    "description": "账号特征码"
+                },
+                {
+                    "field_english_name": "Taxpayer Identification Number (TIN)",
+                    "field_name": "tax_ide_num",
+                    "description": "纳税人识别号"
+                },
+                {
+                    "field_english_name": "Source of tax identification number",
+                    "field_name": "tax_id_src",
+                    "description": "纳税识别号来源"
+                },
+                {
+                    "field_english_name": "account short name",
+                    "field_name": "acct_shrt_nm",
+                    "description": "账户简称"
+                },
+                {
+                    "field_english_name": "whether with passbook flag",
+                    "field_name": "wthr_with_psbk_flg",
+                    "description": "是否有折标志"
+                },
+                {
+                    "field_english_name": "e-Passbook Y/N",
+                    "field_name": "epsbk_flg",
+                    "description": "电子存折标志"
+                },
+                {
+                    "field_english_name": "Hold All Funds Y/N",
+                    "field_name": "hold_full_bal_flg",
+                    "description": "保留全部余额标志"
+                },
+                {
+                    "field_english_name": "Closed Freeze Y/N",
+                    "field_name": "seal_frz_flg",
+                    "description": "封闭冻结标志"
+                },
+                {
+                    "field_english_name": "Message tag value",
+                    "field_name": "msg_tag_val",
+                    "description": "消息标签值"
+                },
+                {
+                    "field_english_name": "Taxpayer Identification Name",
+                    "field_name": "tax_ide_nm",
+                    "description": "纳税人名称"
+                },
+                {
+                    "field_english_name": "batch group number",
+                    "field_name": "btch_grp_num",
+                    "description": "批量分组号"
+                },
+                {
+                    "field_english_name": "Instrument Type",
+                    "field_name": "vchr_catg",
+                    "description": "凭证种类"
+                },
+                {
+                    "field_english_name": "Passbook Update Date",
+                    "field_name": "psbk_upd_dt",
+                    "description": "存折更新日期"
+                },
+                {
+                    "field_english_name": "Passbook Balance",
+                    "field_name": "psbk_bal",
+                    "description": "存折余额"
+                },
+                {
+                    "field_english_name": "Full Page Y/N",
+                    "field_name": "full_page_flg",
+                    "description": "满页标志"
+                },
+                {
+                    "field_english_name": "Next Print Page Number",
+                    "field_name": "next_prt_page_num",
+                    "description": "下次打印页号"
+                },
+                {
+                    "field_english_name": "next print row number",
+                    "field_name": "next_prt_row_num",
+                    "description": "下次打印行号"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "cust_acct_num"
+            ]
+        },
+        "kdpa_acct_cmprs": {
+            "chinese_name": "账号对照表",
+            "description": "Customer Account Comparison Table",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Payer Account Serial Number",
+                    "field_name": "sub_acct_serl_num",
+                    "description": "子账户序号"
+                },
+                {
+                    "field_english_name": "Account Type",
+                    "field_name": "cust_acct_num_tp",
+                    "description": "客户账号类型"
+                },
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Currency",
+                    "field_name": "ccy_code_num",
+                    "description": "货币代号"
+                },
+                {
+                    "field_english_name": "Product Code",
+                    "field_name": "prod_code",
+                    "description": "产品代码"
+                },
+                {
+                    "field_english_name": "Product Fixed/CASA Flag",
+                    "field_name": "term_dmd_flg",
+                    "description": "产品定活标志"
+                },
+                {
+                    "field_english_name": "Account Status",
+                    "field_name": "acct_ste",
+                    "description": "账户状态"
+                },
+                {
+                    "field_english_name": "default sub-account flag",
+                    "field_name": "dflt_sub_acct_flg",
+                    "description": "默认子账户标志"
+                },
+                {
+                    "field_english_name": "Hot Account Indicator",
+                    "field_name": "hot_ac_flg",
+                    "description": "热点账户标志"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "cust_acct_num",
+                "sub_acct_serl_num"
+            ]
+        },
+        "kdpa_sub_acct": {
+            "chinese_name": "子账户信息表",
+            "description": "sub-Account Information",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Liability Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Sub-account serial number",
+                    "field_name": "sub_acct_serl_num",
+                    "description": "子账户序号"
+                },
+                {
+                    "field_english_name": "sub-account nickname",
+                    "field_name": "sub_acct_nick_nm",
+                    "description": "子账户昵称"
+                },
+                {
+                    "field_english_name": "Account Number name",
+                    "field_name": "cust_acct_nm",
+                    "description": "客户账户名称"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Customer Type",
+                    "field_name": "cust_tp",
+                    "description": "客户类型"
+                },
+                {
+                    "field_english_name": "Product Code",
+                    "field_name": "prod_code",
+                    "description": "产品代码"
+                },
+                {
+                    "field_english_name": "Product Fixed/CASA Flag",
+                    "field_name": "term_dmd_flg",
+                    "description": "产品定活标志"
+                },
+                {
+                    "field_english_name": "CASA classification",
+                    "field_name": "dmd_acct_clasf",
+                    "description": "活期账户类型"
+                },
+                {
+                    "field_english_name": "Currency code",
+                    "field_name": "ccy_code_num",
+                    "description": "货币代号"
+                },
+                {
+                    "field_english_name": "actual deposit period",
+                    "field_name": "dept_prd",
+                    "description": "存期"
+                },
+                {
+                    "field_english_name": "Expiry Date",
+                    "field_name": "matu_dt",
+                    "description": "到期日期"
+                },
+                {
+                    "field_english_name": "Value Date",
+                    "field_name": "strt_int_caln_dt",
+                    "description": "起息日期"
+                },
+                {
+                    "field_english_name": "Initial Value Date",
+                    "field_name": "intl_strt_int_caln_dt",
+                    "description": "初始起息日期"
+                },
+                {
+                    "field_english_name": "Initial Expiration Date",
+                    "field_name": "intl_matu_dt",
+                    "description": "初始到期日期"
+                },
+                {
+                    "field_english_name": "Account Valid Period",
+                    "field_name": "acct_vld_prd",
+                    "description": "账户有效期"
+                },
+                {
+                    "field_english_name": "Balance and GL Synchronization Y/N",
+                    "field_name": "bal_genl_ledger_sycrz_flg",
+                    "description": "余额总账同步标志"
+                },
+                {
+                    "field_english_name": "Accounting code",
+                    "field_name": "busi_acctg_code",
+                    "description": "核算代码"
+                },
+                {
+                    "field_english_name": "account belonged organization",
+                    "field_name": "acct_blgd_org",
+                    "description": "账户所属机构"
+                },
+                {
+                    "field_english_name": "Date of last balance change",
+                    "field_name": "bal_lately_upd_dt",
+                    "description": "余额最近更新日期"
+                },
+                {
+                    "field_english_name": "account deposit balance",
+                    "field_name": "acct_dept_bal",
+                    "description": "账户存款余额"
+                },
+                {
+                    "field_english_name": "last day deposit balance",
+                    "field_name": "last_dy_dept_bal",
+                    "description": "上日存款余额"
+                },
+                {
+                    "field_english_name": "account float balance",
+                    "field_name": "acct_flt_bal",
+                    "description": "账户浮动余额"
+                },
+                {
+                    "field_english_name": "last day float balance",
+                    "field_name": "last_dy_flt_bal",
+                    "description": "上日浮动余额"
+                },
+                {
+                    "field_english_name": "account overdraft balance",
+                    "field_name": "acct_ovdf_bal",
+                    "description": "账户透支余额"
+                },
+                {
+                    "field_english_name": "last day overdraft balance",
+                    "field_name": "last_dy_ovdf_bal",
+                    "description": "上日透支余额"
+                },
+                {
+                    "field_english_name": "check code",
+                    "field_name": "vrfy_code",
+                    "description": "校验码"
+                },
+                {
+                    "field_english_name": "type of deposit",
+                    "field_name": "dept_catg",
+                    "description": "存款种类"
+                },
+                {
+                    "field_english_name": "First Deposit Date",
+                    "field_name": "first_dept_dt",
+                    "description": "首次存入日期"
+                },
+                {
+                    "field_english_name": "Last Business Date",
+                    "field_name": "last_busi_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Account Opening Amount",
+                    "field_name": "open_acct_amt",
+                    "description": "开户金额"
+                },
+                {
+                    "field_english_name": "maximum retain balance",
+                    "field_name": "max_rtan_bal",
+                    "description": "最大留存余额"
+                },
+                {
+                    "field_english_name": "smallest retain balance",
+                    "field_name": "min_rtan_bal",
+                    "description": "最小留存余额"
+                },
+                {
+                    "field_english_name": "Deposit Control Condition",
+                    "field_name": "dept_ctrl_way",
+                    "description": "存入控制方式"
+                },
+                {
+                    "field_english_name": "drawdown control way",
+                    "field_name": "draw_ctrl_way",
+                    "description": "支取控制方式"
+                },
+                {
+                    "field_english_name": "Sub-Account Status",
+                    "field_name": "sub_acct_ste",
+                    "description": "子账户状态"
+                },
+                {
+                    "field_english_name": "sub-account form status",
+                    "field_name": "sub_acct_form_ste",
+                    "description": "子账户形态"
+                },
+                {
+                    "field_english_name": "sub-account form date",
+                    "field_name": "sub_acct_form_dt",
+                    "description": "子账户形态日期"
+                },
+                {
+                    "field_english_name": "Account Protection Relationship Flag",
+                    "field_name": "acct_prot_rltnp_flg",
+                    "description": "账户保护关系标志"
+                },
+                {
+                    "field_english_name": "agreement product indicator",
+                    "field_name": "agrmt_prod_flg",
+                    "description": "协议产品标志"
+                },
+                {
+                    "field_english_name": "agreement product type",
+                    "field_name": "agrmt_prod_type",
+                    "description": "协议产品类型"
+                },
+                {
+                    "field_english_name": "Whether Precious Metal",
+                    "field_name": "wthr_precs_metal",
+                    "description": "是否贵金属"
+                },
+                {
+                    "field_english_name": "Allow OD indicator",
+                    "field_name": "alw_ovdf_flg",
+                    "description": "允许透支标志"
+                },
+                {
+                    "field_english_name": "interest payment way",
+                    "field_name": "int_pymt_way",
+                    "description": "利息支付方式"
+                },
+                {
+                    "field_english_name": "Associated Instrument Y/N",
+                    "field_name": "rlvc_vchr_flg",
+                    "description": "关联凭证标志"
+                },
+                {
+                    "field_english_name": "Cheque Collection Flag",
+                    "field_name": "cheq_rcpn_flg",
+                    "description": "领用支票标志"
+                },
+                {
+                    "field_english_name": "Zero Balance and Zero Interest Account Flag",
+                    "field_name": "dbl_zero_acct_flg",
+                    "description": "双零户标志"
+                },
+                {
+                    "field_english_name": "Profit center",
+                    "field_name": "profit_centr",
+                    "description": "利润中心"
+                },
+                {
+                    "field_english_name": "Margin Deposit Flag",
+                    "field_name": "mrgn_dept_flg",
+                    "description": "保证金存款标志"
+                },
+                {
+                    "field_english_name": "Designated Target",
+                    "field_name": "asgn_drcn",
+                    "description": "指定去向"
+                },
+                {
+                    "field_english_name": "Unused Slip number",
+                    "field_name": "unuse_slip_num",
+                    "description": "未使用卡片号"
+                },
+                {
+                    "field_english_name": "tax calculation flag",
+                    "field_name": "tax_caln_flg",
+                    "description": "计税标志"
+                },
+                {
+                    "field_english_name": "interest tax  code",
+                    "field_name": "int_tax_code",
+                    "description": "利息税代码"
+                },
+                {
+                    "field_english_name": "intra-bank receive interest  flag",
+                    "field_name": "intra_bank_rcev_int_flg",
+                    "description": "行内收息账号标志"
+                },
+                {
+                    "field_english_name": "interest transfer into account number",
+                    "field_name": "int_trfr_in_acct_num",
+                    "description": "收息账号"
+                },
+                {
+                    "field_english_name": "interest transfer into account currency",
+                    "field_name": "int_trfr_in_acct_ccy",
+                    "description": "收息账户币种"
+                },
+                {
+                    "field_english_name": "Interest Disposition Account Name",
+                    "field_name": "int_trfr_in_acct_nm",
+                    "description": "利息转入账户名称"
+                },
+                {
+                    "field_english_name": "interest transfer into bank code",
+                    "field_name": "int_trfr_in_bank_code",
+                    "description": "收息金融机构代码"
+                },
+                {
+                    "field_english_name": "interest transfer into bank name",
+                    "field_name": "int_trfr_in_bank_nm",
+                    "description": "收息金融机构名称"
+                },
+                {
+                    "field_english_name": "Interest Paid",
+                    "field_name": "alrdy_pay_int",
+                    "description": "已付利息"
+                },
+                {
+                    "field_english_name": "Withholding Interest Tax",
+                    "field_name": "alrdy_wthld_int_tax",
+                    "description": "已代缴利息税"
+                },
+                {
+                    "field_english_name": "This Year Interest Paid",
+                    "field_name": "this_yr_pay_int",
+                    "description": "本年已付利息"
+                },
+                {
+                    "field_english_name": "This Year Withholding Interest Tax",
+                    "field_name": "this_yr_wthld_int_tax",
+                    "description": "本年代缴利息税"
+                },
+                {
+                    "field_english_name": "Last Year Interest Paid",
+                    "field_name": "last_yr_pay_int",
+                    "description": "上年已付利息"
+                },
+                {
+                    "field_english_name": "Last Year Withholding Interest Tax",
+                    "field_name": "last_yr_wthld_int_tax",
+                    "description": "上年代缴利息税"
+                },
+                {
+                    "field_english_name": "batch group number",
+                    "field_name": "btch_grp_num",
+                    "description": "批量分组号"
+                },
+                {
+                    "field_english_name": "Account Opening Channel",
+                    "field_name": "open_acct_chnl",
+                    "description": "开户渠道"
+                },
+                {
+                    "field_english_name": "Account Opening Branch",
+                    "field_name": "open_acct_org",
+                    "description": "开户机构"
+                },
+                {
+                    "field_english_name": "Account Opening Date",
+                    "field_name": "open_acct_dt",
+                    "description": "开户日期"
+                },
+                {
+                    "field_english_name": "Closed account channel",
+                    "field_name": "cncl_acct_chnl",
+                    "description": "销户渠道"
+                },
+                {
+                    "field_english_name": "Account Close Institution",
+                    "field_name": "cncl_acct_org",
+                    "description": "销户机构"
+                },
+                {
+                    "field_english_name": "Account Close date",
+                    "field_name": "cncl_acct_dt",
+                    "description": "销户日期"
+                },
+                {
+                    "field_english_name": "Current Unused Serial No.",
+                    "field_name": "cur_unused_serl_num",
+                    "description": "当前未用序号"
+                },
+                {
+                    "field_english_name": "account state field",
+                    "field_name": "acct_ste_fld",
+                    "description": "账户状态字段"
+                },
+                {
+                    "field_english_name": "Withholding Interest Tax Flag",
+                    "field_name": "wthld_int_tax_flg",
+                    "description": "代扣利息税标志"
+                },
+                {
+                    "field_english_name": "Account Pre-Closure Date",
+                    "field_name": "pre_cncl_acct_dt",
+                    "description": "预销户日期"
+                },
+                {
+                    "field_english_name": "Account Balance",
+                    "field_name": "acct_bal",
+                    "description": "账户余额"
+                },
+                {
+                    "field_english_name": "last day account balance",
+                    "field_name": "last_dy_acct_bal",
+                    "description": "上日账户余额"
+                },
+                {
+                    "field_english_name": "Product Group Code",
+                    "field_name": "prod_grp_code",
+                    "description": "产品组代码"
+                },
+                {
+                    "field_english_name": "Voluntarily Taxable Y/N",
+                    "field_name": "vol_tax_pymt_flg",
+                    "description": "主动纳税标志"
+                },
+                {
+                    "field_english_name": "Zero Balance and Zero Interest Account Date",
+                    "field_name": "dbl_zero_acc_dt",
+                    "description": "双零户日期"
+                },
+                {
+                    "field_english_name": "last deposit date",
+                    "field_name": "last_dept_dt",
+                    "description": "账户上次存款日期"
+                },
+                {
+                    "field_english_name": "last deposit amount",
+                    "field_name": "last_dept_amt",
+                    "description": "账户上次存款金额"
+                },
+                {
+                    "field_english_name": "last withdrawal date",
+                    "field_name": "last_wthdl_dt",
+                    "description": "账户上次取款日期"
+                },
+                {
+                    "field_english_name": "last deposit amount",
+                    "field_name": "last_wthdl_amt",
+                    "description": "账户上次取款金额"
+                },
+                {
+                    "field_english_name": "Account Negative Balance",
+                    "field_name": "acct_neg_bal",
+                    "description": "账户负余额"
+                },
+                {
+                    "field_english_name": "Last Day Negative Balance",
+                    "field_name": "last_dy_neg_bal",
+                    "description": "上日负余额"
+                },
+                {
+                    "field_english_name": "Interest Reward Code",
+                    "field_name": "int_awrd_code",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Interest Paid within Term",
+                    "field_name": "tenor_paid_int",
+                    "description": "期限内已付利息"
+                },
+                {
+                    "field_english_name": "Withholding Tax Deducted within Term",
+                    "field_name": "tenor_wthld_int_tax",
+                    "description": "期限内已扣利息税"
+                },
+                {
+                    "field_english_name": "Effective Date of Interest Reward",
+                    "field_name": "int_awrd_eff_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Annotated limit for unsettled checks",
+                    "field_name": "aprv_enc_lmt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Limit of uncleared checks already used",
+                    "field_name": "used_enc_lmt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Update date of uncleared check limit",
+                    "field_name": "enc_lmt_upd_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Account Pledge Y/N",
+                    "field_name": "acct_pleg_flg",
+                    "description": ""
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num"
+            ]
+        },
+        "kdpa_acct_dept_ctrl": {
+            "chinese_name": "账户存入控制表",
+            "description": "Account Deposit Control",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Liability Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Deposit amount control method",
+                    "field_name": "dept_amt_ctrl_way",
+                    "description": "存入金额控制方式"
+                },
+                {
+                    "field_english_name": "first deposit minimum amount",
+                    "field_name": "first_dept_min_amt",
+                    "description": "首次存入最小金额"
+                },
+                {
+                    "field_english_name": "Initial Bulk Deposit Amount",
+                    "field_name": "first_dept_amt_incrmt",
+                    "description": "首次存入金额增量"
+                },
+                {
+                    "field_english_name": "single deposit minimum amount",
+                    "field_name": "sngl_dept_min_amt",
+                    "description": "单次存入最小金额"
+                },
+                {
+                    "field_english_name": "single deposit maximum amount",
+                    "field_name": "sngl_dept_max_amt",
+                    "description": "单次存入最大金额"
+                },
+                {
+                    "field_english_name": "Bulk Deposit",
+                    "field_name": "dept_amt_incrmt",
+                    "description": "存入金额增量"
+                },
+                {
+                    "field_english_name": "Cash Deposit Allowed Flag",
+                    "field_name": "alw_cash_dept_flg",
+                    "description": "允许现金存入标志"
+                },
+                {
+                    "field_english_name": "Deposit count control way",
+                    "field_name": "dept_cnt_ctrl_way",
+                    "description": "存入次数控制方式"
+                },
+                {
+                    "field_english_name": "Maximum Deposit Count",
+                    "field_name": "max_dept_cnt",
+                    "description": "最大存入次数"
+                },
+                {
+                    "field_english_name": "Recurring Deposit Y/N",
+                    "field_name": "prdcly_dept_flg",
+                    "description": "周期性存入标志"
+                },
+                {
+                    "field_english_name": "omit deposit and complement way",
+                    "field_name": "omit_dept_cplmt_way",
+                    "description": "漏存补足方式"
+                },
+                {
+                    "field_english_name": "Maximum of Late Payment Count",
+                    "field_name": "max_cplmt_cnt",
+                    "description": "最大补足次数"
+                },
+                {
+                    "field_english_name": "omit deposit and complement grace period",
+                    "field_name": "omit_dept_cplmt_grace_prd",
+                    "description": "漏存补足宽限期"
+                },
+                {
+                    "field_english_name": "Default Criteria",
+                    "field_name": "dept_dflt_std",
+                    "description": "存入违约标准"
+                },
+                {
+                    "field_english_name": "maximum omit deposit count",
+                    "field_name": "max_omit_dept_cnt",
+                    "description": "最大漏存次数"
+                },
+                {
+                    "field_english_name": "Missed Deposit Processing Method",
+                    "field_name": "dept_dflt_deal_way",
+                    "description": "存入违约处理方式"
+                },
+                {
+                    "field_english_name": "actual deposit amount",
+                    "field_name": "actl_dept_amt",
+                    "description": "实际存入金额"
+                },
+                {
+                    "field_english_name": "Number of Times of Actual Deposits",
+                    "field_name": "actl_dept_cnt",
+                    "description": "实际存入次数"
+                },
+                {
+                    "field_english_name": "automatic deposit indicator",
+                    "field_name": "auto_dept_mny_flg",
+                    "description": "自动存入标志"
+                },
+                {
+                    "field_english_name": "period deposit amount",
+                    "field_name": "prd_dept_amt",
+                    "description": "期次存入金额"
+                },
+                {
+                    "field_english_name": "Deposit frequency",
+                    "field_name": "dept_freq",
+                    "description": "存入频率"
+                },
+                {
+                    "field_english_name": "deposit grace period",
+                    "field_name": "dept_grace_prd",
+                    "description": "存入宽限期"
+                },
+                {
+                    "field_english_name": "Earliest Date of Next Deposit",
+                    "field_name": "next_erlst_dept_dt",
+                    "description": "下次最早存入日期"
+                },
+                {
+                    "field_english_name": "Latest Date of Next Deposit",
+                    "field_name": "next_latest_dept_dt",
+                    "description": "下次最迟存入日期"
+                },
+                {
+                    "field_english_name": "automatic debit account number",
+                    "field_name": "auto_ddc_mny_acct_num",
+                    "description": "自动扣款账号"
+                },
+                {
+                    "field_english_name": "automatic debit account currency",
+                    "field_name": "auto_ddc_mny_acct_ccy",
+                    "description": "自动扣款账户币种"
+                },
+                {
+                    "field_english_name": "dept omitted deal way",
+                    "field_name": "dept_omitted_deal_way",
+                    "description": "漏存处理方式"
+                },
+                {
+                    "field_english_name": "accumulated omit deposit count",
+                    "field_name": "acmld_omit_dept_cnt",
+                    "description": "累计漏存次数"
+                },
+                {
+                    "field_english_name": "continous omit deposit count",
+                    "field_name": "ctins_omit_dept_cnt",
+                    "description": "连续漏存次数"
+                },
+                {
+                    "field_english_name": "Continous complement count",
+                    "field_name": "acmld_cplmt_cnt",
+                    "description": "累计补足次数"
+                },
+                {
+                    "field_english_name": " omit deposit amount",
+                    "field_name": "omit_dept_amt",
+                    "description": "漏存金额"
+                },
+                {
+                    "field_english_name": "Deposit Plan Default Flag",
+                    "field_name": "dept_plan_dflt_flg",
+                    "description": "存入计划违约标志"
+                },
+                {
+                    "field_english_name": "deposit plan default date",
+                    "field_name": "dept_plan_dflt_dt",
+                    "description": "存入计划违约日期"
+                },
+                {
+                    "field_english_name": "Maximum Consecutive Missed Deposit Count",
+                    "field_name": "max_ctins_omit_dept_cnt",
+                    "description": "最大连续漏存次数"
+                },
+                {
+                    "field_english_name": "Auto Deposit Reference Date",
+                    "field_name": "auto_dept_ref_dy",
+                    "description": "自动存入参考日"
+                },
+                {
+                    "field_english_name": "Auto Deposit Date",
+                    "field_name": "auto_dept_dt",
+                    "description": "自动存入日期"
+                },
+                {
+                    "field_english_name": "Auto Deposit Effective Date",
+                    "field_name": "auto_dept_eff_dt",
+                    "description": "自动存入生效日"
+                },
+                {
+                    "field_english_name": "Auto Deposit Expiry Date",
+                    "field_name": "auto_dept_expiry_dt",
+                    "description": "自动存入失效日"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num"
+            ]
+        },
+        "kdpa_joint_cust_rltnp": {
+            "chinese_name": "联名账户客户关系表",
+            "description": "Joint Account Customer Relationship Table",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "joint customer number",
+                    "field_name": "joint_cust_num",
+                    "description": "联名客户号"
+                },
+                {
+                    "field_english_name": "Joint customer name",
+                    "field_name": "joint_cust_nm",
+                    "description": "联名客户名"
+                },
+                {
+                    "field_english_name": "ID Type",
+                    "field_name": "docs_catg",
+                    "description": "证件种类"
+                },
+                {
+                    "field_english_name": "ID number",
+                    "field_name": "docs_num",
+                    "description": "证件号码"
+                },
+                {
+                    "field_english_name": "ID Issuing Country",
+                    "field_name": "id_issue_cty",
+                    "description": "证件签发国家"
+                },
+                {
+                    "field_english_name": "client's name",
+                    "field_name": "cust_nm",
+                    "description": "客户名称"
+                },
+                {
+                    "field_english_name": "Customer to Account Relationship",
+                    "field_name": "cust_num_rltnp_class",
+                    "description": "客户号关系类别"
+                },
+                {
+                    "field_english_name": "Transaction Branch",
+                    "field_name": "txn_org",
+                    "description": "交易机构"
+                },
+                {
+                    "field_english_name": "transaction hour",
+                    "field_name": "txn_tm",
+                    "description": "交易时间"
+                },
+                {
+                    "field_english_name": "Teller lD",
+                    "field_name": "txn_tlr",
+                    "description": "交易柜员"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "cust_acct_num",
+                "joint_cust_num"
+            ]
+        },
+        "kdpa_acct_draw_ctrl": {
+            "chinese_name": "账户支取控制表",
+            "description": "Account Withdrawal Control Form",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Liability Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Cash Withdrawal Allowed Flag",
+                    "field_name": "alw_cash_draw_flg",
+                    "description": "允许现金支取标志"
+                },
+                {
+                    "field_english_name": "Fund Transfer Control",
+                    "field_name": "trfr_acct_charic",
+                    "description": "转账账户性质"
+                },
+                {
+                    "field_english_name": "drawdown appointment method",
+                    "field_name": "draw_aptmt_way",
+                    "description": "支取预约方式"
+                },
+                {
+                    "field_english_name": "drawdown amount control method",
+                    "field_name": "draw_amt_ctrl_way",
+                    "description": "支取金额控制方式"
+                },
+                {
+                    "field_english_name": "single draw minimum amount",
+                    "field_name": "sngl_draw_min_amt",
+                    "description": "单次支取最小金额"
+                },
+                {
+                    "field_english_name": "single draw maximum amount",
+                    "field_name": "sngl_draw_max_amt",
+                    "description": "单次支取最大金额"
+                },
+                {
+                    "field_english_name": "Withdrawal Amount in Multiple Of",
+                    "field_name": "draw_amt_incrmt",
+                    "description": "支取金额增量"
+                },
+                {
+                    "field_english_name": "drawdown count control method",
+                    "field_name": "draw_cnt_ctrl_way",
+                    "description": "支取次数控制方式"
+                },
+                {
+                    "field_english_name": "maximum draw count",
+                    "field_name": "max_draw_cnt",
+                    "description": "最大支取次数"
+                },
+                {
+                    "field_english_name": "Recurring Withdrawal Y/N",
+                    "field_name": "prdcly_draw_flg",
+                    "description": "周期性支取标志"
+                },
+                {
+                    "field_english_name": "Withdrawal interval",
+                    "field_name": "draw_intrv",
+                    "description": "支取间隔"
+                },
+                {
+                    "field_english_name": "Withdrawal Control Condition",
+                    "field_name": "draw_dflt_std",
+                    "description": "支取违约标准"
+                },
+                {
+                    "field_english_name": "Withdrawal Default Processing Method",
+                    "field_name": "draw_dflt_deal_way",
+                    "description": "支取违约处理方式"
+                },
+                {
+                    "field_english_name": "Number of Times of Actual Withdrawals",
+                    "field_name": "actl_draw_cnt",
+                    "description": "实际支取次数"
+                },
+                {
+                    "field_english_name": "actual draw amount",
+                    "field_name": "actl_draw_amt",
+                    "description": "实际支取金额"
+                },
+                {
+                    "field_english_name": "Standing Order Debit Y/N",
+                    "field_name": "auto_ddc_mny_flg",
+                    "description": "自动扣款标志"
+                },
+                {
+                    "field_english_name": "Date of Next Withdrawal",
+                    "field_name": "next_draw_dt",
+                    "description": "下次支取日期"
+                },
+                {
+                    "field_english_name": "automatic receive account number",
+                    "field_name": "auto_rcev_mny_acct_num",
+                    "description": "自动收款账号"
+                },
+                {
+                    "field_english_name": "automatic receive account currency",
+                    "field_name": "auto_rcev_mny_acct_ccy",
+                    "description": "自动收款账户币种"
+                },
+                {
+                    "field_english_name": "Withdrawal Plan Default Flag",
+                    "field_name": "draw_plan_dflt_flg",
+                    "description": "支取计划违约标志"
+                },
+                {
+                    "field_english_name": "withdrawal plan default date",
+                    "field_name": "draw_plan_dflt_dt",
+                    "description": "支取计划违约日期"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num"
+            ]
+        },
+        "kdpa_card": {
+            "chinese_name": "卡信息表",
+            "description": "Debit Card information",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Card Number",
+                    "field_name": "card_num",
+                    "description": "卡号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Customer type",
+                    "field_name": "cust_tp",
+                    "description": "客户类型"
+                },
+                {
+                    "field_english_name": "card reference id",
+                    "field_name": "card_ref_id",
+                    "description": "卡参考ID"
+                },
+                {
+                    "field_english_name": "old card flag",
+                    "field_name": "old_card_flg",
+                    "description": "旧卡标志"
+                },
+                {
+                    "field_english_name": "new card number",
+                    "field_name": "new_card_num",
+                    "description": "新卡号"
+                },
+                {
+                    "field_english_name": "Supplementary Card Flag",
+                    "field_name": "splmty_card_flg",
+                    "description": "附属卡标志"
+                },
+                {
+                    "field_english_name": "master card customer number",
+                    "field_name": "mstr_card_cust_num",
+                    "description": "主卡客户号"
+                },
+                {
+                    "field_english_name": "master card number",
+                    "field_name": "mstr_card_num",
+                    "description": "主卡卡号"
+                },
+                {
+                    "field_english_name": "Valid/Invalid Flag",
+                    "field_name": "vld_flg",
+                    "description": "有效标志"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "card_num"
+            ]
+        },
+        "kdpa_acct_route": {
+            "chinese_name": "账户路由表",
+            "description": "Deposit Account Route Information",
+            "fields": [
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "deposit account route type",
+                    "field_name": "dept_acct_route_tp",
+                    "description": "存款账户路由类型"
+                },
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Customer Type",
+                    "field_name": "cust_tp",
+                    "description": "客户类型"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_acct_num",
+                "cust_num"
+            ]
+        },
+        "kdpa_acct_matu": {
+            "chinese_name": "账户到期定义表",
+            "description": "Account Maturity Definition Table",
+            "fields": [
+                {
+                    "field_english_name": "Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户编号"
+                },
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Holiday Processing Method",
+                    "field_name": "ecnter_hldy_deal_way",
+                    "description": "遇节假日处理方式"
+                },
+                {
+                    "field_english_name": "Extend Maturity Date Based on Deposit Y/N",
+                    "field_name": "wthr_pstp_matu_dt_acrdg_dept",
+                    "description": "是否根据存款顺延到期日"
+                },
+                {
+                    "field_english_name": "Renewal Method",
+                    "field_name": "rdept_way",
+                    "description": "续存方式"
+                },
+                {
+                    "field_english_name": "Renewal Grace Period",
+                    "field_name": "rnew_grace_prd",
+                    "description": "续存宽限期"
+                },
+                {
+                    "field_english_name": "Renewal Product Code",
+                    "field_name": "rdept_prod",
+                    "description": "续存产品代码"
+                },
+                {
+                    "field_english_name": "Renew deposit period",
+                    "field_name": "rnew_dept_prd",
+                    "description": "续存存期"
+                },
+                {
+                    "field_english_name": "Auto Renewal Amount",
+                    "field_name": "rdept_amt",
+                    "description": "续存金额"
+                },
+                {
+                    "field_english_name": "Intra-Bank Affiliate Account Allowed Y/N",
+                    "field_name": "intra_bank_prcpl_acct_flg",
+                    "description": "行内本金账号标志"
+                },
+                {
+                    "field_english_name": "Affiliate Account",
+                    "field_name": "prcpl_trfr_acct_num",
+                    "description": "本金转入账号"
+                },
+                {
+                    "field_english_name": "Affiliate Account Currency",
+                    "field_name": "prcpl_trfr_acct_ccy",
+                    "description": "本金转账账户币种"
+                },
+                {
+                    "field_english_name": "Affiliate Account Name",
+                    "field_name": "prcpl_trfr_acct_nm",
+                    "description": "本金转账账户名称"
+                },
+                {
+                    "field_english_name": "Affiliate Account Bank Code",
+                    "field_name": "prcpl_trfr_bank_code",
+                    "description": "本金转账银行代码"
+                },
+                {
+                    "field_english_name": "Intra-Branch Affiliate Account Bank Name",
+                    "field_name": "prcpl_trfr_bank_nm",
+                    "description": "本金转账银行名称"
+                },
+                {
+                    "field_english_name": "Maximum Renewal Count",
+                    "field_name": "max_rdept_cnt",
+                    "description": "最大续存次数"
+                },
+                {
+                    "field_english_name": "Renewal Count",
+                    "field_name": "renew_cnt",
+                    "description": "续存次数"
+                },
+                {
+                    "field_english_name": "Rollover Interest Rate Adjustment Method",
+                    "field_name": "rdept_int_rate_adjust_way",
+                    "description": "转存利率调整方式"
+                },
+                {
+                    "field_english_name": "Batch Grouping Number",
+                    "field_name": "btch_grp_num",
+                    "description": "批量分组号"
+                },
+                {
+                    "field_english_name": "Last Maturity Date",
+                    "field_name": "prev_matu_dt",
+                    "description": "上次到期日"
+                },
+                {
+                    "field_english_name": "Last Interest Rate Code",
+                    "field_name": "prev_int_rate_code",
+                    "description": "上次利率代码"
+                },
+                {
+                    "field_english_name": "Last Base Rate",
+                    "field_name": "prev_bchmk_int_rate",
+                    "description": "上次基准利率"
+                },
+                {
+                    "field_english_name": "Last Effective Interest Rate",
+                    "field_name": "prev_exec_int_rate",
+                    "description": "上次执行利率"
+                },
+                {
+                    "field_english_name": "Last Renewal Method",
+                    "field_name": "prev_rdept_way",
+                    "description": "上次续存方式"
+                },
+                {
+                    "field_english_name": "Last Interest Payment",
+                    "field_name": "prev_paid_int",
+                    "description": "上次支付利息"
+                },
+                {
+                    "field_english_name": "Last Withholding Tax",
+                    "field_name": "prev_wthld_int_tax",
+                    "description": "上次代扣利息税"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num"
+            ]
+        },
+        "kdpa_sub_acct_splmty": {
+            "chinese_name": "子账户信息补充表",
+            "description": "Sub-Account Information Supplementary Table",
+            "fields": [
+                {
+                    "field_english_name": "Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Liability Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "agent name",
+                    "field_name": "agnt_nm",
+                    "description": "代理人名称"
+                },
+                {
+                    "field_english_name": "agent documents category",
+                    "field_name": "agnt_docs_catg",
+                    "description": "代理人证件种类"
+                },
+                {
+                    "field_english_name": "agent documents number",
+                    "field_name": "agnt_docs_num",
+                    "description": "代理人证件号码"
+                },
+                {
+                    "field_english_name": "Third Party ID Issuing Country",
+                    "field_name": "agnt_id_issue_cty",
+                    "description": "代理人证件签发国家"
+                },
+                {
+                    "field_english_name": "agent contact telephone",
+                    "field_name": "agnt_cntct_tel",
+                    "description": "代理人联系电话"
+                },
+                {
+                    "field_english_name": "sources of income",
+                    "field_name": "incm_src",
+                    "description": "收入来源"
+                },
+                {
+                    "field_english_name": "Purpose Of Account",
+                    "field_name": "acct_purp",
+                    "description": "账户用途"
+                },
+                {
+                    "field_english_name": "margin deposit category",
+                    "field_name": "mrgn_dept_catg",
+                    "description": "保证金类别"
+                },
+                {
+                    "field_english_name": "Related business number",
+                    "field_name": "rel_busi_num",
+                    "description": "相关业务编号"
+                },
+                {
+                    "field_english_name": "goal amount",
+                    "field_name": "goal_amt",
+                    "description": "目标金额"
+                },
+                {
+                    "field_english_name": "goal category",
+                    "field_name": "goal_catg",
+                    "description": "目标类别"
+                },
+                {
+                    "field_english_name": "lock goal date indicator",
+                    "field_name": "lock_goal_dt_flg",
+                    "description": "锁定目标日期标志"
+                },
+                {
+                    "field_english_name": "Contract number",
+                    "field_name": "ctrct_num",
+                    "description": "合同编号"
+                },
+                {
+                    "field_english_name": "Sales person - deposit",
+                    "field_name": "slcit_dept_pernl",
+                    "description": "揽存人员"
+                },
+                {
+                    "field_english_name": "Account Manager Name",
+                    "field_name": "acct_mgr_nm",
+                    "description": "账户经理名称"
+                },
+                {
+                    "field_english_name": "Account Opening time",
+                    "field_name": "open_acct_tm",
+                    "description": "开户时间"
+                },
+                {
+                    "field_english_name": "Account Opening Teller Number",
+                    "field_name": "open_acct_tlr_num",
+                    "description": "开户柜员号"
+                },
+                {
+                    "field_english_name": "Account Opening Serial Number",
+                    "field_name": "open_acct_rung_num",
+                    "description": "开户流水号"
+                },
+                {
+                    "field_english_name": "account opening remark",
+                    "field_name": "open_acct_remark",
+                    "description": "开户备注"
+                },
+                {
+                    "field_english_name": "cancel account time",
+                    "field_name": "cncl_acct_tm",
+                    "description": "销户时间"
+                },
+                {
+                    "field_english_name": "Account close Teller",
+                    "field_name": "cncl_acct_tlr",
+                    "description": "销户柜员"
+                },
+                {
+                    "field_english_name": "cancel account running number",
+                    "field_name": "cncl_acct_rung_num",
+                    "description": "销户流水号"
+                },
+                {
+                    "field_english_name": "account close remark",
+                    "field_name": "cncl_acct_remark",
+                    "description": "销户备注"
+                },
+                {
+                    "field_english_name": "SKB Document Information",
+                    "field_name": "skb_file_info",
+                    "description": "SKB文件信息"
+                },
+                {
+                    "field_english_name": "SKB interest tax rate",
+                    "field_name": "skb_int_tax_rate",
+                    "description": "SKB利息税税率"
+                },
+                {
+                    "field_english_name": "SKB Effect Date",
+                    "field_name": "skb_eff_dt",
+                    "description": "SKB生效日期"
+                },
+                {
+                    "field_english_name": "SKB invaild Date",
+                    "field_name": "skb_invld_dt",
+                    "description": "SKB失效日期"
+                },
+                {
+                    "field_english_name": "interest tax rate",
+                    "field_name": "int_tax_rate",
+                    "description": "利息税税率"
+                },
+                {
+                    "field_english_name": "Estimated Monthly Transaction Volume",
+                    "field_name": "expcd_txn_qty_moly",
+                    "description": "预计每月交易数量"
+                },
+                {
+                    "field_english_name": "External Account Y/N",
+                    "field_name": "exte_acct_flg",
+                    "description": "外部账户标志"
+                },
+                {
+                    "field_english_name": "next print row number",
+                    "field_name": "next_prt_row_num",
+                    "description": "定期一本通指定账户的部提销户行数"
+                },
+                {
+                    "field_english_name": "open account reason code",
+                    "field_name": "open_acct_reason_code",
+                    "description": "开户原因代码"
+                },
+                {
+                    "field_english_name": "Automatic Account Closure Override Y/N",
+                    "field_name": "auto_cncl_acct_override_flg",
+                    "description": "自动销户覆盖标志"
+                },
+                {
+                    "field_english_name": "GL Product Code",
+                    "field_name": "gl_prod_code",
+                    "description": "gl产品代码"
+                },
+                {
+                    "field_english_name": "batch group number",
+                    "field_name": "btch_grp_num",
+                    "description": "批量分组号"
+                },
+                {
+                    "field_english_name": "Product Conversion Date",
+                    "field_name": "prod_cvrsn_dt",
+                    "description": "产品转换日期"
+                },
+                {
+                    "field_english_name": "On Call Account Flag",
+                    "field_name": "on_call_acct_flg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "On Call Conversion Date",
+                    "field_name": "on_call_cvrsn_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "First Organization Change Date",
+                    "field_name": "first_org_change_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Last cheque Withdrawal Date",
+                    "field_name": "last_cheq_wthdl_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Account Overdraft Risk Status",
+                    "field_name": "acct_ovdf_risk_ste",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "last maintenance date",
+                    "field_name": "last_mntnc_date",
+                    "description": "上次维护日期"
+                },
+                {
+                    "field_english_name": "Last maintance user",
+                    "field_name": "last_mntn_user",
+                    "description": "最后一次维护用户"
+                },
+                {
+                    "field_english_name": "Customer Account Status",
+                    "field_name": "custom_acct_status",
+                    "description": "客制化账户状态"
+                },
+                {
+                    "field_english_name": "Last day Customer Account Status",
+                    "field_name": "last_dy_custom_acct_status",
+                    "description": "上日客制化账户状态"
+                },
+                {
+                    "field_english_name": "Date of Status Change",
+                    "field_name": "status_chge_dt",
+                    "description": "状态变更日期"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num"
+            ]
+        },
+        "kdpa_acct_splmty": {
+            "chinese_name": "账户信息补充表",
+            "description": "Account Information Supplementary Table",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Customer Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "agent name",
+                    "field_name": "agnt_nm",
+                    "description": "代理人名称"
+                },
+                {
+                    "field_english_name": "Representative ID Type",
+                    "field_name": "agnt_docs_catg",
+                    "description": "代理人证件种类"
+                },
+                {
+                    "field_english_name": "agent documents number",
+                    "field_name": "agnt_docs_num",
+                    "description": "代理人证件号码"
+                },
+                {
+                    "field_english_name": "Third Party ID Issuing Country",
+                    "field_name": "agnt_id_issue_cty",
+                    "description": "代理人证件签发国家"
+                },
+                {
+                    "field_english_name": "agent contact telephone",
+                    "field_name": "agnt_cntct_tel",
+                    "description": "代理人联系电话"
+                },
+                {
+                    "field_english_name": "Sales person - deposit",
+                    "field_name": "slcit_dept_pernl",
+                    "description": "揽存人员"
+                },
+                {
+                    "field_english_name": "Account Manager Name",
+                    "field_name": "acct_mgr_nm",
+                    "description": "账户经理名称"
+                },
+                {
+                    "field_english_name": "Account Opening time",
+                    "field_name": "open_acct_tm",
+                    "description": "开户时间"
+                },
+                {
+                    "field_english_name": "Account Opening Teller Number",
+                    "field_name": "open_acct_tlr_num",
+                    "description": "开户柜员号"
+                },
+                {
+                    "field_english_name": "account opening remark",
+                    "field_name": "open_acct_remark",
+                    "description": "开户备注"
+                },
+                {
+                    "field_english_name": "cancel account time",
+                    "field_name": "cncl_acct_tm",
+                    "description": "销户时间"
+                },
+                {
+                    "field_english_name": "Account close Teller",
+                    "field_name": "cncl_acct_tlr",
+                    "description": "销户柜员"
+                },
+                {
+                    "field_english_name": "account close remark",
+                    "field_name": "cncl_acct_remark",
+                    "description": "销户备注"
+                },
+                {
+                    "field_english_name": "zip code",
+                    "field_name": "pstcd",
+                    "description": "邮政编码"
+                },
+                {
+                    "field_english_name": "BOT Group",
+                    "field_name": "bot_grp",
+                    "description": "BOT组"
+                },
+                {
+                    "field_english_name": "VVIP Y/N",
+                    "field_name": "vvip_flg",
+                    "description": "VVIP标志"
+                },
+                {
+                    "field_english_name": "batch group number",
+                    "field_name": "btch_grp_num",
+                    "description": "批量分组号"
+                },
+                {
+                    "field_english_name": "email address",
+                    "field_name": "e_mail_addr",
+                    "description": "电子邮箱地址"
+                },
+                {
+                    "field_english_name": "Card type code",
+                    "field_name": "card_tp_code",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "BOT Customer Type",
+                    "field_name": "bot_cust_tp",
+                    "description": "BOT客户类型"
+                },
+                {
+                    "field_english_name": "EC code",
+                    "field_name": "ec_code",
+                    "description": "EC代码"
+                },
+                {
+                    "field_english_name": "Resident",
+                    "field_name": "rsdnt_attr",
+                    "description": "居民属性"
+                },
+                {
+                    "field_english_name": "Special customer group flag",
+                    "field_name": "spec_cust_grp_flg",
+                    "description": "特殊客户组标志"
+                },
+                {
+                    "field_english_name": "Date of Birth",
+                    "field_name": "birth_dt",
+                    "description": "出生日期"
+                },
+                {
+                    "field_english_name": "Tax Exemption Expiry Date",
+                    "field_name": "waive_tax_off_dt",
+                    "description": "免税截止日期"
+                },
+                {
+                    "field_english_name": "Backup tax deduction symbol",
+                    "field_name": "bkup_wthld_tax_flg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Force Debit Flag",
+                    "field_name": "force_debit_flg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Overdraft account restricted status",
+                    "field_name": "ovdf_acct_rstct_ste",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Overdraft account restricted status Date",
+                    "field_name": "ovdf_acct_rstct_ste_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Non-Juristic Account Flag",
+                    "field_name": "non_corp_acct_flg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Non-Juristic Account Flag Update Date",
+                    "field_name": "non_corp_flg_upd_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Overdraft Special Interest Rate Label",
+                    "field_name": "ovdf_spec_rate_tag",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Overdraft special Rate Tag Update Date",
+                    "field_name": "ovdf_spec_rate_tag_upd_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "last maintenance date",
+                    "field_name": "last_mntnc_date",
+                    "description": "上次维护日期"
+                },
+                {
+                    "field_english_name": "Last maintance user",
+                    "field_name": "last_mntn_user",
+                    "description": "最后一次维护用户"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "cust_acct_num"
+            ]
+        },
+        "kdpa_acct_bill": {
+            "chinese_name": "账户账单信息表",
+            "description": "Account Statement Information Table",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Billing Generation Method",
+                    "field_name": "bill_gen_way",
+                    "description": "账单生成方式"
+                },
+                {
+                    "field_english_name": "Bill Mailing Method",
+                    "field_name": "bill_mail_way",
+                    "description": "账单邮寄方式"
+                },
+                {
+                    "field_english_name": "mailing address source",
+                    "field_name": "mail_addr_src",
+                    "description": "邮寄地址来源"
+                },
+                {
+                    "field_english_name": "mail address type",
+                    "field_name": "mail_addr_tp",
+                    "description": "邮寄地址类型"
+                },
+                {
+                    "field_english_name": "mailing address",
+                    "field_name": "mail_addr",
+                    "description": "邮寄地址"
+                },
+                {
+                    "field_english_name": "Statement Frequency",
+                    "field_name": "acct_stmt_freq",
+                    "description": "结单频率"
+                },
+                {
+                    "field_english_name": "Last Charge-Off Date",
+                    "field_name": "last_chrg_off_dt",
+                    "description": "上次出账日期"
+                },
+                {
+                    "field_english_name": "Next Charge-Off Date",
+                    "field_name": "next_chrg_off_dt",
+                    "description": "下次出账日期"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "cust_acct_num"
+            ]
+        },
+        "kdpa_btch_chrg": {
+            "chinese_name": "账户批量收费控制表",
+            "description": "Account Batch Charge Control Table",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Liability Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Fee Code",
+                    "field_name": "chrg_code",
+                    "description": "收费代码"
+                },
+                {
+                    "field_english_name": "Fee Frequency",
+                    "field_name": "chrg_freq",
+                    "description": "收费频率"
+                },
+                {
+                    "field_english_name": "Date of Last Charge",
+                    "field_name": "last_chrg_dt",
+                    "description": "上次收费日期"
+                },
+                {
+                    "field_english_name": "next charge date",
+                    "field_name": "next_chrg_dt",
+                    "description": "下次收费日期"
+                },
+                {
+                    "field_english_name": "charge condition",
+                    "field_name": "chrg_cond",
+                    "description": "收费条件"
+                },
+                {
+                    "field_english_name": "effective date",
+                    "field_name": "eff_dt",
+                    "description": "生效日期"
+                },
+                {
+                    "field_english_name": "Expiry Date",
+                    "field_name": "invld_dt",
+                    "description": "失效日期"
+                },
+                {
+                    "field_english_name": "Maximum Number of Fee Collections",
+                    "field_name": "max_chrg_cnt",
+                    "description": "最大收费次数"
+                },
+                {
+                    "field_english_name": "number of charges",
+                    "field_name": "chrg_cnt",
+                    "description": "收费次数"
+                },
+                {
+                    "field_english_name": "Remark",
+                    "field_name": "remks_info",
+                    "description": "备注信息"
+                },
+                {
+                    "field_english_name": "Waiver Y/N",
+                    "field_name": "exmpt_flg",
+                    "description": "豁免标志"
+                },
+                {
+                    "field_english_name": "Fee Code Name",
+                    "field_name": "chrg_code_nm",
+                    "description": "收费代码名称"
+                },
+                {
+                    "field_english_name": "Assign Charge method",
+                    "field_name": "asgn_chrg_way",
+                    "description": "指定收费方式"
+                },
+                {
+                    "field_english_name": "Specify the amount to be charged",
+                    "field_name": "asgn_chrg_amt",
+                    "description": "指定收费金额"
+                },
+                {
+                    "field_english_name": "Exemption expiry date",
+                    "field_name": "exmpt_expiry_dt",
+                    "description": "豁免失效日期"
+                },
+                {
+                    "field_english_name": "Batch Grouping Number",
+                    "field_name": "btch_grp_num",
+                    "description": ""
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num",
+                "chrg_code"
+            ]
+        },
+        "kdpa_evt_chrg_ctrl": {
+            "chinese_name": "账户批量收费控制表",
+            "description": "Account Event Charge Control Table",
+            "fields": [
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户编号"
+                },
+                {
+                    "field_english_name": "Fee Code",
+                    "field_name": "chrg_code",
+                    "description": "收费代码"
+                },
+                {
+                    "field_english_name": "Fee Code Name",
+                    "field_name": "chrg_code_nm",
+                    "description": "收费代码名称"
+                },
+                {
+                    "field_english_name": "Assign Charge method",
+                    "field_name": "asgn_chrg_way",
+                    "description": "指定收费方式"
+                },
+                {
+                    "field_english_name": "Specify the amount to be charged",
+                    "field_name": "asgn_chrg_amt",
+                    "description": "指定收费金额"
+                },
+                {
+                    "field_english_name": "Billing Rate",
+                    "field_name": "billg_pcnt",
+                    "description": "计费比例"
+                },
+                {
+                    "field_english_name": "Waiver Y/N",
+                    "field_name": "exmpt_flg",
+                    "description": "豁免标志"
+                },
+                {
+                    "field_english_name": "Exemption expiry date",
+                    "field_name": "exmpt_expiry_dt",
+                    "description": "豁免失效日期"
+                },
+                {
+                    "field_english_name": "Remark",
+                    "field_name": "remks_info",
+                    "description": "备注信息"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num",
+                "chrg_code"
+            ]
+        },
+        "kdpa_fund_drcn": {
+            "chinese_name": "账户资金去向表",
+            "description": "Account Funds Destination Table",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Liability Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Sequence number",
+                    "field_name": "seq_num",
+                    "description": "顺序号"
+                },
+                {
+                    "field_english_name": "Targeted Account Number",
+                    "field_name": "drcnl_cust_acct_num",
+                    "description": "定向客户账号"
+                },
+                {
+                    "field_english_name": "Directed sub-account number",
+                    "field_name": "drcnl_sub_acct_serl_num",
+                    "description": "定向子账户序号"
+                },
+                {
+                    "field_english_name": "Target release method",
+                    "field_name": "drcn_rmov_way",
+                    "description": "去向解除方式"
+                },
+                {
+                    "field_english_name": "Destination Account Purpose",
+                    "field_name": "drcn_acct_purp",
+                    "description": "去向账户用途"
+                },
+                {
+                    "field_english_name": "Designate Account Status",
+                    "field_name": "drcnl_ste",
+                    "description": "定向状态"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num",
+                "seq_num"
+            ]
+        },
+        "kdpa_main_sub_acct_rltnp": {
+            "chinese_name": "主子账户关系表",
+            "description": "Master-Subsidiary Account Relationship Table",
+            "fields": [
+                {
+                    "field_english_name": "root node liability account number",
+                    "field_name": "root_node_lblty_acct_num",
+                    "description": "根节点负债账号"
+                },
+                {
+                    "field_english_name": "root node customer number",
+                    "field_name": "root_node_cust_num",
+                    "description": "根节点客户号"
+                },
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Liability Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Composition Product Number",
+                    "field_name": "cpstn_prod_num",
+                    "description": "组合产品号"
+                },
+                {
+                    "field_english_name": "composition product name",
+                    "field_name": "cpstn_prod_nm",
+                    "description": "组合产品名称"
+                },
+                {
+                    "field_english_name": "The current number of nodes",
+                    "field_name": "cur_lclt_node_num",
+                    "description": "当前所处节点数"
+                },
+                {
+                    "field_english_name": "Balance and GL Synchronization Y/N",
+                    "field_name": "bal_genl_ledger_sycrz_flg",
+                    "description": "余额总账同步标志"
+                },
+                {
+                    "field_english_name": "superior liability account number",
+                    "field_name": "sprr_lblty_acct_num",
+                    "description": "上级负债账号"
+                },
+                {
+                    "field_english_name": "Master and Sub-Account Relationship Type",
+                    "field_name": "main_sub_acct_rltnp_tp",
+                    "description": "主子账户关系类型"
+                },
+                {
+                    "field_english_name": "sub account transaction whether reflect main account",
+                    "field_name": "sub_acct_wthr_rflct_main_acct",
+                    "description": "子账户交易是否反映到主账户"
+                },
+                {
+                    "field_english_name": "main account transaction whether reflect sub account",
+                    "field_name": "main_acct_wthr_rflct_sub_acct",
+                    "description": "主账户交易是否反映到子账户"
+                },
+                {
+                    "field_english_name": "main account whether response hierarchy by hierarchy",
+                    "field_name": "main_acct_wthr_rspns_by_hier",
+                    "description": "主账户是否逐级反应"
+                },
+                {
+                    "field_english_name": "sub account whether response hierarchy by hierarchy",
+                    "field_name": "sub_acct_wthr_rspns_by_hier",
+                    "description": "子账户是否逐级反应"
+                },
+                {
+                    "field_english_name": "Pending Clearing Account Flag",
+                    "field_name": "wait_clrg_acct_flg",
+                    "description": "待清分账户标志"
+                },
+                {
+                    "field_english_name": "OD limit allocation method",
+                    "field_name": "ovdf_lmt_alocn_way",
+                    "description": "透支额度分配方式"
+                },
+                {
+                    "field_english_name": "OD ratio",
+                    "field_name": "ovdf_pcnt",
+                    "description": "透支比例"
+                },
+                {
+                    "field_english_name": "interest allocation percent",
+                    "field_name": "int_alocn_pcnt",
+                    "description": "利息分配比例"
+                },
+                {
+                    "field_english_name": "unuse limit",
+                    "field_name": "unuse_lmt",
+                    "description": "未使用额度"
+                },
+                {
+                    "field_english_name": "accumulative number",
+                    "field_name": "acmlv_num",
+                    "description": "积数"
+                },
+                {
+                    "field_english_name": "Contract Status",
+                    "field_name": "sign_ste",
+                    "description": "签约状态"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num"
+            ]
+        },
+        "kdpa_struct_acctg_rltnp": {
+            "chinese_name": "组合账户核算关系表",
+            "description": "Combination Account Accounting Relationship Table",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Liability Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "balance response liability account number",
+                    "field_name": "bal_rspns_lblty_acct_num",
+                    "description": "余额反应负债账号"
+                },
+                {
+                    "field_english_name": "Contract Status",
+                    "field_name": "sign_ste",
+                    "description": "签约状态"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num",
+                "bal_rspns_lblty_acct_num"
+            ]
+        },
+        "kdpb_hot_amt_pool": {
+            "chinese_name": "",
+            "description": "Hotspot Account Amount Pool Table",
+            "fields": [
+                {
+                    "field_english_name": "Customer Number",
+                    "field_name": "cust_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "子账号"
+                },
+                {
+                    "field_english_name": "Pool Number",
+                    "field_name": "pool_index",
+                    "description": "池序号"
+                },
+                {
+                    "field_english_name": "Deposited amount",
+                    "field_name": "accumulated_amt",
+                    "description": "沉淀金额"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num",
+                "pool_index"
+            ]
+        },
+        "kdpl_hot_amt_pool": {
+            "chinese_name": "",
+            "description": "Hotspot Account Fund Pool Log Table",
+            "fields": [
+                {
+                    "field_english_name": "Batch serial number",
+                    "field_name": "batch_seq",
+                    "description": "批次流水号"
+                },
+                {
+                    "field_english_name": "uuid",
+                    "field_name": "uuid",
+                    "description": "UUID"
+                },
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "子账号"
+                },
+                {
+                    "field_english_name": "Pool Number",
+                    "field_name": "pool_index",
+                    "description": "池序号"
+                },
+                {
+                    "field_english_name": "Debit/Credit",
+                    "field_name": "db_cr_flg",
+                    "description": "借贷标志"
+                },
+                {
+                    "field_english_name": "Transaction Amount",
+                    "field_name": "txn_amt",
+                    "description": "交易金额"
+                },
+                {
+                    "field_english_name": "Transaction Date",
+                    "field_name": "txn_dt_8",
+                    "description": "交易日期"
+                },
+                {
+                    "field_english_name": "Trading time",
+                    "field_name": "txn_dt_tm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Waterfall timestamp",
+                    "field_name": "seq_timestamp",
+                    "description": "流水时间戳"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "batch_seq",
+                "uuid"
+            ]
+        },
+        "kdpl_hot_acct": {
+            "chinese_name": "",
+            "description": "Hot Account Pending Synchronization Transaction Table",
+            "fields": [
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "子账号"
+                },
+                {
+                    "field_english_name": "uuid",
+                    "field_name": "uuid",
+                    "description": "UUID"
+                },
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Waterfall timestamp",
+                    "field_name": "seq_timestamp",
+                    "description": "流水时间戳 "
+                },
+                {
+                    "field_english_name": "Trading time",
+                    "field_name": "txn_dt_tm",
+                    "description": "交易时间"
+                },
+                {
+                    "field_english_name": "Card Number",
+                    "field_name": "card_num",
+                    "description": "卡号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Payer Account Serial Number",
+                    "field_name": "sub_acct_serl_num",
+                    "description": "付款人账户序号"
+                },
+                {
+                    "field_english_name": "account name",
+                    "field_name": "acct_nm",
+                    "description": "账户名称"
+                },
+                {
+                    "field_english_name": "sub-account nickname",
+                    "field_name": "sub_acct_nick_nm",
+                    "description": "子账户昵称"
+                },
+                {
+                    "field_english_name": "Account Type",
+                    "field_name": "cust_acct_num_tp",
+                    "description": "客户账号类型"
+                },
+                {
+                    "field_english_name": "Transaction Record Type",
+                    "field_name": "txn_rec_tp",
+                    "description": "交易记录类型"
+                },
+                {
+                    "field_english_name": "Backdated Value Date",
+                    "field_name": "back_val_dt",
+                    "description": "倒起息日期"
+                },
+                {
+                    "field_english_name": "transaction event",
+                    "field_name": "txn_evt",
+                    "description": "交易事件"
+                },
+                {
+                    "field_english_name": "Cash Transfer Indicator",
+                    "field_name": "cash_trfr_flg",
+                    "description": "现转标志"
+                },
+                {
+                    "field_english_name": "Debit Or Credit Indicator",
+                    "field_name": "db_cr_flg",
+                    "description": "借贷标志"
+                },
+                {
+                    "field_english_name": "Transaction currency",
+                    "field_name": "txn_ccy",
+                    "description": "交易币种"
+                },
+                {
+                    "field_english_name": "Transaction Amount",
+                    "field_name": "txn_amt",
+                    "description": "交易金额"
+                },
+                {
+                    "field_english_name": "Product Code",
+                    "field_name": "prod_code",
+                    "description": "产品代码"
+                },
+                {
+                    "field_english_name": "Product Fixed/CASA Flag",
+                    "field_name": "term_dmd_flg",
+                    "description": "产品定活标志"
+                },
+                {
+                    "field_english_name": "Accounting code",
+                    "field_name": "busi_acctg_code",
+                    "description": "核算代码"
+                },
+                {
+                    "field_english_name": "account belonged organization",
+                    "field_name": "acct_blgd_org",
+                    "description": "账户所属机构"
+                },
+                {
+                    "field_english_name": "Transaction Trigger Method",
+                    "field_name": "txn_trgr_way",
+                    "description": "交易触发方式"
+                },
+                {
+                    "field_english_name": "Balance and GL Synchronization Y/N",
+                    "field_name": "bal_genl_ledger_sycrz_flg",
+                    "description": "余额总账同步标志"
+                },
+                {
+                    "field_english_name": "Customer type",
+                    "field_name": "cust_tp",
+                    "description": "客户类型"
+                },
+                {
+                    "field_english_name": "Fee Code",
+                    "field_name": "chrg_code",
+                    "description": "收费代码"
+                },
+                {
+                    "field_english_name": "accounting record flag",
+                    "field_name": "acctg_rec_flg",
+                    "description": "记账记录标志"
+                },
+                {
+                    "field_english_name": "show flag",
+                    "field_name": "show_flg",
+                    "description": "显示标志"
+                },
+                {
+                    "field_english_name": "Cheque Number Information",
+                    "field_name": "cheq_num_info",
+                    "description": "支票号信息"
+                },
+                {
+                    "field_english_name": "Counterparty customer type",
+                    "field_name": "cntpr_cust_tp",
+                    "description": "对方客户类型"
+                },
+                {
+                    "field_english_name": "Counterparty Customer Account Number",
+                    "field_name": "cntpr_cust_acct_num",
+                    "description": "对方客户账号"
+                },
+                {
+                    "field_english_name": "Transferor Account Name",
+                    "field_name": "cntpr_acct_nm",
+                    "description": "对方户名"
+                },
+                {
+                    "field_english_name": "Counterparty sub account sequence number",
+                    "field_name": "cntpr_sub_acct_serl_num",
+                    "description": "对方子账户序号"
+                },
+                {
+                    "field_english_name": "Counterparty financial institution type",
+                    "field_name": "cntpr_fincl_org_tp",
+                    "description": "对方金融机构类型"
+                },
+                {
+                    "field_english_name": "counterparty financial institution code",
+                    "field_name": "cntpr_fincl_org_code",
+                    "description": "对方金融机构代码"
+                },
+                {
+                    "field_english_name": "Counterparty Financial Institution Name",
+                    "field_name": "cntpr_fincl_org_nm",
+                    "description": "对方金融机构名称"
+                },
+                {
+                    "field_english_name": "counterparty internal account number",
+                    "field_name": "cntpr_intrl_acct_num",
+                    "description": "对方内部账号"
+                },
+                {
+                    "field_english_name": "counterparty internal account institution",
+                    "field_name": "cntpr_intrl_acct_org",
+                    "description": "对方内部账户机构"
+                },
+                {
+                    "field_english_name": "counterparty transaction currency",
+                    "field_name": "cntpr_txn_ccy",
+                    "description": "对方交易币种"
+                },
+                {
+                    "field_english_name": "counterparty transaction amount",
+                    "field_name": "cntpr_txn_amt",
+                    "description": "对方交易金额"
+                },
+                {
+                    "field_english_name": "merchant type",
+                    "field_name": "mrcht_tp",
+                    "description": "商户类型"
+                },
+                {
+                    "field_english_name": "Merchant Code",
+                    "field_name": "mrcht_num",
+                    "description": "商户号"
+                },
+                {
+                    "field_english_name": "merchant name",
+                    "field_name": "mrcht_nm",
+                    "description": "商户名称"
+                },
+                {
+                    "field_english_name": "Store number",
+                    "field_name": "shop_num",
+                    "description": "门店编号"
+                },
+                {
+                    "field_english_name": "Store Name",
+                    "field_name": "shop_nm",
+                    "description": "门店名称"
+                },
+                {
+                    "field_english_name": "merchant contact telephone",
+                    "field_name": "mrcht_cntct_tel",
+                    "description": "商户联系电话"
+                },
+                {
+                    "field_english_name": "Customer Order ID",
+                    "field_name": "cust_order_id",
+                    "description": "客户订单号"
+                },
+                {
+                    "field_english_name": "acquiring financial institution code",
+                    "field_name": "acq_fincl_org_code",
+                    "description": "收单金融机构代码"
+                },
+                {
+                    "field_english_name": "acquiring financial institution name",
+                    "field_name": "acq_fincl_org_nm",
+                    "description": "收单金融机构名称"
+                },
+                {
+                    "field_english_name": "acquiring institution running number",
+                    "field_name": "acq_org_rung_num",
+                    "description": "收单流水"
+                },
+                {
+                    "field_english_name": "trxn region code",
+                    "field_name": "txn_rgon_code",
+                    "description": "交易地区"
+                },
+                {
+                    "field_english_name": "trxn region date",
+                    "field_name": "txn_rgon_dt",
+                    "description": "交易地日期"
+                },
+                {
+                    "field_english_name": "trxn region time",
+                    "field_name": "txn_rgon_time",
+                    "description": "交易地时间"
+                },
+                {
+                    "field_english_name": "trxn region exchange rate",
+                    "field_name": "txn_rgon_exch_rate",
+                    "description": "交易地汇率"
+                },
+                {
+                    "field_english_name": "trxn region currency",
+                    "field_name": "txn_rgon_ccy",
+                    "description": "交易地币种"
+                },
+                {
+                    "field_english_name": "trxn region amount",
+                    "field_name": "txn_rgon_amt",
+                    "description": "交易地金额"
+                },
+                {
+                    "field_english_name": "Related business number",
+                    "field_name": "rel_busi_num",
+                    "description": "相关业务编号"
+                },
+                {
+                    "field_english_name": "transaction remarks",
+                    "field_name": "txn_remks",
+                    "description": "交易备注"
+                },
+                {
+                    "field_english_name": "customer remarks",
+                    "field_name": "cust_remks",
+                    "description": "客户备注"
+                },
+                {
+                    "field_english_name": "List of Scenario Codes",
+                    "field_name": "scen_code_list",
+                    "description": "场景代码列表"
+                },
+                {
+                    "field_english_name": "summary code",
+                    "field_name": "abst_code",
+                    "description": "摘要代码"
+                },
+                {
+                    "field_english_name": "summary description",
+                    "field_name": "abst_dsc",
+                    "description": "摘要描述"
+                },
+                {
+                    "field_english_name": "agent name",
+                    "field_name": "agnt_nm",
+                    "description": "代理人名称"
+                },
+                {
+                    "field_english_name": "agent documents category",
+                    "field_name": "agnt_docs_catg",
+                    "description": "代理人证件种类"
+                },
+                {
+                    "field_english_name": "agent documents number",
+                    "field_name": "agnt_docs_num",
+                    "description": "代理人证件号码"
+                },
+                {
+                    "field_english_name": "Third Party ID Issuing Country",
+                    "field_name": "agnt_id_issue_cty",
+                    "description": "代理人证件签发国家"
+                },
+                {
+                    "field_english_name": "agent contact telephone",
+                    "field_name": "agnt_cntct_tel",
+                    "description": "代理人联系电话"
+                },
+                {
+                    "field_english_name": "transaction channel",
+                    "field_name": "txn_chnl",
+                    "description": "交易渠道"
+                },
+                {
+                    "field_english_name": "external date",
+                    "field_name": "exte_dt",
+                    "description": "外部日期"
+                },
+                {
+                    "field_english_name": "consumer sequence number",
+                    "field_name": "cnsmr_seq_no",
+                    "description": "消费方调用流水"
+                },
+                {
+                    "field_english_name": "Transaction code",
+                    "field_name": "txn_code",
+                    "description": "交易码"
+                },
+                {
+                    "field_english_name": "Global Transaction Sequence Number",
+                    "field_name": "glbl_rung_num",
+                    "description": "全局流水号"
+                },
+                {
+                    "field_english_name": "Transaction Journal Number",
+                    "field_name": "txn_rung_num_32",
+                    "description": "交易流水号"
+                },
+                {
+                    "field_english_name": "Transaction Branch",
+                    "field_name": "txn_org",
+                    "description": "交易机构"
+                },
+                {
+                    "field_english_name": "Teller lD",
+                    "field_name": "txn_tlr",
+                    "description": "交易柜员"
+                },
+                {
+                    "field_english_name": "transaction date",
+                    "field_name": "txn_dt_8",
+                    "description": "交易日期"
+                },
+                {
+                    "field_english_name": "transaction hour",
+                    "field_name": "txn_tm",
+                    "description": "交易时间"
+                },
+                {
+                    "field_english_name": "host date",
+                    "field_name": "host_dt",
+                    "description": "主机日期"
+                },
+                {
+                    "field_english_name": "transaction type identifiaction",
+                    "field_name": "txn_type_id",
+                    "description": "交易类型标识"
+                },
+                {
+                    "field_english_name": "Account Reference Number",
+                    "field_name": "acct_rerc_num",
+                    "description": "账户参考号"
+                },
+                {
+                    "field_english_name": "Terminal Number",
+                    "field_name": "terml_num",
+                    "description": "终端号"
+                },
+                {
+                    "field_english_name": "IP Address",
+                    "field_name": "ip_addr",
+                    "description": "IP地址"
+                },
+                {
+                    "field_english_name": "Transaction Status",
+                    "field_name": "txn_ste",
+                    "description": "交易状态"
+                },
+                {
+                    "field_english_name": "error account original date",
+                    "field_name": "err_acct_orig_dt",
+                    "description": "错账原日期"
+                },
+                {
+                    "field_english_name": "error account original teller running number",
+                    "field_name": "err_acct_orig_tlr_rung_num",
+                    "description": "错账原柜员流水号"
+                },
+                {
+                    "field_english_name": "external flow",
+                    "field_name": "exte_rung_num",
+                    "description": "外部流水"
+                },
+                {
+                    "field_english_name": "financial type",
+                    "field_name": "financial_type",
+                    "description": "金融交易类型"
+                },
+                {
+                    "field_english_name": "transaction description",
+                    "field_name": "tran_desc",
+                    "description": "交易描述"
+                },
+                {
+                    "field_english_name": "user operation code",
+                    "field_name": "user_oprn_code",
+                    "description": "用户操作码"
+                },
+                {
+                    "field_english_name": "batch group number",
+                    "field_name": "btch_grp_num",
+                    "description": "批量分组号"
+                },
+                {
+                    "field_english_name": "batch number",
+                    "field_name": "batch_num",
+                    "description": "批次号"
+                },
+                {
+                    "field_english_name": "employee record id (EOR)",
+                    "field_name": "empe_of_rec",
+                    "description": "员工id"
+                },
+                {
+                    "field_english_name": "Original channel code",
+                    "field_name": "orig_chnl_code",
+                    "description": "原始渠道代码"
+                },
+                {
+                    "field_english_name": "Batch Online Transaction Flag",
+                    "field_name": "btch_onln_txn_flg",
+                    "description": "批量联机交易标志"
+                },
+                {
+                    "field_english_name": "Product Group Code",
+                    "field_name": "prod_grp_code",
+                    "description": "产品组代码"
+                },
+                {
+                    "field_english_name": "Exchange rate",
+                    "field_name": "exch_rate",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Exchange Rate Direction",
+                    "field_name": "exch_rate_drcn",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Foreign exchange conversion amount",
+                    "field_name": "fx_cnvr_amt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Bill Channel Code",
+                    "field_name": "stlmt_chnl_code",
+                    "description": "账单渠道代码"
+                },
+                {
+                    "field_english_name": "Eligibility Code",
+                    "field_name": "qual_code",
+                    "description": "资格代码"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "lblty_acct_num",
+                "uuid"
+            ]
+        },
+        "kdpb_hot_tag_oprn": {
+            "chinese_name": "热点账户标记操作登记簿",
+            "description": "Hot account tagging operation registration book",
+            "fields": [
+                {
+                    "field_english_name": "Transaction Sequence Number",
+                    "field_name": "txn_rung_num_32",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Types of hotspot marking operations",
+                    "field_name": "hot_tag_oprn_tp",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Sub-account serial number",
+                    "field_name": "sub_acct_serl_num",
+                    "description": "子账户序号"
+                },
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Hotspot Marker Processing Status",
+                    "field_name": "hot_tag_deal_ste",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Registration Channel",
+                    "field_name": "rgstn_chnl",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Registration Branch",
+                    "field_name": "rgstn_org",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Registration Teller",
+                    "field_name": "rgstn_tlr",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Register the terminal number",
+                    "field_name": "rgstn_terml_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Registration Date",
+                    "field_name": "rgstn_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Registration Time",
+                    "field_name": "rgstn_tm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Processing Date",
+                    "field_name": "deal_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Processing Time",
+                    "field_name": "deal_tm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Error Code",
+                    "field_name": "err_code",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Error Information 300",
+                    "field_name": "err_info_300",
+                    "description": ""
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "txn_rung_num_32"
+            ]
+        }
+    },
+    "relationships": [
+        {
+            "name": "kdpa_acct_to_kdpa_acct_cmprs",
+            "source_table": "kdpa_acct",
+            "target_table": "kdpa_acct_cmprs",
+            "relationship_type": "1：N",
+            "description": "Customer Account Information to kdpa_acct_cmprs"
+        },
+        {
+            "name": "kdpa_acct_to_kdpa_joint_cust_rltnp",
+            "source_table": "kdpa_acct",
+            "target_table": "kdpa_joint_cust_rltnp",
+            "relationship_type": "1：N",
+            "description": "Customer Account Information to kdpa_joint_cust_rltnp"
+        },
+        {
+            "name": "kdpa_acct_to_kdpa_card",
+            "source_table": "kdpa_acct",
+            "target_table": "kdpa_card",
+            "relationship_type": "1：N",
+            "description": "Customer Account Information to kdpa_card"
+        },
+        {
+            "name": "kdpa_acct_to_kdpa_acct_route",
+            "source_table": "kdpa_acct",
+            "target_table": "kdpa_acct_route",
+            "relationship_type": "1：1",
+            "description": "Customer Account Information to kdpa_acct_route"
+        },
+        {
+            "name": "kdpa_acct_to_kdpa_acct_splmty",
+            "source_table": "kdpa_acct",
+            "target_table": "kdpa_acct_splmty",
+            "relationship_type": "1：N",
+            "description": "Customer Account Information to kdpa_acct_splmty"
+        },
+        {
+            "name": "kdpa_acct_to_kdpa_acct_bill",
+            "source_table": "kdpa_acct",
+            "target_table": "kdpa_acct_bill",
+            "relationship_type": "1：1",
+            "description": "Customer Account Information to kdpa_acct_bill"
+        },
+        {
+            "name": "kdpa_acct_cmprs_to_kdpa_sub_acct",
+            "source_table": "kdpa_acct_cmprs",
+            "target_table": "kdpa_sub_acct",
+            "relationship_type": "1：1",
+            "description": "Customer Account Comparison Table to kdpa_sub_acct"
+        },
+        {
+            "name": "kdpa_sub_acct_to_kdpa_acct_dept_ctrl",
+            "source_table": "kdpa_sub_acct",
+            "target_table": "kdpa_acct_dept_ctrl",
+            "relationship_type": "1：1",
+            "description": "sub-Account Information to kdpa_acct_dept_ctrl"
+        },
+        {
+            "name": "kdpa_sub_acct_to_kdpa_acct_draw_ctrl",
+            "source_table": "kdpa_sub_acct",
+            "target_table": "kdpa_acct_draw_ctrl",
+            "relationship_type": "1：1",
+            "description": "sub-Account Information to kdpa_acct_draw_ctrl"
+        },
+        {
+            "name": "kdpa_sub_acct_to_kdpa_acct_matu",
+            "source_table": "kdpa_sub_acct",
+            "target_table": "kdpa_acct_matu",
+            "relationship_type": "1：1",
+            "description": "sub-Account Information to kdpa_acct_matu"
+        },
+        {
+            "name": "kdpa_sub_acct_to_kdpa_sub_acct_splmty",
+            "source_table": "kdpa_sub_acct",
+            "target_table": "kdpa_sub_acct_splmty",
+            "relationship_type": "1：1",
+            "description": "sub-Account Information to kdpa_sub_acct_splmty"
+        },
+        {
+            "name": "kdpa_sub_acct_to_kdpa_btch_chrg",
+            "source_table": "kdpa_sub_acct",
+            "target_table": "kdpa_btch_chrg",
+            "relationship_type": "1：N",
+            "description": "sub-Account Information to kdpa_btch_chrg"
+        },
+        {
+            "name": "kdpa_sub_acct_to_kdpa_evt_chrg_ctrl",
+            "source_table": "kdpa_sub_acct",
+            "target_table": "kdpa_evt_chrg_ctrl",
+            "relationship_type": "1：N",
+            "description": "sub-Account Information to kdpa_evt_chrg_ctrl"
+        },
+        {
+            "name": "kdpa_sub_acct_to_kdpa_fund_drcn",
+            "source_table": "kdpa_sub_acct",
+            "target_table": "kdpa_fund_drcn",
+            "relationship_type": "1：N",
+            "description": "sub-Account Information to kdpa_fund_drcn"
+        },
+        {
+            "name": "kdpa_main_sub_acct_rltnp_to_kdpa_sub_acct",
+            "source_table": "kdpa_main_sub_acct_rltnp",
+            "target_table": "kdpa_sub_acct",
+            "relationship_type": "1：1",
+            "description": "Master-Subsidiary Account Relationship Table to kdpa_sub_acct"
+        },
+        {
+            "name": "kdpa_main_sub_acct_rltnp_to_kdpa_struct_acctg_rltnp",
+            "source_table": "kdpa_main_sub_acct_rltnp",
+            "target_table": "kdpa_struct_acctg_rltnp",
+            "relationship_type": "1：1",
+            "description": "Master-Subsidiary Account Relationship Table to kdpa_struct_acctg_rltnp"
+        },
+        {
+            "name": "kdpb_hot_amt_pool_to_kdpa_sub_acct",
+            "source_table": "kdpb_hot_amt_pool",
+            "target_table": "kdpa_sub_acct",
+            "relationship_type": "1：1",
+            "description": "Hotspot Account Amount Pool Table to kdpa_sub_acct"
+        },
+        {
+            "name": "kdpb_hot_amt_pool_to_kdpl_hot_amt_pool",
+            "source_table": "kdpb_hot_amt_pool",
+            "target_table": "kdpl_hot_amt_pool",
+            "relationship_type": "1：N",
+            "description": "Hotspot Account Amount Pool Table to kdpl_hot_amt_pool"
+        },
+        {
+            "name": "kdpb_hot_amt_pool_to_kdpl_hot_acct",
+            "source_table": "kdpb_hot_amt_pool",
+            "target_table": "kdpl_hot_acct",
+            "relationship_type": "1：N",
+            "description": "Hotspot Account Amount Pool Table to kdpl_hot_acct"
+        },
+        {
+            "name": "kdpb_hot_amt_pool_to_kdpb_hot_tag_oprn",
+            "source_table": "kdpb_hot_amt_pool",
+            "target_table": "kdpb_hot_tag_oprn",
+            "relationship_type": "1：N",
+            "description": "Hotspot Account Amount Pool Table to kdpb_hot_tag_oprn"
+        }
+    ]
+}

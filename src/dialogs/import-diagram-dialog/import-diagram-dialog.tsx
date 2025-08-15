@@ -17,6 +17,7 @@ import { FileUploader } from '@/components/file-uploader/file-uploader';
 import { useStorage } from '@/hooks/use-storage';
 import { useNavigate } from 'react-router-dom';
 import { diagramFromJSONInput } from '@/lib/export-import-utils';
+import { importCustomJson } from '@/lib/import-custom-json';
 import { Alert, AlertDescription, AlertTitle } from '@/components/alert/alert';
 import { AlertCircle } from 'lucide-react';
 
@@ -56,7 +57,20 @@ export const ImportDiagramDialog: React.FC<ImportDiagramDialogProps> = ({
             if (typeof json !== 'string') return;
 
             try {
-                const diagram = diagramFromJSONInput(json);
+                // First try the standard ChartDB format
+                let diagram;
+                try {
+                    diagram = diagramFromJSONInput(json);
+                } catch {
+                    // If that fails, try our custom format
+                    try {
+                        diagram = importCustomJson(json);
+                    } catch {
+                        // If both fail, show error
+                        setError(true);
+                        throw new Error('Invalid JSON format');
+                    }
+                }
 
                 await addDiagram({ diagram });
 
@@ -66,7 +80,6 @@ export const ImportDiagramDialog: React.FC<ImportDiagramDialogProps> = ({
                 navigate(`/diagrams/${diagram.id}`);
             } catch (e) {
                 setError(true);
-
                 throw e;
             }
         };
