@@ -1,0 +1,802 @@
+{
+    "tables": {
+        "kdpb_acct_cheq": {
+            "chinese_name": "账户支票登记簿",
+            "description": "Account Cheque Register",
+            "fields": [
+                {
+                    "field_english_name": "Customer Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "cheque number",
+                    "field_name": "cheq_num",
+                    "description": "支票号码"
+                },
+                {
+                    "field_english_name": "Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户编号"
+                },
+                {
+                    "field_english_name": "Cheque control type",
+                    "field_name": "cheq_ctrl_tp",
+                    "description": "支票控制类型"
+                },
+                {
+                    "field_english_name": "Cheque Book Number",
+                    "field_name": "cheq_book_num",
+                    "description": "支票本编号"
+                },
+                {
+                    "field_english_name": "Currency code",
+                    "field_name": "ccy_code_num",
+                    "description": "货币代号"
+                },
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "cheque status",
+                    "field_name": "cheq_ste",
+                    "description": "支票状态"
+                },
+                {
+                    "field_english_name": "Registration Date",
+                    "field_name": "rgstn_dt",
+                    "description": "登记日期"
+                },
+                {
+                    "field_english_name": "Use Date",
+                    "field_name": "use_dt",
+                    "description": "使用日期"
+                },
+                {
+                    "field_english_name": "write-off date",
+                    "field_name": "chk_write_off_dt",
+                    "description": "核销日期"
+                },
+                {
+                    "field_english_name": "Cheque Amount",
+                    "field_name": "par_amt",
+                    "description": "票面金额"
+                },
+                {
+                    "field_english_name": "Disabled Y/N",
+                    "field_name": "dsabl_flg",
+                    "description": "停用标志"
+                },
+                {
+                    "field_english_name": "Cease operation date",
+                    "field_name": "dsabl_dt",
+                    "description": "停用日期"
+                },
+                {
+                    "field_english_name": "Disabled Expiry Date",
+                    "field_name": "dsabl_invld_dt",
+                    "description": "停用失效日期"
+                },
+                {
+                    "field_english_name": "Disabled Remarks",
+                    "field_name": "dsabl_remk",
+                    "description": "停用备注"
+                },
+                {
+                    "field_english_name": "Guaranteed Payment Y/N",
+                    "field_name": "ensure_pymt_flg",
+                    "description": "保付标志"
+                },
+                {
+                    "field_english_name": "Guaranteed Payment Amount",
+                    "field_name": "ensure_pymt_amt",
+                    "description": "保付金额"
+                },
+                {
+                    "field_english_name": "Expiry Date of Guaranteed Payment",
+                    "field_name": "ensure_pymt_invld_dt",
+                    "description": "保付失效日"
+                },
+                {
+                    "field_english_name": "Date of Guaranteed Payment",
+                    "field_name": "ensure_pymt_dt",
+                    "description": "保付日期"
+                },
+                {
+                    "field_english_name": "Guaranteed Payment Frozen Number",
+                    "field_name": "ensure_pymt_frz_num",
+                    "description": "保付冻结编号"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_acct_num",
+                "cheq_num",
+                "cust_num"
+            ]
+        },
+        "kdpb_cheq_loss": {
+            "chinese_name": "支票挂失登记簿",
+            "description": "Cheque Loss Register",
+            "fields": [
+                {
+                    "field_english_name": "Consolidated Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户号"
+                },
+                {
+                    "field_english_name": "Report loss number",
+                    "field_name": "loss_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "account name",
+                    "field_name": "acct_nm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Lost and Found Quotation Number",
+                    "field_name": "loss_index_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "cheque loss type",
+                    "field_name": "cheq_loss_tp",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "cheque book number",
+                    "field_name": "cheq_book_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "cheque number",
+                    "field_name": "cheq_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Currency code",
+                    "field_name": "ccy_code_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "par amount",
+                    "field_name": "par_amt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Start Cheque Number",
+                    "field_name": "strt_cheq_num",
+                    "description": "起始支票号"
+                },
+                {
+                    "field_english_name": "End Cheque Number",
+                    "field_name": "end_cheq_num",
+                    "description": "终止支票号"
+                },
+                {
+                    "field_english_name": "loss invalid date",
+                    "field_name": "loss_invld_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Lost Reason",
+                    "field_name": "loss_reason",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Remark",
+                    "field_name": "remks_info",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "channel code",
+                    "field_name": "chnl_code",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Mobile Phone",
+                    "field_name": "mbph_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "losser name",
+                    "field_name": "losr_nm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "losser documents category",
+                    "field_name": "losr_docs_catg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "losser documents number",
+                    "field_name": "losr_docs_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Issuer Identification Visa Country",
+                    "field_name": "losr_id_issue_cty",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "agent flag",
+                    "field_name": "agnt_flg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "agent name",
+                    "field_name": "agnt_nm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "agent documents category",
+                    "field_name": "agnt_docs_catg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "agent documents number",
+                    "field_name": "agnt_docs_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Third Party ID Issuing Country",
+                    "field_name": "agnt_id_issue_cty",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "date of loss",
+                    "field_name": "loss_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "loss time",
+                    "field_name": "loss_tm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "loss organization",
+                    "field_name": "loss_org",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Lost teller",
+                    "field_name": "loss_tlr",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "loss trxn sequence number",
+                    "field_name": "loss_txn_rung_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "loss business sequence number",
+                    "field_name": "loss_busi_rung_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Loss Reporting Status",
+                    "field_name": "loss_ste",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Cancel loss date",
+                    "field_name": "cncl_loss_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Cancel loss time",
+                    "field_name": "cncl_loss_tm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Cancel loss branch",
+                    "field_name": "cncl_loss_org",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Cancel lost teller",
+                    "field_name": "cncl_loss_tlr",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Cancel loss trxn sequence number",
+                    "field_name": "cncl_loss_txn_rung_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Cancel loss business sequence number",
+                    "field_name": "cncl_loss_busi_rung_num",
+                    "description": ""
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_num",
+                "loss_num"
+            ]
+        },
+        "kdpb_cheq_clrg": {
+            "chinese_name": "支票清算登记簿",
+            "description": "Cheque Clearing Register",
+            "fields": [
+                {
+                    "field_english_name": "Acceptance Number",
+                    "field_name": "acptd_num",
+                    "description": "受理编号"
+                },
+                {
+                    "field_english_name": "Sequence number",
+                    "field_name": "seq_num",
+                    "description": "顺序号"
+                },
+                {
+                    "field_english_name": "business reference number",
+                    "field_name": "busi_rfrc_num",
+                    "description": "业务参考号"
+                },
+                {
+                    "field_english_name": "Backdated Value Date",
+                    "field_name": "back_val_dt",
+                    "description": "倒起息日期"
+                },
+                {
+                    "field_english_name": "Customer Number",
+                    "field_name": "cust_num",
+                    "description": "客户编号"
+                },
+                {
+                    "field_english_name": "Customer Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Payer Account Serial Number",
+                    "field_name": "sub_acct_serl_num",
+                    "description": "付款人账户序号"
+                },
+                {
+                    "field_english_name": "Deposit Account Number",
+                    "field_name": "lblty_acct_num",
+                    "description": "负债账号"
+                },
+                {
+                    "field_english_name": "Currency code",
+                    "field_name": "ccy_code_num",
+                    "description": "货币代号"
+                },
+                {
+                    "field_english_name": "Deposit Amount",
+                    "field_name": "dept_amt",
+                    "description": "存入金额"
+                },
+                {
+                    "field_english_name": "Freeze Number",
+                    "field_name": "frz_num",
+                    "description": "冻结编号"
+                },
+                {
+                    "field_english_name": "cheque source",
+                    "field_name": "cheq_src",
+                    "description": "支票来源"
+                },
+                {
+                    "field_english_name": "cheque number",
+                    "field_name": "cheq_num",
+                    "description": "支票号码"
+                },
+                {
+                    "field_english_name": "Bill Currency",
+                    "field_name": "cheq_ccy",
+                    "description": "票据货币"
+                },
+                {
+                    "field_english_name": "Cheque Amount",
+                    "field_name": "par_amt",
+                    "description": "票面金额"
+                },
+                {
+                    "field_english_name": "cheque account number",
+                    "field_name": "cheq_acct_num",
+                    "description": "出票账号"
+                },
+                {
+                    "field_english_name": "cheque account  name",
+                    "field_name": "cheq_acct_nm",
+                    "description": "出票账户名称"
+                },
+                {
+                    "field_english_name": "Paying Bank Number",
+                    "field_name": "cheq_bank_num",
+                    "description": "兑付行号"
+                },
+                {
+                    "field_english_name": "inquire business number",
+                    "field_name": "inqur_busi_num",
+                    "description": "询价业务编号"
+                },
+                {
+                    "field_english_name": "exchange rate direction",
+                    "field_name": "exch_rate_drcn",
+                    "description": "汇率方向"
+                },
+                {
+                    "field_english_name": "Exchange rate",
+                    "field_name": "exch_rate",
+                    "description": "汇率"
+                },
+                {
+                    "field_english_name": "Cheque Clearing Status",
+                    "field_name": "cheq_clrg_ste",
+                    "description": "支票清算状态"
+                },
+                {
+                    "field_english_name": "Registration Channel",
+                    "field_name": "rgstn_chnl",
+                    "description": "登记渠道"
+                },
+                {
+                    "field_english_name": "registration agency",
+                    "field_name": "rgstn_org",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Registration Date",
+                    "field_name": "rgstn_dt",
+                    "description": "登记日期"
+                },
+                {
+                    "field_english_name": "Registration transaction serial number",
+                    "field_name": "rgstn_txn_rung_num",
+                    "description": "登记交易流水号"
+                },
+                {
+                    "field_english_name": "Register business flow",
+                    "field_name": "rgstn_busi_rung_num",
+                    "description": "登记业务流水"
+                },
+                {
+                    "field_english_name": "Receive Date",
+                    "field_name": "pstg_dt",
+                    "description": "入账日期"
+                },
+                {
+                    "field_english_name": "Clearing Date",
+                    "field_name": "clrg_dt",
+                    "description": "清算日期"
+                },
+                {
+                    "field_english_name": "Clearing Transaction Sequence Number",
+                    "field_name": "clrg_txn_rung_num",
+                    "description": "清算交易流水"
+                },
+                {
+                    "field_english_name": "Clearing Business Sequence Number",
+                    "field_name": "clrg_busi_rung_num",
+                    "description": "清算业务流水"
+                },
+                {
+                    "field_english_name": "Return Cheque Date",
+                    "field_name": "ret_cheq_dt",
+                    "description": "退票日期"
+                },
+                {
+                    "field_english_name": "Return Cheque Transaction Sequence Number",
+                    "field_name": "ret_cheq_txn_rung_num",
+                    "description": "退票交易流水"
+                },
+                {
+                    "field_english_name": "Return Cheque Business Sequence Number",
+                    "field_name": "ret_cheq_busi_rung_num",
+                    "description": "退票业务流水"
+                },
+                {
+                    "field_english_name": "Cheque return reason",
+                    "field_name": "ret_cheq_reason",
+                    "description": "支票退票原因"
+                },
+                {
+                    "field_english_name": "Auto Clearing Flag",
+                    "field_name": "auto_clrg_flg",
+                    "description": "自动清算标志"
+                },
+                {
+                    "field_english_name": "Auto Clearing Date",
+                    "field_name": "auto_clrg_dt",
+                    "description": "自动清算日期"
+                },
+                {
+                    "field_english_name": "Auto Clearing Time",
+                    "field_name": "auto_clrg_tm",
+                    "description": "自动清算时间"
+                },
+                {
+                    "field_english_name": "error code",
+                    "field_name": "err_code",
+                    "description": "错误代码"
+                },
+                {
+                    "field_english_name": "Error Information 300",
+                    "field_name": "err_info_300",
+                    "description": "错误信息300"
+                },
+                {
+                    "field_english_name": "Batch Grouping Number",
+                    "field_name": "btch_grp_num",
+                    "description": "批量分组号"
+                },
+                {
+                    "field_english_name": "Receive Transaction Sequence Number",
+                    "field_name": "pstg_rung_num",
+                    "description": "入账流水号"
+                },
+                {
+                    "field_english_name": "Check payment mark",
+                    "field_name": "cheq_paid_flg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Check fund status",
+                    "field_name": "cheq_fund_ste",
+                    "description": ""
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "acptd_num",
+                "seq_num"
+            ]
+        },
+        "kdpb_cheq_clrg_file": {
+            "chinese_name": "支票清算文件数据",
+            "description": "Cheque Clearing File Data",
+            "fields": [
+                {
+                    "field_english_name": "Entrusted Code",
+                    "field_name": "entstm_num",
+                    "description": "委托号"
+                },
+                {
+                    "field_english_name": "Sequence number",
+                    "field_name": "seq_num",
+                    "description": "顺序号"
+                },
+                {
+                    "field_english_name": "business reference number",
+                    "field_name": "busi_rfrc_num",
+                    "description": "业务参考号"
+                },
+                {
+                    "field_english_name": "Customer Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": "客户账号"
+                },
+                {
+                    "field_english_name": "Customer Account Name",
+                    "field_name": "cust_acct_nm",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "cheque source",
+                    "field_name": "cheq_src",
+                    "description": "支票来源"
+                },
+                {
+                    "field_english_name": "cheque number",
+                    "field_name": "cheq_num",
+                    "description": "支票号码"
+                },
+                {
+                    "field_english_name": "Same day check mark",
+                    "field_name": "today_cheq_flg",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Cheque Clearing Type",
+                    "field_name": "cheq_clrg_tp",
+                    "description": "支票清算状态"
+                },
+                {
+                    "field_english_name": "Bill Currency",
+                    "field_name": "cheq_ccy",
+                    "description": "票据货币"
+                },
+                {
+                    "field_english_name": "Cheque Amount",
+                    "field_name": "par_amt",
+                    "description": "票面金额"
+                },
+                {
+                    "field_english_name": "Transaction Remarks",
+                    "field_name": "txn_remks",
+                    "description": "交易备注"
+                },
+                {
+                    "field_english_name": "Customer Remarks",
+                    "field_name": "cust_remks",
+                    "description": "客户备注"
+                },
+                {
+                    "field_english_name": "Batch Number",
+                    "field_name": "batch_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "summary code",
+                    "field_name": "abst_code",
+                    "description": "摘要代码"
+                },
+                {
+                    "field_english_name": "File record status",
+                    "field_name": "file_sec_ste",
+                    "description": "文件数据状态"
+                },
+                {
+                    "field_english_name": "Registration Date",
+                    "field_name": "rgstn_dt",
+                    "description": "登记日期"
+                },
+                {
+                    "field_english_name": "Processing date",
+                    "field_name": "deal_dt",
+                    "description": "处理日期"
+                },
+                {
+                    "field_english_name": "error code",
+                    "field_name": "err_code",
+                    "description": "错误代码"
+                },
+                {
+                    "field_english_name": "Error Information 300",
+                    "field_name": "err_info_300",
+                    "description": "错误信息300"
+                },
+                {
+                    "field_english_name": "Batch Grouping Number",
+                    "field_name": "btch_grp_num",
+                    "description": "批量分组号"
+                },
+                {
+                    "field_english_name": "cheque account number",
+                    "field_name": "cheq_acct_num",
+                    "description": "出票账号"
+                },
+                {
+                    "field_english_name": "Paying Bank Number",
+                    "field_name": "cheq_bank_num",
+                    "description": "兑付行号"
+                },
+                {
+                    "field_english_name": "Cheque return reason",
+                    "field_name": "ret_cheq_reason",
+                    "description": "支票退票原因"
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "entstm_num",
+                "seq_num"
+            ]
+        },
+        "kdpb_cheq_return": {
+            "chinese_name": "支票退票登记簿",
+            "description": "Cheque Return Register",
+            "fields": [
+                {
+                    "field_english_name": "Customer Account Number",
+                    "field_name": "cust_acct_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "cheque number",
+                    "field_name": "cheq_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Customer Number",
+                    "field_name": "cust_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Transaction Sequence Number Registration",
+                    "field_name": "rgstn_txn_rung_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Bill Currency",
+                    "field_name": "cheq_ccy",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "par amount",
+                    "field_name": "par_amt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Return check fee",
+                    "field_name": "ret_cheq_fee",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Cheque return reason",
+                    "field_name": "ret_cheq_reason",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Remark",
+                    "field_name": "remks_info",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Registration Channel",
+                    "field_name": "rgstn_chnl",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "registration agency",
+                    "field_name": "rgstn_org",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Registration Date",
+                    "field_name": "rgstn_dt",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "Register business flow",
+                    "field_name": "rgstn_busi_rung_num",
+                    "description": ""
+                },
+                {
+                    "field_english_name": "External billing sign",
+                    "field_name": "exte_calc_fee_flg",
+                    "description": ""
+                }
+            ],
+            "primarykey": [
+                "lgl_pern_code",
+                "cust_acct_num",
+                "cheq_num",
+                "cust_num",
+                "rgstn_txn_rung_num"
+            ]
+        }
+    },
+    "relationships": [
+        {
+            "name": "kdpb_acct_cheq_to_kdpb_cheq_loss",
+            "source_table": "kdpb_acct_cheq",
+            "target_table": "kdpb_cheq_loss",
+            "relationship_type": "1：N",
+            "description": "Account Cheque Register to Cheque Loss Register"
+        },
+        {
+            "name": "kdpb_acct_cheq_to_kdpb_cheq_clrg",
+            "source_table": "kdpb_acct_cheq",
+            "target_table": "kdpb_cheq_clrg",
+            "relationship_type": "1：N",
+            "description": "Account Cheque Register to Cheque Clearing Register"
+        },
+        {
+            "name": "kdpb_cheq_clrg_to_kdpb_cheq_clrg_file",
+            "source_table": "kdpb_cheq_clrg",
+            "target_table": "kdpb_cheq_clrg_file",
+            "relationship_type": "1：N",
+            "description": "Cheque Clearing Register to Cheque Clearing File Data"
+        },
+        {
+            "name": "kdpb_acct_cheq_to_kdpb_cheq_return",
+            "source_table": "kdpb_acct_cheq",
+            "target_table": "kdpb_cheq_return",
+            "relationship_type": "1：N",
+            "description": "Account Cheque Register to Cheque Return Register"
+        }
+    ]
+}
