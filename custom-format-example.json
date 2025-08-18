@@ -1,0 +1,97 @@
+{
+  "tables": {
+    "users": {
+      "chinese_name": "用户表",
+      "description": "存储用户信息",
+      "fields": [
+        {
+          "field_english_name": "ID",
+          "field_name": "id",
+          "description": "用户唯一标识符"
+        },
+        {
+          "field_english_name": "Name",
+          "field_name": "name",
+          "description": "用户姓名"
+        },
+        {
+          "field_english_name": "Email",
+          "field_name": "email",
+          "description": "用户邮箱"
+        }
+      ],
+      "primarykey": ["id"]
+    },
+    "orders": {
+      "chinese_name": "订单表",
+      "description": "存储订单信息",
+      "fields": [
+        {
+          "field_english_name": "ID",
+          "field_name": "id",
+          "description": "订单唯一标识符"
+        },
+        {
+          "field_english_name": "User ID",
+          "field_name": "user_id",
+          "description": "关联的用户ID"
+        },
+        {
+          "field_english_name": "Amount",
+          "field_name": "amount",
+          "description": "订单金额"
+        }
+      ],
+      "primarykey": ["id"]
+    },
+    "products": {
+      "chinese_name": "产品表",
+      "description": "存储产品信息",
+      "fields": [
+        {
+          "field_english_name": "ID",
+          "field_name": "id",
+          "description": "产品唯一标识符"
+        },
+        {
+          "field_english_name": "Name",
+          "field_name": "name",
+          "description": "产品名称"
+        },
+        {
+          "field_english_name": "Price",
+          "field_name": "price",
+          "description": "产品价格"
+        }
+      ],
+      "primarykey": ["id"]
+    }
+  },
+  "relationships": [
+    {
+      "name": "user_orders",
+      "source_table": "users",
+      "target_table": "orders",
+      "relationship_type": "1:N",
+      "description": "一个用户可以有多个订单"
+    }
+  ],
+  "areas": [
+    {
+      "name": "User Management",
+      "x": 100,
+      "y": 100,
+      "width": 500,
+      "height": 300,
+      "color": "#f0f0f0"
+    },
+    {
+      "name": "Order Processing",
+      "x": 700,
+      "y": 100,
+      "width": 500,
+      "height": 300,
+      "color": "#e0e0e0"
+    }
+  ]
+}

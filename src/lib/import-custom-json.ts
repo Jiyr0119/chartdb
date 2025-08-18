@@ -8,6 +8,8 @@ import {
 } from './domain/db-relationship';
 import { type DBField } from './domain/db-field';
 import { type DBIndex } from './domain/db-index';
+import { type Area } from './domain/area';
+import { adjustTablePositions as adjustTablePositionsWithAlgorithm } from './domain/db-table';
 
 interface CustomTable {
     chinese_name: string;
@@ -31,6 +33,15 @@ interface CustomRelationship {
 interface CustomJsonStructure {
     tables: Record<string, CustomTable>;
     relationships: CustomRelationship[];
+    // Optional areas in custom format
+    areas?: Array<{
+        name: string;
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+        color: string;
+    }>;
 }
 
 // Predefined colors for tables
@@ -43,6 +54,13 @@ const TABLE_COLORS = [
     '#ff6363', // Red
     '#7175fa', // Indigo
     '#63c9ec', // Cyan
+];
+
+// Predefined colors for areas
+const AREA_COLORS = [
+    '#e0e0e0', // Light Gray
+    '#f5f5f5', // Very Light Gray
+    '#fafafa', // Almost White
 ];
 
 export const importCustomJson = (jsonString: string): Diagram => {
@@ -197,6 +215,19 @@ export const importCustomJson = (jsonString: string): Diagram => {
         }
     );
 
+    // Convert areas if they exist in the custom format
+    const areas: Area[] = parsedData.areas
+        ? parsedData.areas.map((area, index) => ({
+              id: generateId(),
+              name: area.name,
+              x: area.x,
+              y: area.y,
+              width: area.width,
+              height: area.height,
+              color: area.color || AREA_COLORS[index % AREA_COLORS.length],
+          }))
+        : [];
+
     // Create diagram
     const diagram: Diagram = {
         id: generateDiagramId(),
@@ -204,30 +235,21 @@ export const importCustomJson = (jsonString: string): Diagram => {
         databaseType: DatabaseType.GENERIC,
         tables,
         relationships,
-        areas: [], // No areas in custom format
+        areas,
         customTypes: [], // No custom types in custom format
         createdAt: new Date(),
         updatedAt: new Date(),
     };
 
-    // Adjust table positions
-    adjustTablePositions(diagram);
+    // Adjust table positions using the improved algorithm
+    const adjustedTables = adjustTablePositionsWithAlgorithm({
+        tables: diagram.tables || [],
+        relationships: diagram.relationships || [],
+        areas: diagram.areas || [],
+        mode: 'all',
+    });
+
+    diagram.tables = adjustedTables;
 
     return diagram;
-};
-
-const adjustTablePositions = (diagram: Diagram) => {
-    const { tables = [] } = diagram;
-
-    // Simple grid layout
-    const GRID_SIZE = 300;
-    const MAX_PER_ROW = 4;
-
-    tables.forEach((table, index) => {
-        const row = Math.floor(index / MAX_PER_ROW);
-        const col = index % MAX_PER_ROW;
-
-        table.x = col * GRID_SIZE;
-        table.y = row * GRID_SIZE;
-    });
 };
