@@ -46,14 +46,14 @@
 **目标**: 将React组件迁移到Vue组件
 
 #### 3.1 基础组件 (优先)
-- [ ] `button` - 按钮组件
-- [ ] `input` - 输入框组件  
-- [ ] `label` - 标签组件
-- [ ] `spinner` - 加载动画组件
-- [ ] `separator` - 分隔符组件
+- [x] `button` - 按钮组件
+- [x] `input` - 输入框组件  
+- [x] `label` - 标签组件
+- [x] `spinner` - 加载动画组件
+- [x] `separator` - 分隔符组件
 
 #### 3.2 布局组件
-- [ ] `card` - 卡片组件
+- [x] `card` - 卡片组件
 - [ ] `sidebar` - 侧边栏组件
 - [ ] `resizable` - 可调整大小组件
 - [ ] `scroll-area` - 滚动区域组件
