@@ -140,7 +140,7 @@
 **目标**: 迁移所有对话框组件
 
 #### 6.1 核心对话框
-- [ ] `create-diagram-dialog`
+- [x] `create-diagram-dialog`
 - [ ] `create-relationship-dialog`
 - [ ] `table-schema-dialog`
 
@@ -279,6 +279,7 @@
 - 🚧 开始第六阶段 - 对话框系统迁移
   - ✅ star-us-dialog (Vue版本)
   - ✅ base-alert-dialog (Vue版本)
+  - ✅ create-diagram-dialog (Vue版本)
 
 ---
 
