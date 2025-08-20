@@ -149,7 +149,7 @@
 - [ ] `import-diagram-dialog`
 - [ ] `export-diagram-dialog`
 - [ ] `export-image-dialog`
-- [ ] `export-sql-dialog`
+- [x] `export-sql-dialog`
 
 #### 6.3 其他对话框
 - [x] `star-us-dialog`
@@ -283,6 +283,7 @@
   - ✅ create-relationship-dialog (Vue版本)
   - ✅ table-schema-dialog (Vue版本)
   - ✅ import-database-dialog (Vue版本)
+  - ✅ export-sql-dialog (Vue版本)
 
 ---
 
