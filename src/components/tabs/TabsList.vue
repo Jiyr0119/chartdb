@@ -1,0 +1,28 @@
+<script setup lang="ts">
+import { TabsList } from 'radix-vue'
+import { cn } from '@/lib/utils'
+
+interface Props {
+  class?: string
+  asChild?: boolean
+  loop?: boolean
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  asChild: false,
+  loop: true
+})
+</script>
+
+<template>
+  <TabsList
+    :class="cn(
+      'inline-flex h-9 items-center justify-center rounded-lg bg-muted p-1 text-muted-foreground',
+      props.class
+    )"
+    :as-child="props.asChild"
+    :loop="props.loop"
+  >
+    <slot />
+  </TabsList>
+</template>
