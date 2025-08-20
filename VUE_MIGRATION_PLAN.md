@@ -146,8 +146,8 @@
 
 #### 6.2 导入导出对话框
 - [x] `import-database-dialog`
-- [ ] `import-diagram-dialog`
-- [ ] `export-diagram-dialog`
+- [x] `import-diagram-dialog`
+- [x] `export-diagram-dialog`
 - [x] `export-image-dialog`
 - [x] `export-sql-dialog`
 
@@ -285,6 +285,8 @@
   - ✅ import-database-dialog (Vue版本)
   - ✅ export-sql-dialog (Vue版本)
   - ✅ export-image-dialog (Vue版本)
+  - ✅ export-diagram-dialog (Vue版本)
+  - ✅ import-diagram-dialog (Vue版本)
 
 ---
 
