@@ -84,26 +84,26 @@
 
 ---
 
-### 🎨 第四阶段：Hooks迁移到Composables (计划中)
+### 🎨 第四阶段：Hooks迁移到Composables (进行中)
 **目标**: 将React Hooks转换为Vue Composables
 
 #### 4.1 核心Hooks
-- [ ] `use-chartdb.ts` → `useChartdb.ts`
-- [ ] `use-canvas.ts` → `useCanvas.ts`
-- [ ] `use-theme.ts` → `useTheme.ts`
-- [ ] `use-dialog.ts` → `useDialog.ts`
+- [x] `use-chartdb.ts` → `useChartdb.ts`
+- [x] `use-canvas.ts` → `useCanvas.ts`
+- [x] `use-theme.ts` → `useTheme.ts`
+- [x] `use-dialog.ts` → `useDialog.ts`
 
 #### 4.2 工具Hooks
-- [ ] `use-debounce.ts` → `useDebounce.ts`
-- [ ] `use-debounce-v2.ts` → `useDebounceV2.ts`
-- [ ] `use-breakpoint.ts` → `useBreakpoint.ts`
-- [ ] `use-mobile.tsx` → `useMobile.ts`
+- [x] `use-debounce.ts` → `useDebounce.ts`
+- [x] `use-debounce-v2.ts` → `useDebounceV2.ts`
+- [x] `use-breakpoint.ts` → `useBreakpoint.ts`
+- [x] `use-mobile.tsx` → `useMobile.ts`
 
 #### 4.3 功能Hooks
-- [ ] `use-config.ts` → `useConfig.ts`
-- [ ] `use-storage.ts` → `useStorage.ts`
-- [ ] `use-history.ts` → `useHistory.ts`
-- [ ] `use-layout.ts` → `useLayout.ts`
+- [x] `use-config.ts` → `useConfig.ts`
+- [x] `use-storage.ts` → `useStorage.ts`
+- [x] `use-history.ts` → `useHistory.ts`
+- [x] `use-layout.ts` → `useLayout.ts`
 
 **预计完成时间**: 待定  
 **当前状态**: 📋 计划中  
@@ -205,13 +205,13 @@
 ## 📊 总体进度统计
 
 - **总任务数**: 约80个主要任务
-- **已完成**: 24个 (30%)
+- **已完成**: 32个 (40%)
 - **进行中**: 0个
-- **待开始**: 56个 (70%)
+- **待开始**: 48个 (60%)
 
 ## 🎯 当前重点
 
-**下一个任务**: 开始第二阶段 - 创建chartdbStore (Pinia)
+**下一个任务**: 开始第五阶段 - 页面功能实现
 
 ## 📝 改造日志
 
@@ -236,6 +236,19 @@
 - ✅ 完成sidebar组件迁移 (Vue版本)
 - ✅ 完成resizable组件迁移 (Vue版本)
 - ✅ 完成scroll-area组件迁移 (Vue版本)
+- ✅ 完成所有Hooks到Composables的迁移 (Vue版本)
+  - use-chartdb.ts → useChartdb.ts
+  - use-canvas.ts → useCanvas.ts
+  - use-theme.ts → useTheme.ts
+  - use-dialog.ts → useDialog.ts
+  - use-debounce.ts → useDebounce.ts
+  - use-debounce-v2.ts → useDebounceV2.ts
+  - use-breakpoint.ts → useBreakpoint.ts
+  - use-mobile.tsx → useMobile.ts
+  - use-config.ts → useConfig.ts
+  - use-storage.ts → useStorage.ts
+  - use-history.ts → useHistory.ts
+  - use-layout.ts → useLayout.ts
 
 ---
 

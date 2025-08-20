@@ -1,0 +1,30 @@
+import { useMediaQuery } from '@vueuse/core'
+
+const breakpoints = {
+  sm: '640px',
+  // => @media (min-width: 640px) { ... }
+
+  md: '768px',
+  // => @media (min-width: 768px) { ... }
+
+  lg: '1024px',
+  // => @media (min-width: 1024px) { ... }
+
+  xl: '1280px',
+  // => @media (min-width: 1280px) { ... }
+
+  '2xl': '1400px'
+  // => @media (min-width: 1400px) { ... }
+} as const
+
+type BreakpointKey = keyof typeof breakpoints
+
+export function useBreakpoint<K extends BreakpointKey>(breakpointKey: K) {
+  const bool = useMediaQuery(`(min-width: ${breakpoints[breakpointKey]})`)
+  const capitalizedKey = (breakpointKey[0].toUpperCase() + breakpointKey.substring(1)) as Capitalize<K>
+  type Key = `is${Capitalize<K>}`
+  
+  return {
+    [`is${capitalizedKey}`]: bool
+  } as Record<Key, boolean>
+}
