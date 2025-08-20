@@ -66,10 +66,10 @@
 - [x] `hover-card` - 悬停卡片组件
 
 #### 3.4 表单组件
-- [ ] `select` - 选择器组件
-- [ ] `textarea` - 文本域组件
-- [ ] `checkbox` - 复选框组件
-- [ ] `toggle` - 开关组件
+- [x] `select` - 选择器组件
+- [x] `textarea` - 文本域组件
+- [x] `checkbox` - 复选框组件
+- [x] `toggle` - 开关组件
 
 #### 3.5 高级组件
 - [ ] `table` - 表格组件
@@ -257,6 +257,10 @@
   - ✅ dropdown-menu组件迁移 (Vue版本)
   - ✅ popover组件迁移 (Vue版本)
   - ✅ hover-card组件迁移 (Vue版本)
+  - ✅ select组件迁移 (Vue版本)
+  - ✅ textarea组件迁移 (Vue版本)
+  - ✅ checkbox组件迁移 (Vue版本)
+  - ✅ toggle组件迁移 (Vue版本)
 
 ---
 
