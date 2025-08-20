@@ -14,6 +14,9 @@ import type { DiagramFilter } from '@/lib/domain/diagram-filter/diagram-filter'
 import type { Area } from '@/lib/domain/area'
 import { getTablesInArea, updateTablesParentAreas } from './area-utils'
 import type { Graph } from '@/lib/graph'
+import { VueFlow, useVueFlow } from '@vue-flow/core'
+import '@vue-flow/core/dist/style.css'
+import '@vue-flow/core/dist/theme-default.css'
 
 // 类型定义
 type EdgeType = any // TODO: 定义具体的边类型
@@ -57,6 +60,9 @@ const {
 const { showSidePanel } = useLayout()
 const { effectiveTheme } = useTheme()
 const { scrollAction, showDependenciesOnCanvas, showMiniMapOnCanvas } = useLocalConfig()
+
+// 使用Vue Flow
+const { onConnect, addEdges, addNodes, findNode, getNodes, getEdges } = useVueFlow()
 
 // 状态管理
 const isInitialLoadingNodes = ref(true)
@@ -159,6 +165,7 @@ const initializeNodes = () => {
     })
   )
   nodes.value = initialNodes
+  addNodes(initialNodes)
   isInitialLoadingNodes.value = false
 }
 
@@ -203,15 +210,41 @@ onMounted(() => {
 
 <template>
   <div class="relative h-full w-full bg-background">
-    <!-- 画布区域 -->
-    <div class="h-full w-full">
-      <!-- TODO: 集成Vue Flow或类似的图表库 -->
-      <div class="flex h-full w-full items-center justify-center">
-        <p class="text-muted-foreground">
-          图表画布区域（需要集成图表库）
-        </p>
-      </div>
-    </div>
+    <!-- Vue Flow画布区域 -->
+    <VueFlow
+      :nodes="nodes"
+      :edges="edges"
+      class="h-full w-full"
+      @connect="onConnect"
+    >
+      <!-- 背景 -->
+      <template #background>
+        <div class="bg-background" />
+      </template>
+      
+      <!-- 小地图 -->
+      <template #minimap="{ dimensions, nodes, zoom }">
+        <div 
+          v-if="showMiniMapOnCanvas" 
+          class="absolute bottom-4 right-4 rounded-lg bg-white/90 p-2 shadow-lg dark:bg-gray-800/90"
+        >
+          <!-- TODO: 实现小地图组件 -->
+          <div class="text-xs text-gray-500 dark:text-gray-400">
+            Minimap
+          </div>
+        </div>
+      </template>
+      
+      <!-- 控制器 -->
+      <template #controls>
+        <div class="absolute bottom-4 left-4 rounded-lg bg-white/90 p-2 shadow-lg dark:bg-gray-800/90">
+          <!-- TODO: 实现控制器组件 -->
+          <div class="text-xs text-gray-500 dark:text-gray-400">
+            Controls
+          </div>
+        </div>
+      </template>
+    </VueFlow>
     
     <!-- 工具栏 -->
     <div class="absolute left-4 top-4 z-10">
