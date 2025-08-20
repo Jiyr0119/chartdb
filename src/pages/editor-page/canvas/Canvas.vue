@@ -17,6 +17,7 @@ import type { Graph } from '@/lib/graph'
 import { VueFlow, useVueFlow } from '@vue-flow/core'
 import '@vue-flow/core/dist/style.css'
 import '@vue-flow/core/dist/theme-default.css'
+import Toolbar from './toolbar/Toolbar.vue'
 
 // 类型定义
 type EdgeType = any // TODO: 定义具体的边类型
@@ -248,10 +249,7 @@ onMounted(() => {
     
     <!-- 工具栏 -->
     <div class="absolute left-4 top-4 z-10">
-      <!-- TODO: 实现工具栏组件 -->
-      <div class="rounded-lg bg-background p-2 shadow-lg">
-        <p class="text-sm">工具栏占位符</p>
-      </div>
+      <Toolbar />
     </div>
     
     <!-- 右键菜单 -->
