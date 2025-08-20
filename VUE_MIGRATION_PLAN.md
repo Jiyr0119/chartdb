@@ -60,10 +60,10 @@
 
 #### 3.3 交互组件
 - [x] `dialog` - 对话框组件
-- [ ] `tooltip` - 提示框组件
-- [ ] `dropdown-menu` - 下拉菜单组件
-- [ ] `popover` - 弹出层组件
-- [ ] `hover-card` - 悬停卡片组件
+- [x] `tooltip` - 提示框组件
+- [x] `dropdown-menu` - 下拉菜单组件
+- [x] `popover` - 弹出层组件
+- [x] `hover-card` - 悬停卡片组件
 
 #### 3.4 表单组件
 - [ ] `select` - 选择器组件
@@ -253,6 +253,10 @@
   - ✅ 图表编辑器核心功能 (基础实现)
 - 🚧 继续第三阶段 - UI组件库迁移
   - ✅ dialog组件迁移 (Vue版本)
+  - ✅ tooltip组件迁移 (Vue版本)
+  - ✅ dropdown-menu组件迁移 (Vue版本)
+  - ✅ popover组件迁移 (Vue版本)
+  - ✅ hover-card组件迁移 (Vue版本)
 
 ---
 
