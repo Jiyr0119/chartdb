@@ -152,7 +152,7 @@
 - [ ] `export-sql-dialog`
 
 #### 6.3 其他对话框
-- [ ] `star-us-dialog`
+- [x] `star-us-dialog`
 - [ ] `base-alert-dialog`
 
 **预计完成时间**: 待定  
@@ -277,6 +277,7 @@
 - ✅ 完成第四阶段 - Hooks迁移到Composables
 - ✅ 完成第五阶段 - 页面功能实现
 - 🚧 开始第六阶段 - 对话框系统迁移
+  - ✅ star-us-dialog (Vue版本)
 
 ---
 
