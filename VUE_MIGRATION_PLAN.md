@@ -148,7 +148,7 @@
 - [x] `import-database-dialog`
 - [ ] `import-diagram-dialog`
 - [ ] `export-diagram-dialog`
-- [ ] `export-image-dialog`
+- [x] `export-image-dialog`
 - [x] `export-sql-dialog`
 
 #### 6.3 其他对话框
@@ -284,6 +284,7 @@
   - ✅ table-schema-dialog (Vue版本)
   - ✅ import-database-dialog (Vue版本)
   - ✅ export-sql-dialog (Vue版本)
+  - ✅ export-image-dialog (Vue版本)
 
 ---
 
