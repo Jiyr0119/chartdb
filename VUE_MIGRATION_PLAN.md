@@ -145,7 +145,7 @@
 - [x] `table-schema-dialog`
 
 #### 6.2 导入导出对话框
-- [ ] `import-database-dialog`
+- [x] `import-database-dialog`
 - [ ] `import-diagram-dialog`
 - [ ] `export-diagram-dialog`
 - [ ] `export-image-dialog`
@@ -282,6 +282,7 @@
   - ✅ create-diagram-dialog (Vue版本)
   - ✅ create-relationship-dialog (Vue版本)
   - ✅ table-schema-dialog (Vue版本)
+  - ✅ import-database-dialog (Vue版本)
 
 ---
 
