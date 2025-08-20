@@ -54,9 +54,9 @@
 
 #### 3.2 布局组件
 - [x] `card` - 卡片组件
-- [ ] `sidebar` - 侧边栏组件
-- [ ] `resizable` - 可调整大小组件
-- [ ] `scroll-area` - 滚动区域组件
+- [x] `sidebar` - 侧边栏组件
+- [x] `resizable` - 可调整大小组件
+- [x] `scroll-area` - 滚动区域组件
 
 #### 3.3 交互组件
 - [ ] `dialog` - 对话框组件
@@ -205,9 +205,9 @@
 ## 📊 总体进度统计
 
 - **总任务数**: 约80个主要任务
-- **已完成**: 21个 (26.25%)
+- **已完成**: 24个 (30%)
 - **进行中**: 0个
-- **待开始**: 59个 (73.75%)
+- **待开始**: 56个 (70%)
 
 ## 🎯 当前重点
 
@@ -231,6 +231,11 @@
 - ✅ 完成storage-context迁移到Vue composables (包含TODO: 待完整集成Dexie数据库)
 - ✅ 完成history-context迁移到Vue composables (包含TODO: 待完善撤销/重做动作处理器)
 - ✅ 完成local-config-context迁移到Vue composables (包含TODO: 待完善localStorage持久化策略)
+
+### 2025-08-20
+- ✅ 完成sidebar组件迁移 (Vue版本)
+- ✅ 完成resizable组件迁移 (Vue版本)
+- ✅ 完成scroll-area组件迁移 (Vue版本)
 
 ---
 
