@@ -142,7 +142,7 @@
 #### 6.1 核心对话框
 - [x] `create-diagram-dialog`
 - [x] `create-relationship-dialog`
-- [ ] `table-schema-dialog`
+- [x] `table-schema-dialog`
 
 #### 6.2 导入导出对话框
 - [ ] `import-database-dialog`
@@ -281,6 +281,7 @@
   - ✅ base-alert-dialog (Vue版本)
   - ✅ create-diagram-dialog (Vue版本)
   - ✅ create-relationship-dialog (Vue版本)
+  - ✅ table-schema-dialog (Vue版本)
 
 ---
 
