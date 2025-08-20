@@ -11,19 +11,21 @@ import { useRoute } from 'vue-router'
 import type { Template } from '@/templates-data/templates-data'
 import { Spinner } from '@/components/spinner'
 import { ref, computed, onMounted } from 'vue'
+import { templates as allTemplates } from '@/templates-data/templates-data'
 
-// TODO: 实现模板数据加载
+// 状态管理
 const templates = ref<Template[] | undefined>(undefined)
 const allTags = ref<string[] | undefined>(undefined)
+const searchQuery = ref('')
 
 const route = useRoute()
 const { effectiveTheme } = useTheme()
 
-// TODO: 实现路由匹配逻辑
+// 路由匹配逻辑
 const isFeatured = computed(() => route.name === 'templates_featured')
 const isAllTemplates = computed(() => route.name === 'templates')
 
-// TODO: 实现标签参数解析
+// 标签参数解析
 const tagParam = computed(() => route.params.tag as string | undefined)
 const tag = computed(() => {
   if (!allTags.value || !tagParam.value) return undefined
@@ -34,14 +36,58 @@ const tag = computed(() => {
   )
 })
 
-// TODO: 实现模板数据加载
+// 过滤后的模板
+const filteredTemplates = computed(() => {
+  if (!templates.value) return undefined
+  
+  let result = [...templates.value]
+  
+  // 按搜索查询过滤
+  if (searchQuery.value) {
+    const query = searchQuery.value.toLowerCase()
+    result = result.filter(template => 
+      template.name.toLowerCase().includes(query) ||
+      template.shortDescription.toLowerCase().includes(query) ||
+      template.tags.some(tag => tag.toLowerCase().includes(query))
+    )
+  }
+  
+  // 按标签过滤
+  if (tag.value) {
+    result = result.filter(template => 
+      template.tags.includes(tag.value!)
+    )
+  }
+  
+  // 按特色过滤
+  if (isFeatured.value) {
+    result = result.filter(template => template.featured)
+  }
+  
+  return result
+})
+
+// 提取所有唯一标签
+const extractAllTags = () => {
+  if (!allTemplates) return []
+  
+  const tagsSet = new Set<string>()
+  allTemplates.forEach(template => {
+    template.tags.forEach(tag => {
+      tagsSet.add(tag)
+    })
+  })
+  
+  return Array.from(tagsSet).sort()
+}
+
+// 模板数据加载
 onMounted(async () => {
-  // 模拟数据加载
+  // 模拟异步加载
   setTimeout(() => {
-    // 这里应该从API或store中获取数据
-    templates.value = [] // 替换为实际的模板数据
-    allTags.value = [] // 替换为实际的标签数据
-  }, 1000)
+    templates.value = allTemplates
+    allTags.value = extractAllTags()
+  }, 100)
 })
 </script>
 
@@ -93,6 +139,35 @@ onMounted(async () => {
             </template>
             , featuring example applications and popular open-source projects.
           </h2>
+          
+          <!-- 搜索框 -->
+          <div class="mt-4 flex justify-center md:justify-start">
+            <div class="relative w-full max-w-md">
+              <input
+                v-model="searchQuery"
+                type="text"
+                placeholder="Search templates..."
+                class="w-full rounded-lg border border-gray-300 bg-white px-4 py-2 pr-10 shadow-sm focus:outline-none focus:ring-2 focus:ring-pink-500 dark:border-gray-600 dark:bg-gray-800 dark:text-white"
+              />
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5 text-gray-400"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                  />
+                </svg>
+              </div>
+            </div>
+          </div>
+          
           <div v-if="!templates" class="mt-20 flex justify-center">
             <Spinner size="lg" class="text-pink-600" />
           </div>
@@ -130,7 +205,7 @@ onMounted(async () => {
             </div>
             <div class="grid flex-1 grid-flow-row grid-cols-1 gap-6 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-4">
               <TemplateCard
-                v-for="template in templates"
+                v-for="template in filteredTemplates"
                 :key="template.slug"
                 :template="template"
               />
