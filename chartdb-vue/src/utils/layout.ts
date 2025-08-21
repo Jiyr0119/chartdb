@@ -273,7 +273,7 @@ export const adjustTablePositionsWithoutAreas = (
     tablePositions.set(table.id, position);
     positionedTables.add(table.id);
 
-    // 定位连接的表格
+    // 布局连接的表格
     const connectedTableIds = tableConnections.get(table.id) || new Set();
     let angle = 0;
     const angleStep = (2 * Math.PI) / connectedTableIds.size;
@@ -296,19 +296,19 @@ export const adjustTablePositionsWithoutAreas = (
     });
   };
 
-  // 开始定位
+  // 开始布局
   if (connectedTables.length > 0) {
     positionTable(connectedTables[0], startX, startY);
   }
 
-  // 定位剩余的连接表格
+  // 布局剩余的连接表格
   connectedTables.forEach(table => {
     if (!positionedTables.has(table.id)) {
       positionTable(table, startX, startY);
     }
   });
 
-  // 定位孤立的表格
+  // 布局孤立的表格
   let isolatedX = startX;
   let isolatedY = startY + 400;
 
@@ -335,205 +335,432 @@ export const adjustTablePositionsWithoutAreas = (
   return tables;
 };
 
-// 优化的布局算法 - 横向布局，居中显示
+// 优化的布局算法
 export const adjustTablePositionsOptimized = ({
   tables,
   relationships,
   areas = [],
   mode = 'all',
-  direction = 'horizontal' // 新增布局方向参数
+  direction = 'horizontal'
 }: {
   tables: DBTable[];
   relationships: DBRelationship[];
   areas?: Area[];
   mode?: 'all' | 'perSchema';
-  direction?: 'horizontal' | 'vertical'; // 新增类型定义
+  direction?: 'horizontal' | 'vertical';
 }): DBTable[] => {
   const tablesCopy = JSON.parse(JSON.stringify(tables)) as DBTable[];
-  
+
   if (tablesCopy.length === 0) return tablesCopy;
 
-  const defaultTableWidth = 280;
-  const defaultTableHeight = 200;
-  const gapX = direction === 'horizontal' ? 150 : 100;
-  const gapY = direction === 'vertical' ? 150 : 100;
-  
-  // 动态计算画布尺寸，避免横向滚动条
-  const canvasWidth = Math.max(1200, tablesCopy.length * (defaultTableWidth + gapX));
-  const canvasHeight = 800;
-  
-  // 创建连接映射
-  const tableConnections = new Map<string, Set<string>>();
-  relationships.forEach(rel => {
-    if (!tableConnections.has(rel.sourceTableId)) {
-      tableConnections.set(rel.sourceTableId, new Set());
-    }
-    if (!tableConnections.has(rel.targetTableId)) {
-      tableConnections.set(rel.targetTableId, new Set());
-    }
-    tableConnections.get(rel.sourceTableId)!.add(rel.targetTableId);
-    tableConnections.get(rel.targetTableId)!.add(rel.sourceTableId);
-  });
+  // 优化后的布局参数
+  const layoutConfig = {
+    // 增加间距，提供更好的视觉效果
+    gapX: direction === 'horizontal' ? 250 : 180,
+    gapY: direction === 'vertical' ? 200 : 150,
 
-  // 分离连接的和孤立的表格
-  const connectedTables: DBTable[] = [];
-  const isolatedTables: DBTable[] = [];
+    // 表格默认尺寸
+    defaultTableWidth: 280,
+    defaultTableHeight: 200,
 
-  tablesCopy.forEach(table => {
-    if (tableConnections.has(table.id) && tableConnections.get(table.id)!.size > 0) {
-      connectedTables.push(table);
-    } else {
-      isolatedTables.push(table);
-    }
-  });
+    // 画布边距
+    canvasPadding: 100,
 
-  // 按连接数排序
-  connectedTables.sort((a, b) =>
-    (tableConnections.get(b.id)?.size || 0) - (tableConnections.get(a.id)?.size || 0)
-  );
+    // 分组间距（用于分离不同的表格组）
+    groupGapX: 400,
+    groupGapY: 350,
+
+    // 层级间距（用于有关系的表格层次布局）
+    levelGapX: 320,
+    levelGapY: 280
+  };
+
+  // 动态计算画布尺寸
+  const canvasWidth = Math.max(1400, tablesCopy.length * (layoutConfig.defaultTableWidth + layoutConfig.gapX));
+  const canvasHeight = Math.max(1000, Math.ceil(tablesCopy.length / 4) * (layoutConfig.defaultTableHeight + layoutConfig.gapY));
+
+  // 构建关系图谱
+  const relationshipGraph = buildRelationshipGraph(relationships);
+
+  // 智能分组：根据关系密度将表格分为不同的组
+  const tableGroups = groupTablesByRelationships(tablesCopy, relationshipGraph);
 
   const positionedTables = new Set<string>();
   const tablePositions = new Map<string, TablePosition>();
 
-  // 根据方向选择布局策略
-  const positionConnectedTable = (table: DBTable, baseX: number, baseY: number, level: number = 0) => {
-    if (positionedTables.has(table.id)) return;
+  // 为每个组分配画布区域
+  const groupAreas = allocateGroupAreas(tableGroups, canvasWidth, canvasHeight, layoutConfig);
 
-    const position = findNonOverlappingPosition(
-      baseX,
-      baseY,
-      table,
-      Array.from(tablePositions.keys()).map(id =>
-        tablesCopy.find(t => t.id === id)!
-      ).filter(Boolean),
-      gapX,
-      gapY
-    );
+  // 逐组布局
+  tableGroups.forEach((group, groupIndex) => {
+    const groupArea = groupAreas[groupIndex];
 
-    table.x = position.x;
-    table.y = position.y;
-    tablePositions.set(table.id, position);
-    positionedTables.add(table.id);
-
-    // 根据布局方向布局连接的表格
-    const connectedTableIds = tableConnections.get(table.id) || new Set();
-    
-    if (direction === 'horizontal') {
-      // 横向布局：左右交替
-      let offsetX = gapX + defaultTableWidth;
-      let alternateY = 0;
-      let direction_multiplier = 1;
-
-      Array.from(connectedTableIds).forEach((connectedTableId, index) => {
-        if (!positionedTables.has(connectedTableId)) {
-          const connectedTable = tablesCopy.find(t => t.id === connectedTableId);
-          if (connectedTable) {
-            const newX = position.x + (direction_multiplier * offsetX);
-            const newY = position.y + alternateY;
-            
-            positionConnectedTable(connectedTable, newX, newY, level + 1);
-            
-            direction_multiplier *= -1;
-            if (direction_multiplier === 1) {
-              offsetX += defaultTableWidth + gapX;
-              alternateY = alternateY === 0 ? gapY : (alternateY > 0 ? -gapY : 0);
-            }
-          }
-        }
-      });
-    } else {
-      // 纵向布局：上下交替
-      let offsetY = gapY + defaultTableHeight;
-      let alternateX = 0;
-      let direction_multiplier = 1;
-
-      Array.from(connectedTableIds).forEach((connectedTableId, index) => {
-        if (!positionedTables.has(connectedTableId)) {
-          const connectedTable = tablesCopy.find(t => t.id === connectedTableId);
-          if (connectedTable) {
-            const newX = position.x + alternateX;
-            const newY = position.y + (direction_multiplier * offsetY);
-            
-            positionConnectedTable(connectedTable, newX, newY, level + 1);
-            
-            direction_multiplier *= -1;
-            if (direction_multiplier === 1) {
-              offsetY += defaultTableHeight + gapY;
-              alternateX = alternateX === 0 ? gapX : (alternateX > 0 ? -gapX : 0);
-            }
-          }
-        }
-      });
+    if (group.connectedTables.length > 0) {
+      // 布局有关系的表格：使用层次化布局
+      layoutConnectedTablesHierarchical(
+        group.connectedTables,
+        relationshipGraph,
+        groupArea,
+        layoutConfig,
+        direction,
+        positionedTables,
+        tablePositions
+      );
     }
-  };
 
-  // 开始布局连接的表格
-  if (connectedTables.length > 0) {
-    const centerX = canvasWidth / 2 - defaultTableWidth / 2;
-    const centerY = canvasHeight / 2 - defaultTableHeight / 2;
-    
-    positionConnectedTable(connectedTables[0], centerX, centerY);
-    
-    // 布局剩余的连接表格组
-    let groupOffset = direction === 'horizontal' ? gapY * 3 : gapX * 3;
-    connectedTables.forEach(table => {
-      if (!positionedTables.has(table.id)) {
-        if (direction === 'horizontal') {
-          positionConnectedTable(table, centerX, centerY + groupOffset);
-          groupOffset += defaultTableHeight + gapY * 2;
-        } else {
-          positionConnectedTable(table, centerX + groupOffset, centerY);
-          groupOffset += defaultTableWidth + gapX * 2;
-        }
+    if (group.isolatedTables.length > 0) {
+      // 布局孤立表格：使用网格布局
+      layoutIsolatedTablesGrid(
+        group.isolatedTables,
+        groupArea,
+        layoutConfig,
+        direction,
+        positionedTables,
+        tablePositions
+      );
+    }
+  });
+
+  return tablesCopy;
+};
+
+// 构建关系图谱
+function buildRelationshipGraph(relationships: DBRelationship[]): Map<string, Set<string>> {
+  const graph = new Map<string, Set<string>>();
+
+  relationships.forEach(rel => {
+    if (!graph.has(rel.sourceTableId)) {
+      graph.set(rel.sourceTableId, new Set());
+    }
+    if (!graph.has(rel.targetTableId)) {
+      graph.set(rel.targetTableId, new Set());
+    }
+
+    graph.get(rel.sourceTableId)!.add(rel.targetTableId);
+    graph.get(rel.targetTableId)!.add(rel.sourceTableId);
+  });
+
+  return graph;
+}
+
+// 智能分组：根据关系密度分组
+function groupTablesByRelationships(
+  tables: DBTable[],
+  relationshipGraph: Map<string, Set<string>>
+): Array<{ connectedTables: DBTable[], isolatedTables: DBTable[] }> {
+  const visited = new Set<string>();
+  const groups: Array<{ connectedTables: DBTable[], isolatedTables: DBTable[] }> = [];
+
+  // 使用深度优先搜索找到连通组件
+  function dfs(tableId: string, currentGroup: DBTable[]) {
+    if (visited.has(tableId)) return;
+
+    visited.add(tableId);
+    const table = tables.find(t => t.id === tableId);
+    if (table) {
+      currentGroup.push(table);
+    }
+
+    const connections = relationshipGraph.get(tableId) || new Set();
+    connections.forEach(connectedId => {
+      if (!visited.has(connectedId)) {
+        dfs(connectedId, currentGroup);
       }
     });
   }
 
-  // 布局孤立的表格
-  if (isolatedTables.length > 0) {
-    if (direction === 'horizontal') {
-      // 横向布局：底部一行
-      const totalWidth = isolatedTables.length * defaultTableWidth + (isolatedTables.length - 1) * gapX;
-      let startX = Math.max(50, (canvasWidth - totalWidth) / 2);
-      const startY = canvasHeight - defaultTableHeight - 50;
-      
-      isolatedTables.forEach((table, index) => {
-        const position = findNonOverlappingPosition(
-          startX + index * (defaultTableWidth + gapX),
-          startY,
-          table,
-          Array.from(tablePositions.keys()).map(id =>
-            tablesCopy.find(t => t.id === id)!
-          ).filter(Boolean),
-          gapX,
-          gapY
-        );
-        
-        table.x = position.x;
-        table.y = position.y;
-      });
-    } else {
-      // 纵向布局：右侧一列
-      const startX = canvasWidth - defaultTableWidth - 50;
-      let startY = 50;
-      
-      isolatedTables.forEach((table, index) => {
-        const position = findNonOverlappingPosition(
-          startX,
-          startY + index * (defaultTableHeight + gapY),
-          table,
-          Array.from(tablePositions.keys()).map(id =>
-            tablesCopy.find(t => t.id === id)!
-          ).filter(Boolean),
-          gapX,
-          gapY
-        );
-        
-        table.x = position.x;
-        table.y = position.y;
-      });
+  // 找到所有连通组件
+  tables.forEach(table => {
+    if (!visited.has(table.id) && relationshipGraph.has(table.id)) {
+      const connectedGroup: DBTable[] = [];
+      dfs(table.id, connectedGroup);
+
+      if (connectedGroup.length > 0) {
+        groups.push({ connectedTables: connectedGroup, isolatedTables: [] });
+      }
     }
+  });
+
+  // 收集孤立的表格
+  const isolatedTables = tables.filter(table =>
+    !visited.has(table.id) && !relationshipGraph.has(table.id)
+  );
+
+  if (isolatedTables.length > 0) {
+    groups.push({ connectedTables: [], isolatedTables });
   }
 
-  return tablesCopy;
-};
+  return groups;
+}
+
+// 为每个组分配画布区域
+function allocateGroupAreas(
+  groups: Array<{ connectedTables: DBTable[], isolatedTables: DBTable[] }>,
+  canvasWidth: number,
+  canvasHeight: number,
+  layoutConfig: any
+): Array<{ x: number, y: number, width: number, height: number }> {
+  const areas: Array<{ x: number, y: number, width: number, height: number }> = [];
+
+  if (groups.length === 1) {
+    // 单组：使用整个画布
+    areas.push({
+      x: layoutConfig.canvasPadding,
+      y: layoutConfig.canvasPadding,
+      width: canvasWidth - 2 * layoutConfig.canvasPadding,
+      height: canvasHeight - 2 * layoutConfig.canvasPadding
+    });
+  } else {
+    // 多组：根据组的大小分配区域
+    const cols = Math.ceil(Math.sqrt(groups.length));
+    const rows = Math.ceil(groups.length / cols);
+
+    const areaWidth = (canvasWidth - (cols + 1) * layoutConfig.canvasPadding) / cols;
+    const areaHeight = (canvasHeight - (rows + 1) * layoutConfig.canvasPadding) / rows;
+
+    groups.forEach((group, index) => {
+      const col = index % cols;
+      const row = Math.floor(index / cols);
+
+      areas.push({
+        x: layoutConfig.canvasPadding + col * (areaWidth + layoutConfig.canvasPadding),
+        y: layoutConfig.canvasPadding + row * (areaHeight + layoutConfig.canvasPadding),
+        width: areaWidth,
+        height: areaHeight
+      });
+    });
+  }
+
+  return areas;
+}
+
+// 层次化布局连接的表格
+function layoutConnectedTablesHierarchical(
+  tables: DBTable[],
+  relationshipGraph: Map<string, Set<string>>,
+  area: { x: number, y: number, width: number, height: number },
+  layoutConfig: any,
+  direction: 'horizontal' | 'vertical',
+  positionedTables: Set<string>,
+  tablePositions: Map<string, TablePosition>
+) {
+  if (tables.length === 0) return;
+
+  // 按连接数排序，连接最多的作为根节点
+  const sortedTables = tables.sort((a, b) =>
+    (relationshipGraph.get(b.id)?.size || 0) - (relationshipGraph.get(a.id)?.size || 0)
+  );
+
+  const rootTable = sortedTables[0];
+  const levels: DBTable[][] = [];
+  const visited = new Set<string>();
+
+  // 构建层次结构
+  function buildLevels(tableId: string, level: number) {
+    if (visited.has(tableId)) return;
+
+    visited.add(tableId);
+    const table = tables.find(t => t.id === tableId);
+    if (!table) return;
+
+    if (!levels[level]) levels[level] = [];
+    levels[level].push(table);
+
+    const connections = relationshipGraph.get(tableId) || new Set();
+    connections.forEach(connectedId => {
+      if (!visited.has(connectedId)) {
+        buildLevels(connectedId, level + 1);
+      }
+    });
+  }
+
+  buildLevels(rootTable.id, 0);
+
+  // 布局每一层
+  if (direction === 'horizontal') {
+    // 横向布局：从左到右分层
+    let currentX = area.x;
+
+    levels.forEach((levelTables, levelIndex) => {
+      const levelHeight = levelTables.length * (layoutConfig.defaultTableHeight + layoutConfig.gapY);
+      let currentY = area.y + (area.height - levelHeight) / 2;
+
+      levelTables.forEach(table => {
+        const position = findOptimalPosition(
+          currentX,
+          currentY,
+          table,
+          Array.from(tablePositions.keys()).map(id => tables.find(t => t.id === id)!).filter(Boolean),
+          layoutConfig.gapX,
+          layoutConfig.gapY
+        );
+
+        table.x = position.x;
+        table.y = position.y;
+        tablePositions.set(table.id, position);
+        positionedTables.add(table.id);
+
+        currentY += layoutConfig.defaultTableHeight + layoutConfig.gapY;
+      });
+
+      currentX += layoutConfig.levelGapX;
+    });
+  } else {
+    // 纵向布局：从上到下分层
+    let currentY = area.y;
+
+    levels.forEach((levelTables, levelIndex) => {
+      const levelWidth = levelTables.length * (layoutConfig.defaultTableWidth + layoutConfig.gapX);
+      let currentX = area.x + (area.width - levelWidth) / 2;
+
+      levelTables.forEach(table => {
+        const position = findOptimalPosition(
+          currentX,
+          currentY,
+          table,
+          Array.from(tablePositions.keys()).map(id => tables.find(t => t.id === id)!).filter(Boolean),
+          layoutConfig.gapX,
+          layoutConfig.gapY
+        );
+
+        table.x = position.x;
+        table.y = position.y;
+        tablePositions.set(table.id, position);
+        positionedTables.add(table.id);
+
+        currentX += layoutConfig.defaultTableWidth + layoutConfig.gapX;
+      });
+
+      currentY += layoutConfig.levelGapY;
+    });
+  }
+}
+
+// 网格布局孤立表格
+function layoutIsolatedTablesGrid(
+  tables: DBTable[],
+  area: { x: number, y: number, width: number, height: number },
+  layoutConfig: any,
+  direction: 'horizontal' | 'vertical',
+  positionedTables: Set<string>,
+  tablePositions: Map<string, TablePosition>
+) {
+  if (tables.length === 0) return;
+
+  if (direction === 'horizontal') {
+    // 横向：单行排列
+    const totalWidth = tables.length * layoutConfig.defaultTableWidth + (tables.length - 1) * layoutConfig.gapX;
+    let currentX = area.x + Math.max(0, (area.width - totalWidth) / 2);
+    const currentY = area.y + area.height - layoutConfig.defaultTableHeight - 50;
+
+    tables.forEach(table => {
+      const position = findOptimalPosition(
+        currentX,
+        currentY,
+        table,
+        Array.from(tablePositions.keys()).map(id => tables.find(t => t.id === id)!).filter(Boolean),
+        layoutConfig.gapX,
+        layoutConfig.gapY
+      );
+
+      table.x = position.x;
+      table.y = position.y;
+      tablePositions.set(table.id, position);
+      positionedTables.add(table.id);
+
+      currentX += layoutConfig.defaultTableWidth + layoutConfig.gapX;
+    });
+  } else {
+    // 纵向：网格排列
+    const cols = Math.ceil(Math.sqrt(tables.length));
+    const rows = Math.ceil(tables.length / cols);
+
+    const gridWidth = cols * layoutConfig.defaultTableWidth + (cols - 1) * layoutConfig.gapX;
+    const gridHeight = rows * layoutConfig.defaultTableHeight + (rows - 1) * layoutConfig.gapY;
+
+    const startX = area.x + Math.max(0, (area.width - gridWidth) / 2);
+    const startY = area.y + Math.max(0, (area.height - gridHeight) / 2);
+
+    tables.forEach((table, index) => {
+      const col = index % cols;
+      const row = Math.floor(index / cols);
+
+      const x = startX + col * (layoutConfig.defaultTableWidth + layoutConfig.gapX);
+      const y = startY + row * (layoutConfig.defaultTableHeight + layoutConfig.gapY);
+
+      const position = findOptimalPosition(
+        x,
+        y,
+        table,
+        Array.from(tablePositions.keys()).map(id => tables.find(t => t.id === id)!).filter(Boolean),
+        layoutConfig.gapX,
+        layoutConfig.gapY
+      );
+
+      table.x = position.x;
+      table.y = position.y;
+      tablePositions.set(table.id, position);
+      positionedTables.add(table.id);
+    });
+  }
+}
+
+// 优化的位置查找算法
+function findOptimalPosition(
+  baseX: number,
+  baseY: number,
+  currentTable: DBTable,
+  existingTables: DBTable[],
+  gapX: number,
+  gapY: number
+): TablePosition {
+  let x = baseX;
+  let y = baseY;
+  let attempts = 0;
+  const maxAttempts = 50;
+
+  // 使用螺旋搜索算法，更有规律地寻找位置
+  const directions = [
+    { dx: gapX, dy: 0 },      // 右
+    { dx: 0, dy: gapY },      // 下
+    { dx: -gapX, dy: 0 },     // 左
+    { dx: 0, dy: -gapY }      // 上
+  ];
+
+  let directionIndex = 0;
+  let stepsInDirection = 1;
+  let stepsTaken = 0;
+  let directionChanges = 0;
+
+  while (attempts < maxAttempts) {
+    const testTable = { ...currentTable, x, y };
+    const hasOverlap = existingTables.some(table =>
+      table.id !== currentTable.id && areTablesOverlapping(testTable, table)
+    );
+
+    if (!hasOverlap) {
+      return { x, y };
+    }
+
+    // 螺旋移动
+    const direction = directions[directionIndex];
+    x += direction.dx;
+    y += direction.dy;
+    stepsTaken++;
+
+    if (stepsTaken === stepsInDirection) {
+      stepsTaken = 0;
+      directionIndex = (directionIndex + 1) % 4;
+      directionChanges++;
+
+      // 每两次方向改变增加步数
+      if (directionChanges % 2 === 0) {
+        stepsInDirection++;
+      }
+    }
+
+    attempts++;
+  }
+
+  return { x: baseX, y: baseY };
+}
