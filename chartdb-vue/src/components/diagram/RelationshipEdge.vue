@@ -1,24 +1,14 @@
 <template>
-  <BaseEdge
-    :id="id"
-    :style="edgeStyle"
-    :path="edgePath"
-    :marker-end="markerEnd"
-  />
+  <BaseEdge :id="id" :path="edgePath" :marker-end="markerEnd" />
   <EdgeLabelRenderer>
     <div
       :style="{
         position: 'absolute',
         transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-        fontSize: '10px',
-        fontWeight: 500,
-        background: 'white',
-        padding: '2px 6px',
-        borderRadius: '4px',
-        border: '1px solid #e5e7eb',
+        fontSize: 12,
         pointerEvents: 'all',
       }"
-      class="edge-label"
+      class="nodrag nopan bg-white px-2 py-1 rounded border text-xs"
     >
       {{ data.relationship.relationship_type }}
     </div>
@@ -28,43 +18,40 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 import { BaseEdge, EdgeLabelRenderer, getBezierPath } from '@vue-flow/core'
-import type { EdgeProps } from '@vue-flow/core'
-import type { RelationshipEdgeData } from '@/types/diagram'
+import type { RelationshipEdgeData } from '../../types/diagram'
 
-interface Props extends EdgeProps {
+interface Props {
+  id: string
+  sourceX: number
+  sourceY: number
+  targetX: number
+  targetY: number
+  sourcePosition: string
+  targetPosition: string
   data: RelationshipEdgeData
 }
 
 const props = defineProps<Props>()
 
-const edgeStyle = computed(() => ({
-  stroke: '#6b7280',
-  strokeWidth: 2,
-}))
-
-const [edgePath, labelX, labelY] = getBezierPath({
-  sourceX: props.sourceX,
-  sourceY: props.sourceY,
-  sourcePosition: props.sourcePosition,
-  targetX: props.targetX,
-  targetY: props.targetY,
-  targetPosition: props.targetPosition,
+const edgePath = computed(() => {
+  const [path] = getBezierPath({
+    sourceX: props.sourceX,
+    sourceY: props.sourceY,
+    sourcePosition: props.sourcePosition as any,
+    targetX: props.targetX,
+    targetY: props.targetY,
+    targetPosition: props.targetPosition as any,
+  })
+  return path
 })
+
+const labelX = computed(() => (props.sourceX + props.targetX) / 2)
+const labelY = computed(() => (props.sourceY + props.targetY) / 2)
 
 const markerEnd = computed(() => {
   const type = props.data.relationship.relationship_type
-  if (type.includes('1:N') || type.includes('1:M')) {
-    return 'url(#arrow-one-to-many)'
-  } else if (type.includes('N:M') || type.includes('M:N')) {
-    return 'url(#arrow-many-to-many)'
-  } else {
-    return 'url(#arrow-one-to-one)'
-  }
+  if (type === '1:N') return 'url(#arrow-one-to-many)'
+  if (type === 'N:M') return 'url(#arrow-many-to-many)'
+  return 'url(#arrow-one-to-many)'
 })
 </script>
-
-<style scoped>
-.edge-label {
-  font-family: inherit;
-}
-</style>
