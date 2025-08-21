@@ -7,7 +7,6 @@
       :default-viewport="{ zoom: 0.8 }"
       :min-zoom="0.1"
       :max-zoom="2"
-      :fit-view-on-init="true"
       @nodes-change="onNodesChange"
       @edges-change="onEdgesChange"
     >
@@ -168,7 +167,6 @@ const onEdgesChange = (changes: any) => {
 <style scoped>
 .diagram-canvas {
   width: 100%;
-  height: 100%;
-  min-height: 100vh;
+  height: 100vh;
 }
 </style>
