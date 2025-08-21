@@ -1,5 +1,7 @@
 <template>
+  <!-- 图表画布容器 -->
   <div class="diagram-canvas">
+    <!-- Vue Flow 图表组件 -->
     <VueFlow
       ref="vueFlowRef"
       :nodes="nodes"
@@ -21,16 +23,17 @@
       @edge-double-click="handleEdgeDoubleClick"
       @pane-click="handlePaneClick">
 
-      <!-- Vue Flow 背景网格 -->
+      <!-- Vue Flow 背景网格 - 显示点状背景 -->
       <Background pattern="dots" :gap="20" :size="1" />
       
-      <!-- Vue Flow 控制面板 - 缩放、适应视图等功能 -->
+      <!-- Vue Flow 控制面板 - 提供缩放、适应视图等功能 -->
       <Controls class="custom-controls" position="top-left" />
 
-      <!-- 自定义布局控制面板 -->
+      <!-- 自定义布局控制面板 - 提供布局方向切换和重排功能 -->
       <div class="layout-controls">
         <!-- 布局方向选择器 - 支持横向/纵向布局切换 -->
         <div class="layout-direction-selector">
+          <!-- 横向布局按钮 -->
           <button
             @click="layoutDirection = 'horizontal'"
             :class="['direction-button', { active: layoutDirection === 'horizontal' }]"
@@ -38,6 +41,7 @@
             <ArrowRightIcon class="direction-icon" />
             横向
           </button>
+          <!-- 纵向布局按钮 -->
           <button
             @click="layoutDirection = 'vertical'"
             :class="['direction-button', { active: layoutDirection === 'vertical' }]"
@@ -56,6 +60,7 @@
         <!-- 边类型选择器 - 支持多种连接线样式 -->
         <div class="edge-type-selector">
           <label>连接线类型:</label>
+          <!-- 边类型下拉选择器 -->
           <select v-model="currentEdgeType" @change="updateEdgeTypes">
             <option value="default">默认 (Bezier曲线)</option>
             <option value="straight">直线</option>
@@ -71,6 +76,7 @@
       <!-- 自定义连接线模板 - 拖拽连接时的临时线条样式 -->
       <template #connection-line="{ sourceX, sourceY, targetX, targetY }">
         <g>
+          <!-- 连接线路径 -->
           <path :d="`M${sourceX},${sourceY} L${targetX},${targetY}`" stroke="#b1b1b7" stroke-width="1" fill="none" />
         </g>
       </template>
