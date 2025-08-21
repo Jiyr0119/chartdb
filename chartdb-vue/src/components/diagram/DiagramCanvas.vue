@@ -8,8 +8,27 @@
       <!-- 移动到左上角的Controls -->
       <Controls class="custom-controls" position="top-left" />
 
-      <!-- 自定义重排布局按钮 -->
+      <!-- 布局控制面板 -->
       <div class="layout-controls">
+        <!-- 布局方向选择器 -->
+        <div class="layout-direction-selector">
+          <button 
+            @click="layoutDirection = 'horizontal'" 
+            :class="['direction-button', { active: layoutDirection === 'horizontal' }]"
+            title="横向布局">
+            <ArrowRightIcon class="direction-icon" />
+            横向
+          </button>
+          <button 
+            @click="layoutDirection = 'vertical'" 
+            :class="['direction-button', { active: layoutDirection === 'vertical' }]"
+            title="纵向布局">
+            <ArrowDownIcon class="direction-icon" />
+            纵向
+          </button>
+        </div>
+        
+        <!-- 重排布局按钮 -->
         <button @click="rearrangeLayout" class="layout-button" title="重新排列表格布局">
           <LayoutIcon class="layout-icon" />
           重排布局
@@ -53,7 +72,7 @@ import { Background } from '@vue-flow/background';
 import { Controls } from '@vue-flow/controls';
 import { MiniMap } from '@vue-flow/minimap';
 import { nanoid } from 'nanoid';
-import { LayoutGrid as LayoutIcon } from 'lucide-vue-next';
+import { LayoutGrid as LayoutIcon, ArrowRight as ArrowRightIcon, ArrowDown as ArrowDownIcon } from 'lucide-vue-next';
 import type { Node, Edge, Connection } from '@vue-flow/core';
 import type { DiagramData, TableNodeData, RelationshipEdgeData } from '@/types/diagram';
 import { adjustTablePositions, adjustTablePositionsOptimized } from '@/utils/layout';
@@ -67,6 +86,9 @@ interface Props {
 
 const props = defineProps<Props>();
 const canvasStore = useCanvasStore();
+
+// 布局方向状态
+const layoutDirection = ref<'horizontal' | 'vertical'>('horizontal');
 
 const nodeTypes = {
   table: TableNode,
@@ -114,12 +136,13 @@ const generateNodesAndEdges = (data: DiagramData) => {
     targetFieldId: rel.target_field || ''
   }));
 
-  // 使用优化的布局算法计算位置
+  // 使用优化的布局算法计算位置，传入布局方向
   const repositionedTables = adjustTablePositionsOptimized({
     tables,
     relationships,
     areas: [],
-    mode: 'all'
+    mode: 'all',
+    direction: layoutDirection.value // 传入当前选择的布局方向
   });
 
   // 生成节点
@@ -182,12 +205,13 @@ const rearrangeLayout = () => {
     targetFieldId: rel.target_field || ''
   }));
 
-  // 使用布局算法重新计算位置
-  const repositionedTables = adjustTablePositions({
+  // 使用布局算法重新计算位置，传入布局方向
+  const repositionedTables = adjustTablePositionsOptimized({
     tables,
     relationships,
     areas: [],
-    mode: 'all'
+    mode: 'all',
+    direction: layoutDirection.value // 传入当前选择的布局方向
   });
 
   // 更新节点位置
@@ -261,6 +285,15 @@ const onConnect = (params: Connection) => {
     elements.value = generateNodesAndEdges(props.data);
   }
 };
+
+// 监听布局方向变化，自动重新布局
+watch(layoutDirection, () => {
+  if (props.data) {
+    nextTick(() => {
+      rearrangeLayout();
+    });
+  }
+});
 </script>
 
 <style scoped>
@@ -268,6 +301,7 @@ const onConnect = (params: Connection) => {
   width: 100%;
   height: 100vh;
   position: relative;
+  overflow: hidden; /* 防止横向滚动条 */
 }
 
 .custom-controls {
@@ -282,6 +316,56 @@ const onConnect = (params: Connection) => {
   top: 10px;
   left: 120px;
   z-index: 1000;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.layout-direction-selector {
+  display: flex;
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.direction-button {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 10px;
+  background: white;
+  border: none;
+  font-size: 11px;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-right: 1px solid #e5e7eb;
+}
+
+.direction-button:last-child {
+  border-right: none;
+}
+
+.direction-button:hover {
+  background: #f9fafb;
+  color: #374151;
+}
+
+.direction-button.active {
+  background: #3b82f6;
+  color: white;
+}
+
+.direction-button.active:hover {
+  background: #2563eb;
+}
+
+.direction-icon {
+  width: 12px;
+  height: 12px;
 }
 
 .layout-button {

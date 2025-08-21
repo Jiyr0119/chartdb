@@ -340,26 +340,28 @@ export const adjustTablePositionsOptimized = ({
   tables,
   relationships,
   areas = [],
-  mode = 'all'
+  mode = 'all',
+  direction = 'horizontal' // 新增布局方向参数
 }: {
   tables: DBTable[];
   relationships: DBRelationship[];
   areas?: Area[];
   mode?: 'all' | 'perSchema';
+  direction?: 'horizontal' | 'vertical'; // 新增类型定义
 }): DBTable[] => {
   const tablesCopy = JSON.parse(JSON.stringify(tables)) as DBTable[];
-
+  
   if (tablesCopy.length === 0) return tablesCopy;
 
   const defaultTableWidth = 280;
   const defaultTableHeight = 200;
-  const gapX = 150; // 增加横向间距
-  const gapY = 100; // 纵向间距
-
-  // 计算画布中心位置
-  const canvasWidth = 1400;
+  const gapX = direction === 'horizontal' ? 150 : 100;
+  const gapY = direction === 'vertical' ? 150 : 100;
+  
+  // 动态计算画布尺寸，避免横向滚动条
+  const canvasWidth = Math.max(1200, tablesCopy.length * (defaultTableWidth + gapX));
   const canvasHeight = 800;
-
+  
   // 创建连接映射
   const tableConnections = new Map<string, Set<string>>();
   relationships.forEach(rel => {
@@ -385,7 +387,7 @@ export const adjustTablePositionsOptimized = ({
     }
   });
 
-  // 按连接数排序，连接数多的表格优先布局
+  // 按连接数排序
   connectedTables.sort((a, b) =>
     (tableConnections.get(b.id)?.size || 0) - (tableConnections.get(a.id)?.size || 0)
   );
@@ -393,11 +395,10 @@ export const adjustTablePositionsOptimized = ({
   const positionedTables = new Set<string>();
   const tablePositions = new Map<string, TablePosition>();
 
-  // 横向散开布局连接的表格
+  // 根据方向选择布局策略
   const positionConnectedTable = (table: DBTable, baseX: number, baseY: number, level: number = 0) => {
     if (positionedTables.has(table.id)) return;
 
-    // 查找非重叠位置
     const position = findNonOverlappingPosition(
       baseX,
       baseY,
@@ -414,74 +415,124 @@ export const adjustTablePositionsOptimized = ({
     tablePositions.set(table.id, position);
     positionedTables.add(table.id);
 
-    // 横向布局连接的表格
+    // 根据布局方向布局连接的表格
     const connectedTableIds = tableConnections.get(table.id) || new Set();
-    let offsetX = gapX + defaultTableWidth;
-    let alternateY = 0;
-    let direction = 1; // 1为右侧，-1为左侧
+    
+    if (direction === 'horizontal') {
+      // 横向布局：左右交替
+      let offsetX = gapX + defaultTableWidth;
+      let alternateY = 0;
+      let direction_multiplier = 1;
 
-    Array.from(connectedTableIds).forEach((connectedTableId, index) => {
-      if (!positionedTables.has(connectedTableId)) {
-        const connectedTable = tablesCopy.find(t => t.id === connectedTableId);
-        if (connectedTable) {
-          // 交替在左右两侧布局，形成横向散开效果
-          const newX = position.x + (direction * offsetX);
-          const newY = position.y + alternateY;
-
-          positionConnectedTable(connectedTable, newX, newY, level + 1);
-
-          // 交替方向和位置
-          direction *= -1;
-          if (direction === 1) {
-            offsetX += defaultTableWidth + gapX;
-            alternateY = alternateY === 0 ? gapY : (alternateY > 0 ? -gapY : 0);
+      Array.from(connectedTableIds).forEach((connectedTableId, index) => {
+        if (!positionedTables.has(connectedTableId)) {
+          const connectedTable = tablesCopy.find(t => t.id === connectedTableId);
+          if (connectedTable) {
+            const newX = position.x + (direction_multiplier * offsetX);
+            const newY = position.y + alternateY;
+            
+            positionConnectedTable(connectedTable, newX, newY, level + 1);
+            
+            direction_multiplier *= -1;
+            if (direction_multiplier === 1) {
+              offsetX += defaultTableWidth + gapX;
+              alternateY = alternateY === 0 ? gapY : (alternateY > 0 ? -gapY : 0);
+            }
           }
         }
-      }
-    });
+      });
+    } else {
+      // 纵向布局：上下交替
+      let offsetY = gapY + defaultTableHeight;
+      let alternateX = 0;
+      let direction_multiplier = 1;
+
+      Array.from(connectedTableIds).forEach((connectedTableId, index) => {
+        if (!positionedTables.has(connectedTableId)) {
+          const connectedTable = tablesCopy.find(t => t.id === connectedTableId);
+          if (connectedTable) {
+            const newX = position.x + alternateX;
+            const newY = position.y + (direction_multiplier * offsetY);
+            
+            positionConnectedTable(connectedTable, newX, newY, level + 1);
+            
+            direction_multiplier *= -1;
+            if (direction_multiplier === 1) {
+              offsetY += defaultTableHeight + gapY;
+              alternateX = alternateX === 0 ? gapX : (alternateX > 0 ? -gapX : 0);
+            }
+          }
+        }
+      });
+    }
   };
 
   // 开始布局连接的表格
   if (connectedTables.length > 0) {
-    // 从画布中心开始
     const centerX = canvasWidth / 2 - defaultTableWidth / 2;
     const centerY = canvasHeight / 2 - defaultTableHeight / 2;
-
-    // 布局连接数最多的表格作为中心
+    
     positionConnectedTable(connectedTables[0], centerX, centerY);
-
+    
     // 布局剩余的连接表格组
-    let groupOffsetY = gapY * 3;
+    let groupOffset = direction === 'horizontal' ? gapY * 3 : gapX * 3;
     connectedTables.forEach(table => {
       if (!positionedTables.has(table.id)) {
-        positionConnectedTable(table, centerX, centerY + groupOffsetY);
-        groupOffsetY += defaultTableHeight + gapY * 2;
+        if (direction === 'horizontal') {
+          positionConnectedTable(table, centerX, centerY + groupOffset);
+          groupOffset += defaultTableHeight + gapY * 2;
+        } else {
+          positionConnectedTable(table, centerX + groupOffset, centerY);
+          groupOffset += defaultTableWidth + gapX * 2;
+        }
       }
     });
   }
 
-  // 横向布局孤立的表格（放在底部）
+  // 布局孤立的表格
   if (isolatedTables.length > 0) {
-    const totalWidth = isolatedTables.length * defaultTableWidth + (isolatedTables.length - 1) * gapX;
-    let startX = (canvasWidth - totalWidth) / 2;
-    const startY = canvasHeight - defaultTableHeight - 50; // 底部位置
-
-    isolatedTables.forEach((table, index) => {
-      // 确保不与已定位的表格重叠
-      const position = findNonOverlappingPosition(
-        startX + index * (defaultTableWidth + gapX),
-        startY,
-        table,
-        Array.from(tablePositions.keys()).map(id =>
-          tablesCopy.find(t => t.id === id)!
-        ).filter(Boolean),
-        gapX,
-        gapY
-      );
-
-      table.x = position.x;
-      table.y = position.y;
-    });
+    if (direction === 'horizontal') {
+      // 横向布局：底部一行
+      const totalWidth = isolatedTables.length * defaultTableWidth + (isolatedTables.length - 1) * gapX;
+      let startX = Math.max(50, (canvasWidth - totalWidth) / 2);
+      const startY = canvasHeight - defaultTableHeight - 50;
+      
+      isolatedTables.forEach((table, index) => {
+        const position = findNonOverlappingPosition(
+          startX + index * (defaultTableWidth + gapX),
+          startY,
+          table,
+          Array.from(tablePositions.keys()).map(id =>
+            tablesCopy.find(t => t.id === id)!
+          ).filter(Boolean),
+          gapX,
+          gapY
+        );
+        
+        table.x = position.x;
+        table.y = position.y;
+      });
+    } else {
+      // 纵向布局：右侧一列
+      const startX = canvasWidth - defaultTableWidth - 50;
+      let startY = 50;
+      
+      isolatedTables.forEach((table, index) => {
+        const position = findNonOverlappingPosition(
+          startX,
+          startY + index * (defaultTableHeight + gapY),
+          table,
+          Array.from(tablePositions.keys()).map(id =>
+            tablesCopy.find(t => t.id === id)!
+          ).filter(Boolean),
+          gapX,
+          gapY
+        );
+        
+        table.x = position.x;
+        table.y = position.y;
+      });
+    }
   }
 
   return tablesCopy;
