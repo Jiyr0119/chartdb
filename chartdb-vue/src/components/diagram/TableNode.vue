@@ -16,7 +16,10 @@
         </p>
       </div>
       <!-- 字段数量显示 -->
-      <div class="field-count" :style="{ color: isLightColor(data.color) ? '#9ca3af' : '#d1d5db' }">
+      <div class="field-count" :style="{
+        color: isLightColor(data.color) ? '#6b7280' : '#d1d5db',
+        background: isLightColor(data.color) ? 'rgba(0,0,0,0.05)' : 'rgba(255,255,255,0.1)'
+      }">
         {{ data.table.fields?.length || 0 }} 字段
       </div>
     </div>
@@ -24,12 +27,10 @@
     <!-- 表格字段列表 -->
     <div class="table-fields">
       <!-- 遍历所有字段 -->
-      <div v-for="(field, index) in data.table.fields" :key="field.field_english_name"
-        class="field-row"
-        :class="{
-          'primary-key': isPrimaryKey(field),   // 主键字段样式
-          'foreign-key': isForeignKey(field)    // 外键字段样式
-        }">
+      <div v-for="(field, index) in data.table.fields" :key="field.field_english_name" class="field-row" :class="{
+        'primary-key': isPrimaryKey(field),   // 主键字段样式
+        'foreign-key': isForeignKey(field)    // 外键字段样式
+      }">
         <!-- 字段连接点 -->
         <!-- 右侧源连接点 -->
         <Handle :id="`${RIGHT_HANDLE_ID_PREFIX}${field.field_english_name}`" type="source" :position="Position.Right"
@@ -117,8 +118,8 @@ const isPrimaryKey = (field: any) => {
   // 2. 字段名为"id"
   // 3. 字段名以"_id"结尾且描述中包含"主"
   return field.description?.includes('主键') ||
-         field.field_english_name === 'id' ||
-         field.field_english_name.endsWith('_id') && field.description?.includes('主');
+    field.field_english_name === 'id' ||
+    field.field_english_name.endsWith('_id') && field.description?.includes('主');
 };
 
 /**
@@ -131,7 +132,7 @@ const isForeignKey = (field: any) => {
   // 1. 字段描述中包含"外键"
   // 2. 字段名以"_id"结尾且不是主键
   return field.description?.includes('外键') ||
-         (field.field_english_name.endsWith('_id') && !isPrimaryKey(field));
+    (field.field_english_name.endsWith('_id') && !isPrimaryKey(field));
 };
 
 /**
@@ -212,7 +213,7 @@ const isLightColor = (color?: string): boolean => {
 
   // 计算亮度值（使用ITU-R BT.601标准）
   const brightness = (r * 299 + g * 587 + b * 114) / 1000;
-  
+
   // 如果亮度大于128，认为是浅色
   return brightness > 128;
 };
@@ -225,9 +226,8 @@ const isLightColor = (color?: string): boolean => {
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   overflow: hidden;
-  min-width: 340px;
-  max-width: 420px;
-  width: 380px; /* 固定宽度避免横向滚动 */
+  width: 450px;
+  /* 固定宽度避免横向滚动 */
   position: relative;
   transition: all 0.2s ease;
 }
@@ -272,16 +272,23 @@ const isLightColor = (color?: string): boolean => {
 }
 
 .field-count {
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 500;
-  opacity: 0.7;
+  border-radius: 4px;
+  padding: 2px 6px;
+  display: inline-block;
+  text-align: center;
+  min-width: 56px;
+  letter-spacing: -0.1px;
 }
 
 .table-fields {
   max-height: 400px;
   overflow-y: auto;
-  overflow-x: hidden; /* 防止横向滚动 */
-  word-wrap: break-word; /* 长文本换行 */
+  overflow-x: hidden;
+  /* 防止横向滚动 */
+  word-wrap: break-word;
+  /* 长文本换行 */
 }
 
 .field-row {
@@ -289,7 +296,8 @@ const isLightColor = (color?: string): boolean => {
   border-bottom: 1px solid #f3f4f6;
   position: relative;
   transition: background-color 0.15s ease;
-  overflow: hidden; /* 防止内容溢出 */
+  overflow: hidden;
+  /* 防止内容溢出 */
 }
 
 .field-row:hover {
@@ -343,50 +351,94 @@ const isLightColor = (color?: string): boolean => {
   color: #3b82f6;
 }
 
+.field-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-height: 20px;
+}
+
+.field-name-section {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+.field-icon {
+  width: 12px;
+  height: 12px;
+  flex-shrink: 0;
+}
+
+.primary-key-icon {
+  color: #f59e0b;
+}
+
+.foreign-key-icon {
+  color: #3b82f6;
+}
+
+/* 字段英文名 - 核心字段，加粗清晰 */
 .field-name {
   font-weight: 600;
   font-size: 13px;
-  color: #111827;
+  color: #0f172a;
+  /* 深蓝灰，比 #111827 更现代 */
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 150px; /* 限制字段名宽度 */
+  white-space: normal;
+  word-break: break-word;
+  flex: 1;
+  min-width: 100px;
 }
 
+/* 字段中文名 - 说明性文字，语义清晰 */
 .field-chinese {
   font-size: 12px;
-  color: #6b7280;
+  color: #475569;
+  /* 中灰蓝，比原色更清晰 */
   font-weight: 400;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 120px; /* 限制中文名宽度 */
+  white-space: normal;
+  word-break: break-word;
+  flex: 1;
+  min-width: 100px;
 }
 
+/* 字段类型 - 技术属性，用语义色 */
 .field-type {
   font-size: 11px;
-  color: #9ca3af;
   font-weight: 500;
-  background: #f3f4f6;
+  background: #f0fdfa;
+  /* 轻绿色背景 */
+  color: #059669;
+  /* 深绿色文字 */
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 80px; /* 限制类型显示宽度 */
+  white-space: normal;
+  word-break: break-word;
+  max-width: 100px;
+  text-align: center;
+  border: 1px solid #d1fae5;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+/* 字段描述 - 辅助信息，柔和显示 */
 .field-description {
   font-size: 11px;
-  color: #9ca3af;
-  line-height: 1.4;
+  color: #64748b;
+  /* 蓝灰色，比浅灰更清晰但不抢眼 */
+  line-height: 1.5;
   padding-left: 18px;
   font-style: italic;
   word-wrap: break-word;
   overflow-wrap: break-word;
+  white-space: normal;
   max-width: 100%;
+  opacity: 0.9;
 }
 
 .table-footer {
@@ -449,7 +501,8 @@ const isLightColor = (color?: string): boolean => {
 
 /* 改进的滚动条样式 */
 .table-fields::-webkit-scrollbar {
-  width: 20px; /* 增加滚动条宽度 */
+  width: 20px;
+  /* 增加滚动条宽度 */
 }
 
 .table-fields::-webkit-scrollbar-track {
@@ -460,7 +513,8 @@ const isLightColor = (color?: string): boolean => {
 .table-fields::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 4px;
-  border: 1px solid #f1f5f9; /* 添加边框增加可见性 */
+  border: 1px solid #f1f5f9;
+  /* 添加边框增加可见性 */
 }
 
 .table-fields::-webkit-scrollbar-thumb:hover {
