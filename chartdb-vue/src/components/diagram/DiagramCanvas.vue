@@ -1,9 +1,12 @@
 <template>
   <div class="diagram-canvas">
     <VueFlow v-model="elements" :node-types="nodeTypes" :edge-types="edgeTypes" :default-viewport="{ zoom: 0.8 }"
-      :min-zoom="0.1" :max-zoom="2" @nodes-change="onNodesChange" @edges-change="onEdgesChange">
+      :min-zoom="0.1" :max-zoom="2" @nodes-change="onNodesChange" @edges-change="onEdgesChange" @connect="onConnect">
       <Background pattern="dots" :gap="20" :size="1" />
-      <Controls />
+
+      <!-- 移动到左上角的Controls -->
+      <Controls class="custom-controls" position="top-left" />
+
       <MiniMap />
 
       <!-- 自定义箭头标记 -->
@@ -74,6 +77,20 @@ const generateNodesAndEdges = (data: DiagramData) => {
   tableNames.forEach((tableName, index) => {
     const table = data.tables[tableName];
 
+    // TABLE_COLORS 逻辑
+    const TABLE_COLORS = [
+      '#b067e9', // Purple
+      '#ff6b8a', // Pink
+      '#8eb7ff', // Blue
+      '#ffe374', // Yellow
+      '#9ef07a', // Green
+      '#ff6363', // Red
+      '#7175fa', // Indigo
+      '#63c9ec', // Cyan
+    ];
+
+    const tableColor = table.color || TABLE_COLORS[index % TABLE_COLORS.length];
+
     nodes.push({
       id: tableName,
       type: 'table',
@@ -81,6 +98,7 @@ const generateNodesAndEdges = (data: DiagramData) => {
       data: {
         table,
         tableName,
+        color: tableColor, // 传递颜色数据
       },
     });
   });
@@ -118,7 +136,6 @@ const onNodesChange = (changes: any) => {
 const onEdgesChange = (changes: any) => {
   // 处理边变化
 };
-// ... existing code ...
 
 const onConnect = (params: Connection) => {
   console.log('Connection params:', params);
@@ -154,13 +171,18 @@ const onConnect = (params: Connection) => {
   // 重新生成边
   generateNodesAndEdges();
 };
-
-// ... existing code ...
 </script>
 
 <style scoped>
 .diagram-canvas {
   width: 100%;
   height: 100vh;
+}
+
+.custom-controls {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 1000;
 }
 </style>

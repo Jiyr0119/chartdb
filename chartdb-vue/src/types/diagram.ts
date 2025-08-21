@@ -11,6 +11,14 @@ export interface DBTable {
   description: string;
   fields: DBField[];
   primarykey: string[];
+  color?: string; // 添加颜色属性
+}
+
+// Vue Flow节点数据接口
+export interface TableNodeData {
+  table: DBTable;
+  tableName: string;
+  color?: string; // 添加颜色属性
 }
 
 // 关系接口

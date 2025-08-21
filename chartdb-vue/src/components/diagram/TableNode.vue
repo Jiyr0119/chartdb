@@ -1,18 +1,10 @@
 <template>
   <div class="table-node bg-white border border-gray-300 rounded-lg shadow-lg min-w-[200px]">
-    <!-- <NodeResizer
-      color="#ff0071"
-      isVisible
-      minWidth={200}
-      minHeight={100}
-      @resize="handleResize"
-    /> -->
-
-    <!-- Table Header -->
-    <div class="table-header">
+    <!-- Table Header with dynamic color -->
+    <div class="table-header" :style="{ backgroundColor: data.color || '#f9fafb' }">
       <div class="table-title">
-        <h3>{{ data.tableName }}</h3>
-        <p class="table-description">{{ data.table.chinese_name }}</p>
+        <h3 :style="{ color: isLightColor(data.color) ? '#000' : '#fff' }">{{ data.tableName }}</h3>
+        <p class="table-description" :style="{ color: isLightColor(data.color) ? '#666' : '#ccc' }">{{ data.table.chinese_name }}</p>
       </div>
     </div>
     <!-- <div class="table-header bg-blue-500 text-white p-3 rounded-t-lg">
@@ -72,6 +64,24 @@ const getFieldHandlePosition = (index: number) => {
 const handleResize = (event: any) => {
   // 处理节点大小调整
   console.log('Node resized:', event);
+};
+
+// 判断颜色是否为浅色
+const isLightColor = (color?: string): boolean => {
+  if (!color) return true;
+
+  // 移除 # 号
+  const hex = color.replace('#', '');
+
+  // 转换为 RGB
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+
+  // 计算亮度
+  const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+
+  return brightness > 128;
 };
 </script>
 

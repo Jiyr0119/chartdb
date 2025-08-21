@@ -10,6 +10,8 @@
   font-weight: normal;
   height: 100vh;
   width: 100vw;
+  margin: 0;
+  padding: 0;
 }
 
 a,
@@ -30,4 +32,69 @@ a,
 .vue-flow {
   height: 100%;
   width: 100%;
+  background-color: #f8fafc;
+}
+
+/* Vue Flow 自定义样式 */
+.vue-flow__controls {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: white;
+}
+
+.vue-flow__controls-button {
+  border: none;
+  background: white;
+  color: #374151;
+  transition: all 0.2s;
+}
+
+.vue-flow__controls-button:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+/* 连接线样式 */
+.vue-flow__edge-path {
+  stroke: #6366f1;
+  stroke-width: 2;
+}
+
+.vue-flow__edge.selected .vue-flow__edge-path {
+  stroke: #4f46e5;
+  stroke-width: 3;
+}
+
+/* 连接点样式 */
+.vue-flow__handle {
+  width: 8px;
+  height: 8px;
+  border: 2px solid #6366f1;
+  background: white;
+}
+
+.vue-flow__handle:hover {
+  background: #6366f1;
+}
+
+/* 节点选中状态 */
+.vue-flow__node.selected {
+  box-shadow: 0 0 0 2px #6366f1;
+}
+
+/* 小地图样式 */
+.vue-flow__minimap {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+}
+
+/* 节点调整器样式 */
+.vue-flow__resize-control {
+  background: #6366f1;
+  border: 1px solid white;
+}
+
+.vue-flow__resize-control:hover {
+  background: #4f46e5;
 }
