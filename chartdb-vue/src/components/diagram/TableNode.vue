@@ -154,6 +154,7 @@ const isLightColor = (color?: string): boolean => {
   overflow: hidden;
   min-width: 340px;
   max-width: 420px;
+  width: 380px; /* 固定宽度避免横向滚动 */
   position: relative;
   transition: all 0.2s ease;
 }
@@ -206,6 +207,8 @@ const isLightColor = (color?: string): boolean => {
 .table-fields {
   max-height: 400px;
   overflow-y: auto;
+  overflow-x: hidden; /* 防止横向滚动 */
+  word-wrap: break-word; /* 长文本换行 */
 }
 
 .field-row {
@@ -213,6 +216,7 @@ const isLightColor = (color?: string): boolean => {
   border-bottom: 1px solid #f3f4f6;
   position: relative;
   transition: background-color 0.15s ease;
+  overflow: hidden; /* 防止内容溢出 */
 }
 
 .field-row:hover {
@@ -271,12 +275,20 @@ const isLightColor = (color?: string): boolean => {
   font-size: 13px;
   color: #111827;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 150px; /* 限制字段名宽度 */
 }
 
 .field-chinese {
   font-size: 12px;
   color: #6b7280;
   font-weight: 400;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 120px; /* 限制中文名宽度 */
 }
 
 .field-type {
@@ -287,6 +299,10 @@ const isLightColor = (color?: string): boolean => {
   padding: 2px 6px;
   border-radius: 4px;
   font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 80px; /* 限制类型显示宽度 */
 }
 
 .field-description {
@@ -295,6 +311,9 @@ const isLightColor = (color?: string): boolean => {
   line-height: 1.4;
   padding-left: 18px;
   font-style: italic;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .table-footer {
@@ -355,21 +374,33 @@ const isLightColor = (color?: string): boolean => {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-/* 滚动条样式 */
+/* 改进的滚动条样式 */
 .table-fields::-webkit-scrollbar {
-  width: 4px;
+  width: 20px; /* 增加滚动条宽度 */
 }
 
 .table-fields::-webkit-scrollbar-track {
   background: #f1f5f9;
+  border-radius: 4px;
 }
 
 .table-fields::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 2px;
+  border-radius: 4px;
+  border: 1px solid #f1f5f9; /* 添加边框增加可见性 */
 }
 
 .table-fields::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
+}
+
+.table-fields::-webkit-scrollbar-thumb:active {
+  background: #64748b;
+}
+
+/* 为Firefox添加滚动条样式 */
+.table-fields {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
 }
 </style>
