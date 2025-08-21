@@ -91,7 +91,7 @@ export const getTableDimensions = (table: DBTable): TableDimensions => {
 export const isTableInsideArea = (table: DBTable, area: Area): boolean => {
   // 获取表格的实际尺寸
   const tableDimensions = getTableDimensions(table);
-  
+
   // 检查表格的四个边界是否都在区域内
   return (
     table.x >= area.x &&  // 左边界在区域内
@@ -152,7 +152,7 @@ export const findNonOverlappingPosition = (
   while (attempts < maxAttempts) {
     // 创建测试表格对象
     const testTable = { ...currentTable, x, y };
-    
+
     // 检查是否与现有表格重叠（排除自身）
     const hasOverlap = existingTables.some(table =>
       table.id !== currentTable.id && areTablesOverlapping(testTable, table)
@@ -407,7 +407,7 @@ export const adjustTablePositionsWithoutAreas = (
           // 计算新位置：以当前表格为中心，按角度分布
           const newX = position.x + Math.cos(angle) * (avgWidth + gapX * 2);
           const newY = position.y + Math.sin(angle) * (avgHeight + gapY * 2);
-          
+
           // 递归定位连接的表格
           positionTable(connectedTable, newX, newY);
           // 更新角度
@@ -779,44 +779,7 @@ function layoutConnectedTablesHierarchical(
 
   // 根据布局方向进行层次化布局
   if (direction === 'horizontal') {
-    // 横向布局：从左到右分层
-    let currentX = area.x;  // 当前X坐标
-
-    // 遍历每一层
-    levels.forEach((levelTables, levelIndex) => {
-      // 计算当前层的高度
-      const levelHeight = levelTables.length * (layoutConfig.defaultTableHeight + layoutConfig.gapY);
-      // 计算当前层的起始Y坐标（居中对齐）
-      let currentY = area.y + (area.height - levelHeight) / 2;
-
-      // 遍历当前层的每个表格
-      levelTables.forEach(table => {
-        // 查找最优位置避免重叠
-        const position = findOptimalPosition(
-          currentX,
-          currentY,
-          table,
-          Array.from(tablePositions.keys()).map(id => tables.find(t => t.id === id)!).filter(Boolean),
-          layoutConfig.gapX,
-          layoutConfig.gapY
-        );
-
-        // 设置表格位置
-        table.x = position.x;
-        table.y = position.y;
-        // 记录位置信息
-        tablePositions.set(table.id, position);
-        positionedTables.add(table.id);
-
-        // 更新Y坐标
-        currentY += layoutConfig.defaultTableHeight + layoutConfig.gapY;
-      });
-
-      // 更新X坐标到下一层次
-      currentX += layoutConfig.levelGapX;
-    });
-  } else {
-    // 纵向布局：从上到下分层
+    // 横向布局：从上到下分层，每层内从左到右排列
     let currentY = area.y;  // 当前Y坐标
 
     // 遍历每一层
@@ -852,6 +815,43 @@ function layoutConnectedTablesHierarchical(
       // 更新Y坐标到下一层次
       currentY += layoutConfig.levelGapY;
     });
+  } else {
+    // 纵向布局：从左到右分层，每层内从上到下排列
+    let currentX = area.x;  // 当前X坐标
+
+    // 遍历每一层
+    levels.forEach((levelTables, levelIndex) => {
+      // 计算当前层的高度
+      const levelHeight = levelTables.length * (layoutConfig.defaultTableHeight + layoutConfig.gapY);
+      // 计算当前层的起始Y坐标（居中对齐）
+      let currentY = area.y + (area.height - levelHeight) / 2;
+
+      // 遍历当前层的每个表格
+      levelTables.forEach(table => {
+        // 查找最优位置避免重叠
+        const position = findOptimalPosition(
+          currentX,
+          currentY,
+          table,
+          Array.from(tablePositions.keys()).map(id => tables.find(t => t.id === id)!).filter(Boolean),
+          layoutConfig.gapX,
+          layoutConfig.gapY
+        );
+
+        // 设置表格位置
+        table.x = position.x;
+        table.y = position.y;
+        // 记录位置信息
+        tablePositions.set(table.id, position);
+        positionedTables.add(table.id);
+
+        // 更新Y坐标
+        currentY += layoutConfig.defaultTableHeight + layoutConfig.gapY;
+      });
+
+      // 更新X坐标到下一层次
+      currentX += layoutConfig.levelGapX;
+    });
   }
 }
 
@@ -878,38 +878,7 @@ function layoutIsolatedTablesGrid(
 
   // 根据布局方向选择不同的布局策略
   if (direction === 'horizontal') {
-    // 横向布局：单行排列
-    // 计算总宽度
-    const totalWidth = tables.length * layoutConfig.defaultTableWidth + (tables.length - 1) * layoutConfig.gapX;
-    // 计算起始X坐标（居中对齐）
-    let currentX = area.x + Math.max(0, (area.width - totalWidth) / 2);
-    // Y坐标（放在区域底部）
-    const currentY = area.y + area.height - layoutConfig.defaultTableHeight - 50;
-
-    // 遍历所有孤立表格
-    tables.forEach(table => {
-      // 查找最优位置避免重叠
-      const position = findOptimalPosition(
-        currentX,
-        currentY,
-        table,
-        Array.from(tablePositions.keys()).map(id => tables.find(t => t.id === id)!).filter(Boolean),
-        layoutConfig.gapX,
-        layoutConfig.gapY
-      );
-
-      // 设置表格位置
-      table.x = position.x;
-      table.y = position.y;
-      // 记录位置信息
-      tablePositions.set(table.id, position);
-      positionedTables.add(table.id);
-
-      // 更新X坐标
-      currentX += layoutConfig.defaultTableWidth + layoutConfig.gapX;
-    });
-  } else {
-    // 纵向布局：网格排列
+    // 横向布局：网格排列（优先横向排列）
     // 计算行列数
     const cols = Math.ceil(Math.sqrt(tables.length));  // 列数
     const rows = Math.ceil(tables.length / cols);      // 行数
@@ -948,6 +917,37 @@ function layoutIsolatedTablesGrid(
       // 记录位置信息
       tablePositions.set(table.id, position);
       positionedTables.add(table.id);
+    });
+  } else {
+    // 纵向布局：单行排列
+    // 计算总宽度
+    const totalWidth = tables.length * layoutConfig.defaultTableWidth + (tables.length - 1) * layoutConfig.gapX;
+    // 计算起始X坐标（居中对齐）
+    let currentX = area.x + Math.max(0, (area.width - totalWidth) / 2);
+    // Y坐标（放在区域底部）
+    const currentY = area.y + area.height - layoutConfig.defaultTableHeight - 50;
+
+    // 遍历所有孤立表格
+    tables.forEach(table => {
+      // 查找最优位置避免重叠
+      const position = findOptimalPosition(
+        currentX,
+        currentY,
+        table,
+        Array.from(tablePositions.keys()).map(id => tables.find(t => t.id === id)!).filter(Boolean),
+        layoutConfig.gapX,
+        layoutConfig.gapY
+      );
+
+      // 设置表格位置
+      table.x = position.x;
+      table.y = position.y;
+      // 记录位置信息
+      tablePositions.set(table.id, position);
+      positionedTables.add(table.id);
+
+      // 更新X坐标
+      currentX += layoutConfig.defaultTableWidth + layoutConfig.gapX;
     });
   }
 }
@@ -996,7 +996,7 @@ function findOptimalPosition(
   while (attempts < maxAttempts) {
     // 创建测试表格对象
     const testTable = { ...currentTable, x, y };
-    
+
     // 检查是否与现有表格重叠（排除自身）
     const hasOverlap = existingTables.some(table =>
       table.id !== currentTable.id && areTablesOverlapping(testTable, table)
