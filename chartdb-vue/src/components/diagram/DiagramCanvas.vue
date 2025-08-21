@@ -1,8 +1,21 @@
 <template>
   <div class="diagram-canvas">
-    <VueFlow ref="vueFlowRef" v-model="elements" :node-types="nodeTypes" :edge-types="edgeTypes"
-      :default-viewport="{ zoom: 0.5 }" :min-zoom="0.1" :max-zoom="2" @nodes-change="onNodesChange"
-      @edges-change="onEdgesChange" @connect="onConnect">
+    <VueFlow
+      ref="vueFlowRef"
+      v-model="elements"
+      :node-types="nodeTypes"
+      :edge-types="edgeTypes"
+      :default-viewport="{ zoom: 0.3, x: 0, y: 0 }"
+      :min-zoom="0.1"
+      :max-zoom="2"
+      :fit-view-on-init="true"
+      :nodes-draggable="true"
+      :zoom-on-scroll="true"
+      :zoom-on-pinch="true"
+      :zoom-on-double-click="false"
+      @nodes-change="onNodesChange"
+      @edges-change="onEdgesChange"
+      @connect="onConnect">
       <Background pattern="dots" :gap="20" :size="1" />
 
       <!-- 移动到左上角的Controls -->
@@ -12,22 +25,22 @@
       <div class="layout-controls">
         <!-- 布局方向选择器 -->
         <div class="layout-direction-selector">
-          <button 
-            @click="layoutDirection = 'horizontal'" 
+          <button
+            @click="layoutDirection = 'horizontal'"
             :class="['direction-button', { active: layoutDirection === 'horizontal' }]"
             title="横向布局">
             <ArrowRightIcon class="direction-icon" />
             横向
           </button>
-          <button 
-            @click="layoutDirection = 'vertical'" 
+          <button
+            @click="layoutDirection = 'vertical'"
             :class="['direction-button', { active: layoutDirection === 'vertical' }]"
             title="纵向布局">
             <ArrowDownIcon class="direction-icon" />
             纵向
           </button>
         </div>
-        
+
         <!-- 重排布局按钮 -->
         <button @click="rearrangeLayout" class="layout-button" title="重新排列表格布局">
           <LayoutIcon class="layout-icon" />
@@ -66,8 +79,8 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, watch, nextTick } from 'vue';
-import { VueFlow } from '@vue-flow/core';
+import { ref, computed, watch, nextTick, onMounted } from 'vue';
+import { VueFlow, useVueFlow } from '@vue-flow/core';
 import { Background } from '@vue-flow/background';
 import { Controls } from '@vue-flow/controls';
 import { MiniMap } from '@vue-flow/minimap';
@@ -100,6 +113,34 @@ const edgeTypes = {
 
 const elements = ref<(Node | Edge)[]>([]);
 
+// 添加VueFlow实例引用
+const vueFlowRef = ref<InstanceType<typeof VueFlow>>();
+
+// 缩放和居中配置常量 - 方便调试修改
+const ZOOM_CONFIG = {
+  defaultZoom: 0.3,        // 默认缩放比例 - 可调整此值
+  minZoom: 0.1,           // 最小缩放比例
+  maxZoom: 2,             // 最大缩放比例
+  fitViewPadding: 50,     // 适应视图时的边距 - 可调整此值
+  animationDuration: 300   // 动画持续时间
+};
+
+// 自动适应视图函数
+const fitViewToContent = async () => {
+  if (!vueFlowRef.value) return;
+
+  await nextTick();
+
+  // 使用VueFlow的fitView方法
+  vueFlowRef.value.fitView({
+    padding: ZOOM_CONFIG.fitViewPadding,
+    minZoom: ZOOM_CONFIG.minZoom,
+    maxZoom: ZOOM_CONFIG.defaultZoom, // 限制最大缩放为默认值
+    duration: ZOOM_CONFIG.animationDuration
+  });
+};
+
+// 修改generateNodesAndEdges函数
 const generateNodesAndEdges = (data: DiagramData) => {
   const nodes: Node<TableNodeData>[] = [];
   const edges: Edge<RelationshipEdgeData>[] = [];
@@ -183,7 +224,7 @@ const generateNodesAndEdges = (data: DiagramData) => {
 };
 
 // 重排布局功能
-const rearrangeLayout = () => {
+const rearrangeLayout = async () => {
   if (!props.data) return;
 
   // 将当前数据转换为布局算法需要的格式
@@ -229,7 +270,28 @@ const rearrangeLayout = () => {
   });
 
   elements.value = updatedElements;
+
+  // 重排布局后自动适应视图
+  await nextTick();
+  fitViewToContent();
 };
+
+// 监听布局方向变化，自动重新布局和适应视图
+watch(layoutDirection, async () => {
+  if (props.data) {
+    await nextTick();
+    rearrangeLayout();
+  }
+});
+
+// 组件挂载后初始化
+onMounted(() => {
+  if (props.data) {
+    nextTick(() => {
+      fitViewToContent();
+    });
+  }
+});
 
 watch(
   () => props.data,
