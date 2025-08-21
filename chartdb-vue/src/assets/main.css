@@ -98,3 +98,41 @@ a,
 .vue-flow__resize-control:hover {
   background: #4f46e5;
 }
+
+/* Vue Flow 边的增强样式 */
+.vue-flow__edge.edge-selected {
+  /* 选中状态的额外样式 */
+  filter: drop-shadow(0 0 6px rgba(59, 130, 246, 0.5));
+}
+
+.vue-flow__edge.edge-clicked {
+  /* 点击状态的额外样式 */
+  animation: dash 1s linear infinite;
+  filter: drop-shadow(0 0 4px rgba(16, 185, 129, 0.5));
+}
+
+/* 虚线动画 - 实现流动效果 */
+@keyframes dash {
+  to {
+    stroke-dashoffset: -10;
+  }
+}
+
+/* 边的悬停效果 */
+.vue-flow__edge:hover {
+  stroke-width: 3 !important;
+  transition: stroke-width 0.2s ease;
+}
+
+/* 确保边在选中时位于顶层 */
+.vue-flow__edge.edge-selected {
+  z-index: 1000 !important;
+}
+
+/* 边的标签样式增强 */
+.vue-flow__edge .vue-flow__edge-text {
+  font-size: 11px;
+  font-weight: 500;
+  fill: #374151;
+  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
+}
