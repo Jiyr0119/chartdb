@@ -56,7 +56,7 @@ import { nanoid } from 'nanoid';
 import { LayoutGrid as LayoutIcon } from 'lucide-vue-next';
 import type { Node, Edge, Connection } from '@vue-flow/core';
 import type { DiagramData, TableNodeData, RelationshipEdgeData } from '@/types/diagram';
-import { adjustTablePositions } from '@/utils/layout';
+import { adjustTablePositions, adjustTablePositionsOptimized } from '@/utils/layout';
 import { useCanvasStore } from '@/stores/canvas';
 import TableNode from './TableNode.vue';
 import RelationshipEdge from './RelationshipEdge.vue';
@@ -131,9 +131,9 @@ const generateNodesAndEdges = (data: DiagramData) => {
     nodes.push({
       id: tableName,
       type: 'table',
-      position: { 
-        x: repositionedTable?.x || 100, 
-        y: repositionedTable?.y || 100 
+      position: {
+        x: repositionedTable?.x || 100,
+        y: repositionedTable?.y || 100
       },
       data: {
         table,
@@ -212,14 +212,6 @@ watch(
   (newData) => {
     if (newData) {
       elements.value = generateNodesAndEdges(newData);
-
-      // 在第一次渲染时自动调用重排布局
-      // 使用 nextTick 确保节点已经生成完成
-      nextTick(() => {
-        setTimeout(() => {
-          rearrangeLayout();
-        }, 100); // 短暂延迟确保DOM更新完成
-      });
     }
   },
   { immediate: true }

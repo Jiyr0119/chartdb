@@ -152,8 +152,8 @@ const isLightColor = (color?: string): boolean => {
   border-radius: 12px;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   overflow: hidden;
-  min-width: 240px;
-  max-width: 320px;
+  min-width: 340px;
+  max-width: 420px;
   position: relative;
   transition: all 0.2s ease;
 }

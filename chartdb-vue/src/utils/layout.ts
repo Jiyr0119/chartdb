@@ -334,3 +334,155 @@ export const adjustTablePositionsWithoutAreas = (
 
   return tables;
 };
+
+// 优化的布局算法 - 横向布局，居中显示
+export const adjustTablePositionsOptimized = ({
+  tables,
+  relationships,
+  areas = [],
+  mode = 'all'
+}: {
+  tables: DBTable[];
+  relationships: DBRelationship[];
+  areas?: Area[];
+  mode?: 'all' | 'perSchema';
+}): DBTable[] => {
+  const tablesCopy = JSON.parse(JSON.stringify(tables)) as DBTable[];
+
+  if (tablesCopy.length === 0) return tablesCopy;
+
+  const defaultTableWidth = 280;
+  const defaultTableHeight = 200;
+  const gapX = 150; // 增加横向间距
+  const gapY = 100; // 纵向间距
+
+  // 计算画布中心位置
+  const canvasWidth = 1400;
+  const canvasHeight = 800;
+
+  // 创建连接映射
+  const tableConnections = new Map<string, Set<string>>();
+  relationships.forEach(rel => {
+    if (!tableConnections.has(rel.sourceTableId)) {
+      tableConnections.set(rel.sourceTableId, new Set());
+    }
+    if (!tableConnections.has(rel.targetTableId)) {
+      tableConnections.set(rel.targetTableId, new Set());
+    }
+    tableConnections.get(rel.sourceTableId)!.add(rel.targetTableId);
+    tableConnections.get(rel.targetTableId)!.add(rel.sourceTableId);
+  });
+
+  // 分离连接的和孤立的表格
+  const connectedTables: DBTable[] = [];
+  const isolatedTables: DBTable[] = [];
+
+  tablesCopy.forEach(table => {
+    if (tableConnections.has(table.id) && tableConnections.get(table.id)!.size > 0) {
+      connectedTables.push(table);
+    } else {
+      isolatedTables.push(table);
+    }
+  });
+
+  // 按连接数排序，连接数多的表格优先布局
+  connectedTables.sort((a, b) =>
+    (tableConnections.get(b.id)?.size || 0) - (tableConnections.get(a.id)?.size || 0)
+  );
+
+  const positionedTables = new Set<string>();
+  const tablePositions = new Map<string, TablePosition>();
+
+  // 横向散开布局连接的表格
+  const positionConnectedTable = (table: DBTable, baseX: number, baseY: number, level: number = 0) => {
+    if (positionedTables.has(table.id)) return;
+
+    // 查找非重叠位置
+    const position = findNonOverlappingPosition(
+      baseX,
+      baseY,
+      table,
+      Array.from(tablePositions.keys()).map(id =>
+        tablesCopy.find(t => t.id === id)!
+      ).filter(Boolean),
+      gapX,
+      gapY
+    );
+
+    table.x = position.x;
+    table.y = position.y;
+    tablePositions.set(table.id, position);
+    positionedTables.add(table.id);
+
+    // 横向布局连接的表格
+    const connectedTableIds = tableConnections.get(table.id) || new Set();
+    let offsetX = gapX + defaultTableWidth;
+    let alternateY = 0;
+    let direction = 1; // 1为右侧，-1为左侧
+
+    Array.from(connectedTableIds).forEach((connectedTableId, index) => {
+      if (!positionedTables.has(connectedTableId)) {
+        const connectedTable = tablesCopy.find(t => t.id === connectedTableId);
+        if (connectedTable) {
+          // 交替在左右两侧布局，形成横向散开效果
+          const newX = position.x + (direction * offsetX);
+          const newY = position.y + alternateY;
+
+          positionConnectedTable(connectedTable, newX, newY, level + 1);
+
+          // 交替方向和位置
+          direction *= -1;
+          if (direction === 1) {
+            offsetX += defaultTableWidth + gapX;
+            alternateY = alternateY === 0 ? gapY : (alternateY > 0 ? -gapY : 0);
+          }
+        }
+      }
+    });
+  };
+
+  // 开始布局连接的表格
+  if (connectedTables.length > 0) {
+    // 从画布中心开始
+    const centerX = canvasWidth / 2 - defaultTableWidth / 2;
+    const centerY = canvasHeight / 2 - defaultTableHeight / 2;
+
+    // 布局连接数最多的表格作为中心
+    positionConnectedTable(connectedTables[0], centerX, centerY);
+
+    // 布局剩余的连接表格组
+    let groupOffsetY = gapY * 3;
+    connectedTables.forEach(table => {
+      if (!positionedTables.has(table.id)) {
+        positionConnectedTable(table, centerX, centerY + groupOffsetY);
+        groupOffsetY += defaultTableHeight + gapY * 2;
+      }
+    });
+  }
+
+  // 横向布局孤立的表格（放在底部）
+  if (isolatedTables.length > 0) {
+    const totalWidth = isolatedTables.length * defaultTableWidth + (isolatedTables.length - 1) * gapX;
+    let startX = (canvasWidth - totalWidth) / 2;
+    const startY = canvasHeight - defaultTableHeight - 50; // 底部位置
+
+    isolatedTables.forEach((table, index) => {
+      // 确保不与已定位的表格重叠
+      const position = findNonOverlappingPosition(
+        startX + index * (defaultTableWidth + gapX),
+        startY,
+        table,
+        Array.from(tablePositions.keys()).map(id =>
+          tablesCopy.find(t => t.id === id)!
+        ).filter(Boolean),
+        gapX,
+        gapY
+      );
+
+      table.x = position.x;
+      table.y = position.y;
+    });
+  }
+
+  return tablesCopy;
+};
